@@ -64,9 +64,14 @@ public class UserController
     {
         ModelAndView model = new ModelAndView("admin");
 
-        List<User> userList = userDAO.getAllUsers();
-        System.out.println(userList);
-        model.addObject("userList", userList);
+        //List<User> userList = userDAO.getAllUsers();
+        List<User> charterers = userDAO.getUsersByRole("charterer");
+        List<User> shipowners = userDAO.getUsersByRole("shipowner");
+        
+        //System.out.println(userList);
+        //model.addObject("userList", userList);
+        model.addObject("charterers", charterers);
+        model.addObject("shipowners", shipowners);
         
         return model;
     }

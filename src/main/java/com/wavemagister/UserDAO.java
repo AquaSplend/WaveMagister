@@ -9,5 +9,6 @@ public interface UserDAO
     public void updateUser(User user);
     public void deleteUser(int id);
     public List<User> getAllUsers();
+    public List<User> getUsersByRole(String role);
     public User getUserByUsername(String username);
 }

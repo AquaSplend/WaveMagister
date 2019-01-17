@@ -46,7 +46,7 @@
                                 <div class="container itemInRow">
                                     <div class="row">
                                         <div class="col-8 col8">
-                                            <c:forEach items="${userList}" var="user">
+                                            <c:forEach items="${shipowners}" var="user">
                                                 <form method="post" action="/wavemagister/user.html" commandName="user"> 
                                                     <label for="${user.id}"></label>
                                                     <input hidden id="${user.id}" type="text" name="id" value=${user.id} />

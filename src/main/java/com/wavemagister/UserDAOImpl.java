@@ -83,8 +83,17 @@ public class UserDAOImpl implements UserDAO
     @Override
     public List<User> getAllUsers()
     {
-        String sql = "SELECT * FROM users";
-
+        return getUsers("SELECT * FROM users");  
+    }
+    
+    // Getting users by role
+    @Override
+    public List<User> getUsersByRole(String role){
+        String sql = "SELECT * FROM users WHERE role = '" + role + "'";
+        return getUsers(sql);
+    }
+    
+    private List<User> getUsers(String sql){
         List<User> userList = jdbcTemplate.query(sql, new ResultSetExtractor<List<User>>()
         {
             @Override
