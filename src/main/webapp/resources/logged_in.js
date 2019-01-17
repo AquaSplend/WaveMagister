@@ -25,16 +25,6 @@ $(document).ready(()=> {
     });
 
     $(".row input").on("change", function() {
-        $(this).parents("form").submit(function (e) {
-            $.ajax({
-                type: $(this).parents("form").attr('method'),
-                url: $(this).parents("form").attr('action'),
-                data: $(this).parents("form").serialize(),
-                success: function (data) {
-                    alert('ok');
-                }
-            });
-            e.preventDefault();
-        });
+        $(this).parents("form").submit();
     });
 });
