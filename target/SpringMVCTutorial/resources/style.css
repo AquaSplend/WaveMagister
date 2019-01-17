@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Segoe UI Light, sans serif !important;
+    font-size: 17px;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    align-self: flex-start;
+}
+
+main {
+    position: relative;
+    align-self: center;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+    align-self: flex-end;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    transition: .3s;
+}
+
+.video-blurred {
+    transform: scale(1.2);
+    filter: blur(24px);
+}
+
+.title {
+    font-size: 3.5em;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 34px black, 0 0 34px black;
+    margin-bottom: 0.2em;
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 23, 85, 0.8);
+    transition: .3s;
+}
+
+.jumbotron-buttons {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.jumbotron-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.bg-text {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 23, 85, 0.8);
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 20px;
+    transition: .3s;
+}
+
+::placeholder {
+    color: rgba(0, 23, 85, 0.6) !important;
+    font-style: italic;
+    transition: .3s;
+}
+
+input:focus::placeholder {
+    color: rgba(0, 23, 85, 0.6) !important;
+}
+
+input {
+    border: none !important;
+    border-radius: 2px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
+}
+
+input:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.afterForm {
+    margin-top: 20px;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(0, 23, 85, 0.6) !important;
+    transition: 0.2s;
+}
+
+input:not(:focus) {
+    transition: 0.2s;
+}
+
+.form-row > label, .form-group > label {
+    color: rgba(0, 23, 85, 0.8);
+    margin-left: 3px;
+}
+
+.custom-select {
+    border: none !important;
+    border-radius: 2px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    box-shadow: none !important;
+}
+
+.button {
+    font-family: Segoe UI, sans serif !important;
+    padding: 10px 23px 10px 23px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 23, 85, 0.8);
+    border: none;
+    font-weight: 700;
+    border-radius: 3px;
+    width: auto !important;
+    height: auto !important;
+    text-align: center;
+    transition: .3s;
+}
+
+.smallButton {
+    font-family: Segoe UI, sans serif !important;
+    padding: 7px 17px 7px 17px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 23, 85, 0.8);
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 3px;
+    width: auto !important;
+    height: auto !important;
+    text-align: center;
+    transition: .3s;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.navBut {
+    font-family: Segoe UI, sans serif !important;
+    padding: 0 10px 0 10px;
+    color: rgba(0, 23, 85, 0.8);
+    border: none;
+    font-size: 15px;
+    height: 55px;
+    line-height: 55px;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    transition: .3s;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.activated {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.activated {
+    margin-top: 12px;
+    margin-bottom: 17px;
+}
+
+.row {
+    background-color: rgba(255, 255, 255, 0.6);
+    line-height: 0;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.row:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.col4 {
+    text-align: center;
+}
+
+.card form input {
+    background-color: transparent !important;
+    transition: .3s;
+    font-weight: 700;
+    font-size: 18px;
+    height: 38px;
+}
+
+.card {
+    border-radius: 2px;
+}
+
+.card form input:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    transition: .3s;
+}
+
+.card form input:focus {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    transition: .3s;
+}
+
+.card-header {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.card-body {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-link {
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: none !important;
+}
+
+.typeRadio {
+    text-align: center;
+}
+
+.btn-secondary:active {
+    background-color: #3074b9 !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    background-color: #3074b9 !important
+}
+
+.btn-secondary:hover {
+    background-color: #43a3ff;
+}
+
+.button:hover, .smallButton:hover {
+    background-color: rgba(255, 255, 255, 0.9)  !important;
+    color: rgba(0, 23, 85, 0.8) !important;
+}
+
+.button:not(:hover), .smallButton:not(:hover) {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(0, 16, 40, 0.8) !important;
+}
+
+.button:active, .smallButton:active {
+    background-color: rgba(255, 255, 255, 0.3)  !important;
+    color: rgba(0, 23, 85, 0.8) !important;
+}
+
+.navBut:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.navBut:not(:hover) {
+    background-color: transparent;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.navBut:active {
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+.navbar-toggler, button:focus, .navBut:focus {
+    outline:none !important;
+}
+
+.navbar {
+    transition: .3s;
+    padding: 0 1rem;
+}
+
+.navbarColored {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+#navbarNav {
+    margin-left: 15px;
+}
+
+.navbar-brand > span > img {
+    height: 55px;
+    padding: 8px 0;
+}
+
+.display-4 {
+    opacity: 0.8;
+}
+
+.display-4 > span > img {
+    height: 100px;
+}
+
+.jumbotron > h1, .jumbotron p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0;
+    font-size: 1.63em;
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle > div {
+    cursor: pointer;
+    border-radius: 2rem;
+    width: 50px;
+    height: 22px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    position: relative;
+    transition: 200ms ease-out;
+}
+
+.toggle > div:before {
+    display: block;
+    position: absolute;
+    top: 0.22rem;
+    left: 0.17rem;
+    content: '';
+    width: 11px;
+    height: 11px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transition: 200ms;
+}
+
+.toggle input:checked + div {
+    background: rgba(0, 120, 215, 0.8);
+    border-color: rgba(0, 120, 215, 0);
+}
+
+.toggle input:checked + div:before {
+    color: rgba(0, 120, 215, 0.8);
+    transform: translateX(29px);
+    background: rgba(255, 255, 255, 0.8);
+}
