@@ -5,6 +5,10 @@
     font-size: 17px;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     position: relative;
     width: 100%;
@@ -23,6 +27,10 @@ header {
 main {
     position: relative;
     align-self: center;
+}
+
+.mainItems {
+    width: 100%;
 }
 
 footer {
@@ -50,6 +58,18 @@ video {
     text-shadow: 0 0 34px black, 0 0 34px black;
     margin-bottom: 0.2em;
     text-align: center;
+}
+
+.smallTitle {
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 34px black, 0 0 34px black;
+    margin-bottom: 0.4em;
+    text-align: center;
+}
+
+.vesselsTitle {
+    margin-top: 20px;
 }
 
 .jumbotron {
@@ -187,6 +207,7 @@ input:not(:focus) {
 .activated {
     font-weight: 700;
     font-size: 18px;
+    color: rgba(0, 23, 85, 0.8);
 }
 
 .activated {
@@ -208,7 +229,7 @@ input:not(:focus) {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.col4 {
+.col4, .col8 {
     text-align: center;
 }
 
@@ -218,20 +239,23 @@ input:not(:focus) {
     font-weight: 700;
     font-size: 18px;
     height: 38px;
+    color: rgba(0, 23, 85, 0.8);
 }
 
 .card {
     border-radius: 2px;
 }
 
-.card form input:hover {
+.card form input:hover, .underItem form input:hover {
     background-color: rgba(255, 255, 255, 0.7) !important;
     transition: .3s;
+    color: rgba(0, 23, 85, 0.8);
 }
 
-.card form input:focus {
+.card form input:focus, .underItem form input:focus {
     background-color: rgba(255, 255, 255, 0.9) !important;
     transition: .3s;
+    color: rgba(0, 23, 85, 0.8);
 }
 
 .card-header {
@@ -265,7 +289,7 @@ input:not(:focus) {
 }
 
 .button:hover, .smallButton:hover {
-    background-color: rgba(255, 255, 255, 0.9)  !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     color: rgba(0, 23, 85, 0.8) !important;
 }
 
@@ -275,7 +299,7 @@ input:not(:focus) {
 }
 
 .button:active, .smallButton:active {
-    background-color: rgba(255, 255, 255, 0.3)  !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
     color: rgba(0, 23, 85, 0.8) !important;
 }
 
@@ -376,4 +400,61 @@ input:not(:focus) {
     color: rgba(0, 120, 215, 0.8);
     transform: translateX(29px);
     background: rgba(255, 255, 255, 0.8);
+}
+
+.underItem {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.passwordChange {
+    text-align: center;
+}
+
+.underItem form input {
+    background-color: transparent !important;
+    text-align: center;
+    width: 157px;
+    font-weight: 700;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.width-dynamic {
+    margin-top: -6px;
+    margin-left: -7px;
+}
+
+.addVesselIcon {
+    text-align: center;
+}
+
+.plus {
+    height: 63px;
+    width: 63px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.5) !important;
+    background-color: transparent;
+    transition: .3s;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.plus span {
+    font-size: 62px;
+    line-height: 0.4;
+}
+
+.plus:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(0, 23, 85, 0.8);
+    border: 3px rgba(255, 255, 255, 0.7) !important;
+}
+
+.plus:active {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(0, 23, 85, 0.3);
+    border: 3px rgba(255, 255, 255, 0.3) !important;
 }

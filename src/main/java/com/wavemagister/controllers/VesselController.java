@@ -41,7 +41,7 @@ public class VesselController
     @RequestMapping(value = "/Vedit/{id}")
     public ModelAndView editVessels(@ModelAttribute("vessel") Vessels vessel,@PathVariable("id") int id)
     {
-        ModelAndView model = new ModelAndView("vessels");
+        ModelAndView model = new ModelAndView("shipowner");
         
         vessel = vesselDAO.getVesselById(id);
         List<Vessels> vesselList = vesselDAO.getAllVessels();
@@ -64,7 +64,7 @@ public class VesselController
     @RequestMapping(value = "/vessels")
     public ModelAndView listVessels(@ModelAttribute("vessel") Vessels vessel)
     {
-        ModelAndView model = new ModelAndView("vessels");
+        ModelAndView model = new ModelAndView("shipowner");
 
         List<Vessels> vesselList = vesselDAO.getAllVessels();
         System.out.println(vesselList);

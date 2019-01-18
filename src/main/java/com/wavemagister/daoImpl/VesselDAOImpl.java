@@ -31,7 +31,7 @@ public class VesselDAOImpl implements VesselDAO
     public void insertVessel(Vessels vessel)
     {
         String sql = "INSERT INTO vessels(name, flag, year_built, dwt, costs, shipowner, active) VALUES(?,?,?,?,?,?,?)";
-        System.out.println("dao called");
+        //System.out.println("dao called");
         jdbcTemplate.update(sql, new Object[]
         { vessel.getName(),vessel.getFlag(),vessel.getYear_built(),vessel.getDwt(),vessel.getCosts(),vessel.getShipowner(),vessel.getActive()});
     }
