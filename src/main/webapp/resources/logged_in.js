@@ -10,7 +10,8 @@ $(document).ready(()=> {
     let agreements = $(".agreements");
     let profile = $(".profile");
     let dynamicWidth = $('.width-dynamic');
-    let modalElements = $(".modal-overlay, .modal");
+    let modalNewVesselElements = $(".modal-overlay-newVessel, .modal-newVessel");
+    let modalPasswordElements = $(".modal-overlay-password, .modal-password");
 
     login.hide();
     register.hide();
@@ -26,6 +27,8 @@ $(document).ready(()=> {
         agreements.fadeOut();
         profile.delay(450).fadeIn();
     });
+
+    $(".otherButton1").css("border-bottom", "solid 3px");
 
     otherButtons.on("click", function() {
         otherButtons.not($(this)).css("border-bottom", "solid 0");
@@ -56,11 +59,16 @@ $(document).ready(()=> {
     }).trigger("input");
 
     $(".plus").on("click", function() {
-        modalElements.addClass("active");
+        modalNewVesselElements.addClass("active");
+    });
+
+    $(".changePasswordButton").on("click", function() {
+        modalPasswordElements.addClass("active");
     });
 
     $(".close-modal").on("click", function() {
-        modalElements.removeClass("active");
+        modalNewVesselElements.removeClass("active");
+        modalPasswordElements.removeClass("active");
     });
 
     let now = (new Date()).getFullYear();

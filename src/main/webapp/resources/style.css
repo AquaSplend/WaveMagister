@@ -599,3 +599,9 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 #aVesselFlag::placeholder {
     text-transform: none;
 }
+
+.modal-password #password {
+    width: 127px;
+    margin-left: 38%;
+    margin-top: 9px;
+}
