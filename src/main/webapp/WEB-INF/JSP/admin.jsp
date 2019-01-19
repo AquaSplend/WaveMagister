@@ -30,6 +30,7 @@
     </nav>
 </header>
 <main>
+    <iframe style="display:none;" name="form"></iframe>
     <div class="container">
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -46,12 +47,12 @@
                         <div class="container itemInRow">
                             <c:forEach items="${shipowners}" var="shipowner">
                                 <div class="row">
-                                    <div class="col-8 col8">
-                                        <form method="post" action="/wavemagister/user.html" commandName="user">
+                                    <div class="col-8 col8 nameInput">
+                                        <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
                                             <input hidden type="text" name="id" value=${shipowner.id} />
                                             <input hidden type="text" name="username" value=${shipowner.username} />
                                             <input hidden type="text" name="password" value=${shipowner.password} />
-                                            <input type="text" name="company" title="Rename" value=${shipowner.company} placeholder="Rename"/>
+                                            <input type="text" name="company" title="Rename" maxlength="100" value=${shipowner.company} placeholder="Rename"/>
                                             <input hidden type="text" name="role" value=${shipowner.role} />
                                             <input hidden type="text" name="id" value=${shipowner.activated} />
                                         </form>
@@ -59,7 +60,7 @@
                                     <div class="col-4 col4">
                                         <div class="activated">Activated</div>
                                         <div class="onOff">
-                                            <form action="/wavemagister/user.html" method="post">
+                                            <form target="form" action="/wavemagister/user.html" method="post">
                                                 <input hidden type="text" name="id" value=${shipowner.id} />
                                                 <input hidden type="text" name="username" value=${shipowner.username} />
                                                 <input hidden type="text" name="password" value=${shipowner.password} />
@@ -98,12 +99,12 @@
                         <div class="container itemInRow">
                             <c:forEach items="${charterers}" var="charterer">
                                 <div class="row">
-                                    <div class="col-8 col8">
-                                        <form method="post" action="/wavemagister/user.html" commandName="user">
+                                    <div class="col-8 col8 nameInput">
+                                        <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
                                             <input hidden type="text" name="id" value=${charterer.id} />
                                             <input hidden type="text" name="username" value=${charterer.username} />
                                             <input hidden type="text" name="password" value=${charterer.password} />
-                                            <input type="text" name="company" title="Rename" value=${charterer.company} placeholder="Rename"/>
+                                            <input type="text" name="company" title="Rename" maxlength="100" value=${charterer.company} placeholder="Rename"/>
                                             <input hidden type="text" name="role" value=${charterer.role} />
                                             <input hidden type="text" name="id" value=${charterer.activated} />
                                         </form>
@@ -111,7 +112,7 @@
                                     <div class="col-4 col4">
                                         <div class="activated">Activated</div>
                                         <div class="onOff">
-                                            <form action="/wavemagister/user.html" method="post">
+                                            <form target="form" action="/wavemagister/user.html" method="post">
                                                 <input hidden type="text" name="id" value=${charterer.id} />
                                                 <input hidden type="text" name="username" value=${charterer.username} />
                                                 <input hidden type="text" name="password" value=${charterer.password} />

@@ -10,6 +10,7 @@ $(document).ready(()=> {
     let agreements = $(".agreements");
     let profile = $(".profile");
     let dynamicWidth = $('.width-dynamic');
+    let modalElements = $(".modal-overlay, .modal");
 
     login.hide();
     register.hide();
@@ -27,8 +28,8 @@ $(document).ready(()=> {
     });
 
     otherButtons.on("click", function() {
-        otherButtons.not($(this)).css("background-color", "transparent !important");
-        $(this).css("background-color", "rgba(238, 238, 238, 0.5) !important");
+        otherButtons.not($(this)).css("border-bottom", "solid 0");
+        $(this).css("border-bottom", "solid 3px");
     });
 
     input.on("input", ()=> {
@@ -42,7 +43,7 @@ $(document).ready(()=> {
     });
 
     $.fn.textWidth = function(text, font) {
-        if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
+        if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $("<span>").hide().appendTo(document.body);
         $.fn.textWidth.fakeEl.text(text || this.val() || this.text() || this.attr("placeholder")).css("font", font || this.css("font"));
         return $.fn.textWidth.fakeEl.width();
     };
@@ -53,4 +54,22 @@ $(document).ready(()=> {
             width: inputWidth
         })
     }).trigger("input");
+
+    $(".plus").on("click", function() {
+        modalElements.addClass("active");
+    });
+
+    $(".close-modal").on("click", function() {
+        modalElements.removeClass("active");
+    });
+
+    let now = (new Date()).getFullYear();
+    let min = now - 70;
+    let max = now + 30;
+    for (let i = min; i < max; i++) {
+        if (i === now)
+            $("#selectYearBuilt").append('<option selected value="' + i + '">' + i + '</option>');
+        else
+            $("#selectYearBuilt").append('<option value="' + i + '">' + i + '</option>');
+    }
 });

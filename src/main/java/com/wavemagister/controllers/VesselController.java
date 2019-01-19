@@ -21,13 +21,13 @@ public class VesselController
 
     @RequestMapping(value = "/vessel",method=RequestMethod.POST)
     public ModelAndView insertVessel(@ModelAttribute("vessel") Vessels vessel)
-    {   
+    {
         try
         {
             Vessels existingVessel = vesselDAO.getVesselById(vessel.getId());
-            if(existingVessel != null){ 
+            if(existingVessel != null){
                 vessel.setId(existingVessel.getId());
-                vesselDAO.updateVessel(vessel); 
+                vesselDAO.updateVessel(vessel);
             }
         }
         catch(EmptyResultDataAccessException e)
@@ -37,26 +37,26 @@ public class VesselController
         }
         return new ModelAndView("redirect:/vessels");
     }
-    
+
     @RequestMapping(value = "/Vedit/{id}")
     public ModelAndView editVessels(@ModelAttribute("vessel") Vessels vessel,@PathVariable("id") int id)
     {
         ModelAndView model = new ModelAndView("shipowner");
-        
+
         vessel = vesselDAO.getVesselById(id);
         List<Vessels> vesselList = vesselDAO.getAllVessels();
-        
-        model.addObject("vessel",vessel);        
+
+        model.addObject("vessel",vessel);
         model.addObject("vesselList",vesselList);
-        
-        return model; 
+
+        return model;
     }
-    
+
     @RequestMapping(value = "/Vdelete/{id}")
     public ModelAndView deleteVessel(@ModelAttribute("vessel") Vessels vessel,@PathVariable("id") int id)
     {
-       vesselDAO.deleteVessel(id);
-        
+        vesselDAO.deleteVessel(id);
+
         // go to Dispatcher and the Dispatcher sends to appropriate controller
         return new ModelAndView("redirect:/vessels");
     }
@@ -69,7 +69,7 @@ public class VesselController
         List<Vessels> vesselList = vesselDAO.getAllVessels();
         System.out.println(vesselList);
         model.addObject("vesselList", vesselList);
-        
+
         return model;
     }
 }
