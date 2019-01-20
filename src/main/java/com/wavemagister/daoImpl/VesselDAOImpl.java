@@ -1,8 +1,8 @@
 package com.wavemagister.daoImpl;
 
-
 import com.wavemagister.dao.VesselDAO;
-import com.wavemagister.entities.Vessels;
+import com.wavemagister.entities.User;
+import com.wavemagister.entities.Vessel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,45 +15,40 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VesselDAOImpl implements VesselDAO
-{
+public class VesselDAOImpl implements VesselDAO {
 
     private JdbcTemplate jdbcTemplate;
+
     // JdbcTemplate setter
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
-    {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     //String username, String password, String company, String role, boolean activated
     // Saving a new Employee
     @Override
-    public void insertVessel(Vessels vessel)
-    {
+    public void insertVessel(Vessel vessel) {
         String sql = "INSERT INTO vessels(name, flag, year_built, dwt, costs, shipowner, active) VALUES(?,?,?,?,?,?,?)";
         //System.out.println("dao called");
-        jdbcTemplate.update(sql, new Object[]
-        { vessel.getName(),vessel.getFlag(),vessel.getYear_built(),vessel.getDwt(),vessel.getCosts(),vessel.getShipowner(),vessel.getActive()});
+        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive()});
     }
 
     // Getting a particular Employee
     @Override
-    public Vessels getVesselById(int id)
-    {
+    public Vessel getVesselById(int id) {
         String sql = "SELECT * FROM vessels WHERE id=?";
-        Vessels vessel = (Vessels) jdbcTemplate.queryForObject(sql, new Object[]
-        { id }, new RowMapper<Vessels>()
-        {
+        Vessel vessel = (Vessel) jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper<Vessel>() {
             @Override
-            public Vessels mapRow(ResultSet rs, int rowNum) throws SQLException 
-            {
-                Vessels vessel = new Vessels();
+            public Vessel mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Vessel vessel = new Vessel();
+                User shipowner = new User();
                 vessel.setName(rs.getString("name"));
                 vessel.setFlag(rs.getString("flag"));
                 vessel.setYear_built(rs.getString("year_built"));
                 vessel.setDwt(rs.getInt("dwt"));
                 vessel.setCosts(rs.getInt("costs"));
-                vessel.setShipowner(rs.getInt("shipowner"));
+                shipowner.setId(rs.getInt("shipowner"));
+                vessel.setShipowner(shipowner);
                 vessel.setActive(rs.getBoolean("active"));
                 vessel.setId(rs.getInt("id"));
                 return vessel;
@@ -61,23 +56,21 @@ public class VesselDAOImpl implements VesselDAO
         });
         return vessel;
     }
-    
-    public Vessels getVesselByName(String name)
-    {
+
+    public Vessel getVesselByName(String name) {
         String sql = "SELECT * FROM vessels WHERE name=?";
-        Vessels vessel = (Vessels) jdbcTemplate.queryForObject(sql, new Object[]
-        { name }, new RowMapper<Vessels>()
-        {
+        Vessel vessel = (Vessel) jdbcTemplate.queryForObject(sql, new Object[]{name}, new RowMapper<Vessel>() {
             @Override
-            public Vessels mapRow(ResultSet rs, int rowNum) throws SQLException 
-            {
-                Vessels vessel = new Vessels();
+            public Vessel mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Vessel vessel = new Vessel();
+                User shipowner = new User();
                 vessel.setName(rs.getString("name"));
                 vessel.setFlag(rs.getString("flag"));
                 vessel.setYear_built(rs.getString("year_built"));
                 vessel.setDwt(rs.getInt("dwt"));
                 vessel.setCosts(rs.getInt("costs"));
-                vessel.setShipowner(rs.getInt("shipowner"));
+                shipowner.setId(rs.getInt("shipowner"));
+                vessel.setShipowner(shipowner);
                 vessel.setActive(rs.getBoolean("active"));
                 vessel.setId(rs.getInt("id"));
                 return vessel;
@@ -88,28 +81,26 @@ public class VesselDAOImpl implements VesselDAO
 
     // Getting all the Users
     @Override
-    public List<Vessels> getAllVessels()
-    {
+    public List<Vessel> getAllVessels() {
         String sql = "SELECT * FROM vessels";
 
-        List<Vessels> vesselList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Vessels>>()
-        {
+        List<Vessel> vesselList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Vessel>>() {
             @Override
-            public List<Vessels> extractData(ResultSet rs) throws SQLException, DataAccessException
-            {
-                List<Vessels> list = new ArrayList<Vessels>();
-                while (rs.next())
-                {
-                    Vessels vessel = new Vessels();
-                   vessel.setName(rs.getString("name"));
-                   vessel.setFlag(rs.getString("flag"));
-                   vessel.setYear_built(rs.getString("year_built"));
-                   vessel.setDwt(rs.getInt("dwt"));
-                   vessel.setCosts(rs.getInt("costs"));
-                   vessel.setShipowner(rs.getInt("shipowner"));
-                   vessel.setActive(rs.getBoolean("active"));
-                   vessel.setId(rs.getInt("id"));
-                
+            public List<Vessel> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Vessel> list = new ArrayList<Vessel>();
+                while (rs.next()) {
+                    Vessel vessel = new Vessel();
+                    User shipowner = new User();
+                    vessel.setName(rs.getString("name"));
+                    vessel.setFlag(rs.getString("flag"));
+                    vessel.setYear_built(rs.getString("year_built"));
+                    vessel.setDwt(rs.getInt("dwt"));
+                    vessel.setCosts(rs.getInt("costs"));
+                    shipowner.setId(rs.getInt("shipowner"));
+                    vessel.setShipowner(shipowner);
+                    vessel.setActive(rs.getBoolean("active"));
+                    vessel.setId(rs.getInt("id"));
+
                     list.add(vessel);
                 }
                 return list;
@@ -120,20 +111,17 @@ public class VesselDAOImpl implements VesselDAO
 
     // Updating a particular User
     @Override
-    public void updateVessel(Vessels vessel) {
+    public void updateVessel(Vessel vessel) {
         String sql = "UPDATE vessels SET name = ?, flag = ?, year_built = ?, dwt = ?, costs = ?,shipowner = ?, active=?"
                 + " WHERE id = ?";
 
-        jdbcTemplate.update(sql, new Object[]
-        { vessel.getName(),vessel.getFlag(),vessel.getYear_built(),vessel.getDwt(),vessel.getCosts(),vessel.getShipowner(),vessel.getActive(),vessel.getId() });
+        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive(), vessel.getId()});
     }
 
     // Deletion of a particular User
     @Override
-    public void deleteVessel(int id)
-    {
+    public void deleteVessel(int id) {
         String sql = "DELETE FROM vessels WHERE id=?";
-        jdbcTemplate.update(sql, new Object[]
-        { id });
+        jdbcTemplate.update(sql, new Object[]{id});
     }
 }

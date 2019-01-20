@@ -1,7 +1,7 @@
 package com.wavemagister.controllers;
 
 import com.wavemagister.dao.VesselDAO;
-import com.wavemagister.entities.Vessels;
+import com.wavemagister.entities.Vessel;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,11 @@ public class VesselController
     private VesselDAO vesselDAO;
 
     @RequestMapping(value = "/vessel",method=RequestMethod.POST)
-    public ModelAndView insertVessel(@ModelAttribute("vessel") Vessels vessel)
+    public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel)
     {
         try
         {
-            Vessels existingVessel = vesselDAO.getVesselById(vessel.getId());
+            Vessel existingVessel = vesselDAO.getVesselById(vessel.getId());
             if(existingVessel != null){
                 vessel.setId(existingVessel.getId());
                 vesselDAO.updateVessel(vessel);
@@ -39,12 +39,12 @@ public class VesselController
     }
 
     @RequestMapping(value = "/Vedit/{id}")
-    public ModelAndView editVessels(@ModelAttribute("vessel") Vessels vessel,@PathVariable("id") int id)
+    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel,@PathVariable("id") int id)
     {
         ModelAndView model = new ModelAndView("shipowner");
 
         vessel = vesselDAO.getVesselById(id);
-        List<Vessels> vesselList = vesselDAO.getAllVessels();
+        List<Vessel> vesselList = vesselDAO.getAllVessels();
 
         model.addObject("vessel",vessel);
         model.addObject("vesselList",vesselList);
@@ -53,7 +53,7 @@ public class VesselController
     }
 
     @RequestMapping(value = "/Vdelete/{id}")
-    public ModelAndView deleteVessel(@ModelAttribute("vessel") Vessels vessel,@PathVariable("id") int id)
+    public ModelAndView deleteVessel(@ModelAttribute("vessel") Vessel vessel,@PathVariable("id") int id)
     {
         vesselDAO.deleteVessel(id);
 
@@ -62,11 +62,11 @@ public class VesselController
     }
 
     @RequestMapping(value = "/vessels")
-    public ModelAndView listVessels(@ModelAttribute("vessel") Vessels vessel)
+    public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel)
     {
         ModelAndView model = new ModelAndView("shipowner");
 
-        List<Vessels> vesselList = vesselDAO.getAllVessels();
+        List<Vessel> vesselList = vesselDAO.getAllVessels();
         System.out.println(vesselList);
         model.addObject("vesselList", vesselList);
 
