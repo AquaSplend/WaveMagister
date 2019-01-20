@@ -24,6 +24,32 @@
                 <button type="button" class="button jumbotron-button" name="login">Login</button>
                 <button type="button" class="button jumbotron-button" name="register">Register</button>
             </div>
+            <button type="button" class="smallButton notesButton" name="notes">Notes</button>
+        </div>
+    </div>
+    <div class="modal-overlay modal-overlay-notes">
+        <div class="modal modal-notes">
+            <a class="close-modal">
+                <svg viewBox="0 0 20 20">
+                    <path fill="#001755" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
+                </svg>
+            </a>
+            <div class="modal-content">
+                <div class="notesHeader">
+                    <h1 class="notesH1">Waves</h1>
+                    <p>Waves generated with javascript and &lt;canvas&gt;.</p>
+
+                </div>
+                <div class="notes-canvas-wrap">
+                    <canvas id="notesCanvas"></canvas>
+                </div>
+                <div class="notesContent">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate rerum nemo, autem. Maiores quibusdam asperiores iste laboriosam deleniti quo ratione voluptatem expedita temporibus facere velit cum nesciunt, doloremque ducimus consequuntur numquam, accusamus porro a quam.</p>
+                    <p>Beatae ullam repellendus tempore, dicta excepturi necessitatibus magnam praesentium illum voluptates nihil, fugiat est, corporis. Reiciendis veritatis facere reprehenderit nemo quod temporibus ea assumenda nulla iure, mollitia beatae debitis consequuntur a blanditiis quasi suscipit eos ab repellendus deleniti fuga accusamus officia maxime perferendis modi! Fugiat libero incidunt sunt nostrum harum?</p>
+                    <p>Quis sit debitis nulla natus neque earum odit nihil sequi doloremque eveniet vel vitae doloribus numquam expedita quaerat ex inventore, optio a ipsum ducimus maiores quisquam recusandae? Officia dolore id quisquam perferendis iste officiis sint fugiat temporibus sequi provident commodi deserunt repellendus enim rerum in iusto nulla, rem facere nemo!</p>
+                    <p>Voluptatum est alias eaque, odio in dolorum, laboriosam quos officia rem.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="register-parent">

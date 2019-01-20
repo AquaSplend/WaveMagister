@@ -77,6 +77,7 @@ video {
     background-color: rgba(255, 255, 255, 0.7);
     color: rgba(0, 23, 85, 0.8);
     transition: .3s;
+    margin-bottom: 0;
 }
 
 .jumbotron-buttons {
@@ -383,6 +384,11 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.notesButton {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .navbar-toggler {
@@ -741,8 +747,8 @@ form #vesselDwt, #resVesselDwt {
     width: 300px;
 }
 
-#resCosts {
-    width: 116px;
+#vesselCosts, #resCosts {
+    width: 128px;
 }
 
 #resFreight {
@@ -793,7 +799,7 @@ form #vesselDwt, #resVesselDwt {
 }
 
 .bottom-right.do-show {
-    animation: slide-in-right 1s ease-in-out forwards, slide-in-right 1s ease-in-out reverse forwards 3s;
+    animation: slide-in-right .7s ease-in-out forwards, slide-in-right 1s ease-in-out reverse forwards .7s;
 }
 
 .bottom-right[data-notification-status="error"] {
@@ -824,16 +830,37 @@ form #vesselDwt, #resVesselDwt {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.984c4.407 0 8.016 3.609 8.016 8.016 0 4.406-3.608 8.016-8.016 8.016S3.984 16.407 3.984 12 7.593 3.984 12 3.984m0-2C6.478 1.984 1.984 6.477 1.984 12c0 5.521 4.493 10.016 10.016 10.016S22.016 17.522 22.016 12c0-5.523-4.495-10.016-10.016-10.016zm0 2c4.407 0 8.016 3.609 8.016' fill='%2339813C'/%3E%3Cpath d='M10.477,13.136l5.085-5.085l1.406,1.406l-6.492,6.492l-3.446-3.445l1.406-1.406L10.477,13.136z' fill='%2339813C'/%3E%3C/svg%3E") center / cover no-repeat;
 }
 
-.close-notification {
-    position: absolute;
-    cursor: pointer;
-    top: 5px;
-    right: 15px;
-    opacity: 0;
-    backface-visibility: hidden;
+.notesHeader {
+    background-color: #22184c;
+// background-image: linear-gradient(to bottom, rgba(#715, .5), transparent);
+    min-height: 200px;
+    padding: 3rem 2rem;
+    color: #ddf;
+    text-align: center;
 }
 
-.close-notification svg {
-    width: 1.75em;
-    height: 1.75em;
+.notesH1 {
+    font-size: 3rem;
+    letter-spacing: .1ch;
+    font-weight: 300;
+    margin: 0 0 1rem;
+}
+
+.notesContent {
+    min-height: 200px;
+    padding: 3rem;
+    margin: 0 auto;
+    max-width: 800px;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.notes-canvas-wrap {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.notesCanvas {
+    display: block;
 }

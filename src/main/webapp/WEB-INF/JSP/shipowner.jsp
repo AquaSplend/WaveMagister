@@ -168,6 +168,10 @@
                                 <label for="vesselYearBuilt">Year built</label>
                                 <input value=${vessel.year_built} name="year_built" type="text" class="input form-control" id="vesselYearBuilt" title="Year built">
                             </div>
+                            <div class="form-group">
+                                <label for="vesselCosts">Daily costs</label>
+                                <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value=${vessel.costs} name="costs" type="text" maxlength="6" class="input form-control" id="vesselCosts" title="Daily costs">
+                            </div>
                             <div class="form-group vesselActive">
                                 <label for="vesselActive">Active</label>
                                 <label class="toggle">

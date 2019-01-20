@@ -71,11 +71,11 @@ $(document).ready(()=> {
         })
     }).trigger("input");
 
-    $(".plus").on("click", function() {
+    $(".plus").on("click", ()=> {
         modalNewVesselElements.addClass("active");
     });
 
-    $(".changePasswordButton").on("click", function() {
+    $(".changePasswordButton").on("click", ()=> {
         modalPasswordElements.addClass("active");
     });
 
@@ -122,9 +122,10 @@ $(document).ready(()=> {
         let flag = $(this).parents().find("#vesselFlag").val();
         let dwt = $(this).parents().find("#vesselDwt").val();
         let vesselYearBuilt = $(this).parents().find("#vesselYearBuilt").val();
+        let vesselCosts = $(this).parents().find("#vesselCosts").val();
         let vesselActive = $(this).parents().find("#vesselActive").prop('checked');
 
-        if (id && vesselShipowner && name && flag && dwt && vesselYearBuilt && vesselActive) {
+        if (id && vesselShipowner && name && flag && dwt && vesselYearBuilt && vesselCosts && vesselActive) {
             $.ajax({
                 type: "POST",
                 url: "/wavemagister/vessel.html",
