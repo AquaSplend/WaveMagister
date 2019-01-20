@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html style="display: none;">
+<html style="display:none;">
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="resources/normalize.css"/>
@@ -44,7 +44,7 @@
                     <form method="POST" action="">
                         <div class="form-group">
                             <label style="display:none;" for="password"></label>
-                            <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" required>
+                            <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" name="password" required>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="button afterForm" name="login">Change password</button>

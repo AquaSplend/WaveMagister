@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html style="display: none;">
 <head>
-    <title>Agreements</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="resources/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="resources/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -15,7 +15,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-light navbarColored">
-        <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" src="resources/logo.svg"/></span></a>
+        <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" class="logoImage" src="resources/logo.svg"/></span></a>
         <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +25,7 @@
                     <button type="button" class="navBut otherButton1" name="agreementsButton">Agreements</button>
                 </li>
                 <li class="nav-item otherButtonParent">
-                    <button type="button" class="navBut" name="profileButton">Fleet</button>
+                    <button type="button" class="navBut" name="fleetButton">Fleet</button>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -51,7 +51,7 @@
                     <form method="POST" action="">
                         <div class="form-group">
                             <label style="display:none;" for="password"></label>
-                            <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" required>
+                            <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" name="password" required>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="button afterForm" name="login">Change password</button>
@@ -63,7 +63,7 @@
         </div>
     </div>
 </header>
-<main class="mainItems">
+<main>
     <div class="agreements">
         <div class="title">Agreements</div>
         <div class="container">
@@ -91,8 +91,8 @@
             </div>
         </div>
     </div>
-    <div class="profile" style="display: none;">
-        <div class="title vesselsTitle">Fleet</div>
+    <div class="fleet" style="display:none;">
+        <div class="title">Fleet</div>
         <div class="addVesselIcon">
             <button title="Add a new vessel" class="plus"><span>+</span></button>
         </div>
@@ -109,7 +109,7 @@
                         <form action="">
                             <div class="form-group">
                                 <label for="aVesselName">Name</label>
-                                <input id="aVesselName" type="text" class="input form-control" placeholder="e.g. Grandiose" maxlength="100" required>
+                                <input id="aVesselName" type="text" class="input form-control" placeholder="e.g. Grandiose" maxlength="20" required>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -143,62 +143,45 @@
         </div>
         <div class="container">
             <c:forEach items="${vesselList}" var="vessel">
-                <div class="row">
-                    <div class="col-md col8">
-                        <div class="activated">Name</div>
-                        <div class="underItem underItemText">
-                            <form method="post" action="/wavemagister/vessel.html" commandName="vessel">
-                                <input hidden type="text" name="id" value=${vessel.id} />
-                                <input class="width-dynamic" id="vesselName" type="text" name="name" value=${vessel.name} />
-                                <input hidden type="text" name="flag" value=${vessel.flag} />
-                                <input hidden type="text" name="year_built" value="${vessel.year_built}" />
-                                <input hidden type="text" name="dwt" value=${vessel.dwt} />
-                                <input hidden type="text" name="shipowner" value=${vessel.shipowner} />
-                                <input hidden type="text" name="active" value=${vessel.active} />
-                            </form>
+                <div class="bg-text fleetList">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group vesselUpdateForm">
+                                <label style="display:none;" for="vesselId"></label>
+                                <input hidden value=${vessel.id} name="id" type="text" class="input form-control" id="vesselId" title="Vessel ID">
+                                <label style="display:none;" for="vesselShipowner"></label>
+                                <input hidden value=${vessel.shipowner} name="shipowner" type="text" class="input form-control" id="vesselShipowner" title="Shipowner">
+                                <label for="vesselName">Name</label>
+                                <input value=${vessel.name} name="name" type="text" class="input form-control" id="vesselName" title="Vessel name">
+                            </div>
+                            <div class="form-group">
+                                <label for="vesselFlag">Flag</label>
+                                <input value=${vessel.flag} name="flag" type="text" class="input form-control" id="vesselFlag" title="Flag">
+                            </div>
+                            <div class="form-group">
+                                <label for="vesselDwt">DWT</label>
+                                <input value=${vessel.dwt} name="dwt" type="text" class="input form-control" id="vesselDwt" title="Dead weight tonnage">
+                            </div>
+                            <div class="form-group">
+                                <label for="vesselYearBuilt">Year built</label>
+                                <input value=${vessel.year_built} name="year_built" type="text" class="input form-control" id="vesselYearBuilt" title="Year built">
+                            </div>
+                            <div class="form-group vesselActive">
+                                <label for="vesselActive">Active</label>
+                                <label class="toggle">
+                                    <c:choose>
+                                        <c:when test="${vessel.active=='false'}">
+                                            <input title="Active" name="active" id="vesselActive" type="checkbox"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input title="Active" name="active" id="vesselActive" type="checkbox" checked/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div></div>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md col8">
-                        <div class="activated">Flag</div>
-                        <div class="underItem underItemText">
-                            <form method="post" action="/wavemagister/vessel.html" commandName="vessel">
-                                <input class="width-dynamic" id="vesselFlag" type="text" name="flag" value="MA" />
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md col8">
-                        <div class="activated">Year built</div>
-                        <div class="underItem underItemText">
-                            <form method="post" action="/wavemagister/vessel.html" commandName="vessel">
-                                <input class="width-dynamic" id="vesselYearBuilt" type="text" name="year_built" value="2019" />
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md col8">
-                        <div class="activated">DWT</div>
-                        <div class="underItem underItemText">
-                            <form method="post" action="/wavemagister/vessel.html" commandName="vessel">
-                                <input class="width-dynamic" id="dwt" type="text" name="dwt" value="154398" />
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md col8">
-                        <div class="activated">Daily costs ($)</div>
-                        <div class="underItem underItemText">
-                            <form method="post" action="/wavemagister/vessel.html" commandName="vessel">
-                                <input class="width-dynamic" id="vesselDailyCosts" type="text" name="costs" value="3,500" />
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md col8">
-                        <div class="activated">Active</div>
-                        <div class="underItem"><form action="/wavemagister/vessel.html" method="post">
-                            <label class="toggle">
-                                <input title="Active" type="checkbox" checked/>
-                                <div></div>
-                            </label>
-                        </form></div>
-                    </div>
+                    </form>
                 </div>
             </c:forEach>
         </div>
@@ -210,5 +193,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script type="text/javascript" src="resources/logged_in.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 </body>
 </html>

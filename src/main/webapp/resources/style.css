@@ -29,10 +29,6 @@ main {
     align-self: center;
 }
 
-.mainItems {
-    width: 100%;
-}
-
 footer {
     position: relative;
     width: 100%;
@@ -75,10 +71,6 @@ video {
     text-shadow: 0 0 34px black, 0 0 34px black;
     margin-bottom: 0.4em;
     text-align: center;
-}
-
-.vesselsTitle {
-    margin-top: 20px;
 }
 
 .jumbotron {
@@ -349,9 +341,34 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     margin-left: 15px;
 }
 
-.navbar-brand > span > img {
+.logoImage {
     height: 55px;
     padding: 8px 0;
+}
+
+.oilItems {
+    display: flex;
+}
+
+.oilImage {
+    height: 28px;
+    margin-top: 13px;
+    margin-right: 6px;
+}
+
+.oilIndication {
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 7px;
+    margin-right: 10px;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.dollarSymbol {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 12px;
+    color: rgba(0, 23, 85, 0.8);
 }
 
 .display-4 {
@@ -590,6 +607,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 .modal {
     height: auto;
     padding: 2.8rem;
+    border-radius: 2px;
 }
 
 #aVesselFlag {
@@ -604,4 +622,134 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     width: 127px;
     margin-left: 38%;
     margin-top: 9px;
+}
+
+.offers-parent {
+    display: flex;
+    justify-content: center;
+}
+
+.results {
+    margin-top: 12px !important;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.results:hover, .searchOffers:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.searchOffers {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.results input {
+    background-color: transparent !important;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.results input:hover {
+    background-color: transparent !important;
+}
+
+.results form label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.results .form-group {
+    text-align: center;
+}
+
+.oilpricenettable2 {
+    display: none;
+}
+
+form #vesselName, #resVesselName {
+    width: 370px;
+}
+
+form #vesselFlag, #resVesselFlag {
+    width: 67px;
+}
+
+form #vesselYearBuilt, #resVesselYearBuilt {
+    width: 78px;
+}
+
+form #vesselDwt, #resVesselDwt {
+    width: 143px;
+}
+
+.fleetList input:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.fleetList input:focus {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.vesselActive {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    margin-right: 20px;
+}
+
+.vesselActive .toggle {
+    margin-top: 8px;
+}
+
+.fleetList {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.fleetList:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.fleetList input {
+    background-color: transparent !important;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: rgba(0, 23, 85, 0.8);
+}
+
+.fleetList input:hover {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.fleetList form label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fleetList .form-group {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+#resShipowner {
+    width: 300px;
+}
+
+#resCosts {
+    width: 116px;
+}
+
+#resFreight {
+    width: 196px;
+    color: rgba(222, 91, 39, 0.8);
+}
+
+.offers-search-parent {
+    margin-bottom: 40px;
 }
