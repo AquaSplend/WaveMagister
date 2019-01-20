@@ -64,6 +64,8 @@
     </div>
 </header>
 <main>
+    <div class="notify bottom-right" data-notification-status="success"></div>
+    <div class="notify bottom-right" data-notification-status="error"></div>
     <div class="agreements">
         <div class="title">Agreements</div>
         <div class="container">

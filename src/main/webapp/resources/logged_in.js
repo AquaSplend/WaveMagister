@@ -128,20 +128,28 @@ $(document).ready(()=> {
             $.ajax({
                 type: "POST",
                 url: "/wavemagister/vessel.html",
-                data:{
-                        id: id,
-                        shipowner: vesselShipowner,
-                        name: name,
-                        flag: flag,
-                        dwt: dwt,
-                        year_built: vesselYearBuilt,
-                        active: vesselActive
-                    },
+                data: $(this).parents("form").serialize(),
                 success: function() {
-                    alert("Success.");
+                    $("[data-notification-status='success']")
+                        .show()
+                        .removeClass()
+                        .attr("data-notification-status", "success")
+                        .addClass("bottom-right" + " notify")
+                        .addClass("do-show")
+                        .empty()
+                        .append(`The vessel has been updated.`)
+                        .delay(6000).fadeOut();
                 },
                 fail: function() {
-                    alert("Failed.");
+                    $("[data-notification-status='error']")
+                        .show()
+                        .removeClass()
+                        .attr("data-notification-status", "error")
+                        .addClass("bottom-right" + " notify")
+                        .addClass("do-show")
+                        .empty()
+                        .append(`Something happened and the vessel failed to update. Please refresh the page.`)
+                        .delay(10000).fadeOut();
                 }
             });
         }
