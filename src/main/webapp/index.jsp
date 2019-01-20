@@ -36,18 +36,18 @@
             </a>
             <div class="modal-content">
                 <div class="notesHeader">
-                    <h1 class="notesH1">Waves</h1>
-                    <p>Waves generated with javascript and &lt;canvas&gt;.</p>
-
-                </div>
-                <div class="notes-canvas-wrap">
-                    <canvas id="notesCanvas"></canvas>
+                    <h1 class="notesH1">Wave Magister</h1>
+                    <p>Team project for Coding Bootcamp 6 (AFDEmp)</p>
                 </div>
                 <div class="notesContent">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate rerum nemo, autem. Maiores quibusdam asperiores iste laboriosam deleniti quo ratione voluptatem expedita temporibus facere velit cum nesciunt, doloremque ducimus consequuntur numquam, accusamus porro a quam.</p>
-                    <p>Beatae ullam repellendus tempore, dicta excepturi necessitatibus magnam praesentium illum voluptates nihil, fugiat est, corporis. Reiciendis veritatis facere reprehenderit nemo quod temporibus ea assumenda nulla iure, mollitia beatae debitis consequuntur a blanditiis quasi suscipit eos ab repellendus deleniti fuga accusamus officia maxime perferendis modi! Fugiat libero incidunt sunt nostrum harum?</p>
-                    <p>Quis sit debitis nulla natus neque earum odit nihil sequi doloremque eveniet vel vitae doloribus numquam expedita quaerat ex inventore, optio a ipsum ducimus maiores quisquam recusandae? Officia dolore id quisquam perferendis iste officiis sint fugiat temporibus sequi provident commodi deserunt repellendus enim rerum in iusto nulla, rem facere nemo!</p>
-                    <p>Voluptatum est alias eaque, odio in dolorum, laboriosam quos officia rem.</p>
+                    <p>ATTENTION: THIS PROJECT HAS BEEN CREATED EXCLUSIVELY FOR EDUCATIONAL PURPOSES. IT WILL NEVER BE INTENDED TO BE USED IN THE PROFESSIONAL INDUSTRY NOR DO THE ELEMENTS IT UTILIZES REPRESENT THE METHODS, TOOLS, PRACTICES AND APPLICATIONS OF THE REAL WORLD. THEY HAVE BEEN ASSEMBLED AND INCLUDED IN THIS PROJECT ONLY TO DEMONSTRATE A WEB APPLICATION THAT OPERATES FLAWLESSLY. WITH THIS STATEMENT, ITS SCOPE IS EXPLICITLY EXCLUDED FROM COMMERCIAL EXPLOITATION.</p>
+                    <p>Wave Magister is a team project created within the courses of Coding Bootcamp 6, held by the Alliance For Digital Employability (AFDEmp) under the auspices of Hellenic Professionals Informatics Society (HEPIS). Based on the VesselBot digital chartering marketplace, it aims to emulate the way charterers and tanker shipowners can interact to conclude voyage charterparty agreements, that is, it is an online shipbroking service.</p>
+                    <p>The main idea is quite simple: Just like real property transactions, shipowners insert in the system basic data about the vessels that they want to operate in the crude oil spot market and charterers search for the appropriate vessels to be chartered. If a vessel matches the needs of a charterer for a specific voyage, he can select it and the agreement is concluded.</p>
+                    <p>The system recognizes three types of users: shipowners, charterers and an “emergency” administrator, having little interact with the system due to the nature of the data submitted and transacted.</p>
+                    <p>The shipowner’s panel comprises of two sub-panels: one for reviewing all the agreements that have been concluded and one for managing his vessels. The second sub-panel allows him to insert new vessels into his fleet, amend them* and choose whether they are active and available in the spot market.</p>
+                    <p>The charterer’s first sub-panel works exactly like the shipowner’s one and allows him to review all the concluded transactions. But the second one is the most substantial part of this web application. This panel, called “Spot offers”, allows him to search for available offers, based on the data that shipowners have already inserted. If he finds a vessel that suits his needs for a specific voyage, he can choose it and a new entry is created in the system containing all the relevant data to the specific agreement.</p>
+                    <p>Lastly, the administrator’s role is to amend the companies’ firm names if a mistake occurs and to activate new users’ account after they have been registered.</p>
+                    <p>* Entities can be amended by directly editing their fields in the relevant sub-panels.</p>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
     <div class="register-parent">
         <div class="register">
             <div class="title">Register</div>
-            <div class="nav-item smallLogin-parent">
+            <div class="smallLogin-parent">
                 <button type="button" class="smallButton" name="smallLogin">Switch to Login</button>
             </div>
             <div class="bg-text">
@@ -98,7 +98,7 @@
     <div class="login-parent">
         <div class="login">
             <div class="title">Login</div>
-            <div class="nav-item smallRegister-parent" style="display:none;">
+            <div class="smallRegister-parent" style="display:none;">
                 <button type="button" class="smallButton" name="smallRegister">Switch to Register</button>
             </div>
             <div class="bg-text">

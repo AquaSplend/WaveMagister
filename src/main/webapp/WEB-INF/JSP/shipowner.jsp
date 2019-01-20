@@ -68,6 +68,7 @@
     <div class="notify bottom-right" data-notification-status="error"></div>
     <div class="agreements">
         <div class="title">Agreements</div>
+        <button type="button" class="smallButton" name="downloadAgreementsAsShipowner">Download agreements</button>
         <div class="container">
             <div class="row">
                 <div class="col-md col8">
@@ -87,16 +88,39 @@
                     <div class="underItem">29/1/2019</div>
                 </div>
                 <div class="col-md col8">
-                    <div class="activated">Freight</div>
-                    <div class="underItem">$ 50,000</div>
+                    <div class="activated">Freight ($)</div>
+                    <div class="underItem">50000</div>
                 </div>
             </div>
         </div>
     </div>
+    <table style="display:none;" class="tableAgreements">
+        <thead>
+        <tr>
+            <th>Vessel</th>
+            <th>Charterer</th>
+            <th>Voyage start</th>
+            <th>Voyage end</th>
+            <th>Freight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Symphonic</td>
+            <td>ExxonMobil Corp.</td>
+            <td>18/1/2019</td>
+            <td>29/1/2019</td>
+            <td>50000</td>
+        </tr>
+        </tbody>
+    </table>
     <div class="fleet" style="display:none;">
         <div class="title">Fleet</div>
-        <div class="addVesselIcon">
-            <button title="Add a new vessel" class="plus"><span>+</span></button>
+        <div class="underFleet">
+            <button type="button" class="smallButton downloadFleetButton" name="downloadFleet">Download fleet data</button>
+            <div class="addVesselIcon">
+                <button title="Add a new vessel" class="plus"><span>+</span></button>
+            </div>
         </div>
         <div class="modal-overlay modal-overlay-newVessel">
             <div class="modal modal-newVessel">
@@ -130,7 +154,7 @@
                                     <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselDWT" placeholder="e.g. 150000" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="aVesselCosts">Daily costs</label>
+                                    <label for="aVesselCosts">Daily costs ($)</label>
                                     <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselCosts" placeholder="e.g. 3000" required>
                                 </div>
                             </div>
@@ -169,8 +193,8 @@
                                 <input value=${vessel.year_built} name="year_built" type="text" class="input form-control" id="vesselYearBuilt" title="Year built">
                             </div>
                             <div class="form-group">
-                                <label for="vesselCosts">Daily costs</label>
-                                <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value=${vessel.costs} name="costs" type="text" maxlength="6" class="input form-control" id="vesselCosts" title="Daily costs">
+                                <label for="vesselCosts">Daily costs ($)</label>
+                                <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value=${vessel.costs} name="costs" type="text" maxlength="6" class="input form-control" id="vesselCosts" title="Daily costs ($)">
                             </div>
                             <div class="form-group vesselActive">
                                 <label for="vesselActive">Active</label>
@@ -190,6 +214,37 @@
                     </form>
                 </div>
             </c:forEach>
+            <table style="display:none;" class="tableFleet">
+                <thead>
+                <tr>
+                    <th>Vessel name</th>
+                    <th>Flag</th>
+                    <th>Dead weight tonnage</th>
+                    <th>Year built</th>
+                    <th>Daily costs ($)</th>
+                    <th>Active</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${vesselList}" var="vessel">
+                    <tr>
+                        <td>${vessel.name}</td>
+                        <td>${vessel.flag}</td>
+                        <td>${vessel.dwt}</td>
+                        <td>${vessel.year_built}</td>
+                        <td>${vessel.costs}</td>
+                        <c:choose>
+                            <c:when test="${vessel.active=='false'}">
+                                <td>No</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>Yes</td>
+                            </c:otherwise>
+                        </c:choose>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
@@ -199,6 +254,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script type="text/javascript" src="resources/logged_in.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="resources/autotable.js"></script>
 </body>
 </html>

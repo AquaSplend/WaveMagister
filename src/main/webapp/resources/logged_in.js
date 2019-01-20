@@ -115,6 +115,22 @@ $(document).ready(()=> {
     startDateF();
     endDateF();
 
+    $("[name='downloadAgreementsAsShipowner']").on("click", ()=> {
+        let pdf = new jsPDF();
+        pdf.setFontSize(18);
+        pdf.text("Agreements", 14, 22);
+        pdf.autoTable({html: ".tableAgreements", startY: 30});
+        pdf.save("Agreements.pdf");
+    });
+
+    $("[name='downloadFleet']").on("click", ()=> {
+        let pdf = new jsPDF();
+        pdf.setFontSize(18);
+        pdf.text("Fleet", 14, 22);
+        pdf.autoTable({html: ".tableFleet", startY: 30});
+        pdf.save("Fleet.pdf");
+    });
+
     $(".fleetList input").on("change", function() {
         let id = $(this).parents().find("#vesselId").val();
         let vesselShipowner = $(this).parents().find("#vesselShipowner").val();
