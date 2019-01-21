@@ -5,14 +5,6 @@ $(document).ready(()=> {
     let input = $("input");
     let reset = $("[type='reset']");
     let otherButtons = $(".mr-auto .navBut");
-    let shipownerAgreementsButton = $("[name='shipownerAgreementsButton']");
-    let chartererAgreementsButton = $("[name='chartererAgreementsButton']");
-    let offersButton = $("[name='offersButton']");
-    let fleetButton = $("[name='fleetButton']");
-    let shipownerAgreementsParent = $(".shipowner-agreements-parent");
-    let chartererAgreementsParent = $(".charterer-agreements-parent");
-    let fleet = $(".fleet");
-    let offersBigParent = $(".offers-big-parent");
     let dynamicWidth = $('.width-dynamic');
     let modalNewVesselElements = $(".modal-overlay-newVessel, .modal-newVessel");
     let modalPasswordElements = $(".modal-overlay-password, .modal-password");
@@ -23,51 +15,6 @@ $(document).ready(()=> {
     register.hide();
     reset.hide();
     html.fadeIn(1000);
-
-    shipownerAgreementsButton.on("click", ()=> {
-        $.ajax({
-            type: "GET",
-            url: "/wavemagister/shipowner_agreements.html",
-            success: function(response) {
-                fleet.fadeOut();
-                fleet.empty();
-                shipownerAgreementsParent.empty();
-                shipownerAgreementsParent.append("shipowner_agreements.jsp");
-                shipownerAgreementsParent.delay(450).fadeIn();
-            },
-            fail: function() {
-                $("[data-notification-status='error']")
-                    .show()
-                    .removeClass()
-                    .attr("data-notification-status", "error")
-                    .addClass("bottom-right" + " notify")
-                    .addClass("do-show")
-                    .empty()
-                    .append(`Something happened and the system could not fetch the shipowner's agreements. Please try again.`)
-                    .delay(10000).fadeOut();
-            }
-        });
-    });
-
-    chartererAgreementsButton.on("click", ()=> {
-        offersBigParent.fadeOut();
-        offersBigParent.empty();
-        chartererAgreementsParent.load("charterer_agreements.jsp");
-        chartererAgreementsParent.delay(450).fadeIn();
-    });
-
-    fleetButton.on("click", ()=> {
-        shipownerAgreementsParent.fadeOut();
-        shipownerAgreementsParent.empty();
-        fleet.load("shipowner_fleet.jsp");
-        fleet.delay(450).fadeIn();
-    });
-
-    offersButton.on("click", ()=> {
-        chartererAgreementsParent.fadeOut();
-        offersBigParent.load("charterer_offers.jsp");
-        offersBigParent.delay(450).fadeIn();
-    });
 
     $(".otherButton1").css("border-bottom", "solid 3px");
 
@@ -142,28 +89,4 @@ $(document).ready(()=> {
 
     startDateF();
     endDateF();
-
-    $("[name='downloadAgreementsAsShipowner']").on("click", ()=> {
-        let pdf = new jsPDF();
-        pdf.setFontSize(18);
-        pdf.text("Agreements", 14, 22);
-        pdf.autoTable({html: ".tableAgreements", startY: 30});
-        pdf.save("Agreements.pdf");
-    });
-
-    $("[name='downloadAgreementsAsCharterer']").on("click", ()=> {
-        let pdf = new jsPDF();
-        pdf.setFontSize(18);
-        pdf.text("Agreements", 14, 22);
-        pdf.autoTable({html: ".tableAgreements", startY: 30});
-        pdf.save("Agreements.pdf");
-    });
-
-    $("[name='downloadFleet']").on("click", ()=> {
-        let pdf = new jsPDF();
-        pdf.setFontSize(18);
-        pdf.text("Fleet", 14, 22);
-        pdf.autoTable({html: ".tableFleet", startY: 30});
-        pdf.save("Fleet.pdf");
-    });
 });
