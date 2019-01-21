@@ -64,7 +64,7 @@ public class VesselController
     @RequestMapping(value = "/vessels")
     public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel)
     {
-        ModelAndView model = new ModelAndView("shipowner");
+        ModelAndView model = new ModelAndView("shipowner_fleet");
 
         List<Vessel> vesselList = vesselDAO.getAllVessels();
         System.out.println(vesselList);

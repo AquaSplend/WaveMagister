@@ -28,10 +28,11 @@ $(document).ready(()=> {
         $.ajax({
             type: "GET",
             url: "/wavemagister/shipowner_agreements.html",
-            success: function() {
+            success: function(response) {
                 fleet.fadeOut();
                 fleet.empty();
-                shipownerAgreementsParent.load("shipowner_agreements.jsp");
+                shipownerAgreementsParent.empty();
+                shipownerAgreementsParent.append("shipowner_agreements.jsp");
                 shipownerAgreementsParent.delay(450).fadeIn();
             },
             fail: function() {
@@ -42,7 +43,7 @@ $(document).ready(()=> {
                     .addClass("bottom-right" + " notify")
                     .addClass("do-show")
                     .empty()
-                    .append(`Something happened and the system could not fetsh the shipowner's agreemtns. Please try again.`)
+                    .append(`Something happened and the system could not fetch the shipowner's agreements. Please try again.`)
                     .delay(10000).fadeOut();
             }
         });
@@ -150,53 +151,19 @@ $(document).ready(()=> {
         pdf.save("Agreements.pdf");
     });
 
+    $("[name='downloadAgreementsAsCharterer']").on("click", ()=> {
+        let pdf = new jsPDF();
+        pdf.setFontSize(18);
+        pdf.text("Agreements", 14, 22);
+        pdf.autoTable({html: ".tableAgreements", startY: 30});
+        pdf.save("Agreements.pdf");
+    });
+
     $("[name='downloadFleet']").on("click", ()=> {
         let pdf = new jsPDF();
         pdf.setFontSize(18);
         pdf.text("Fleet", 14, 22);
         pdf.autoTable({html: ".tableFleet", startY: 30});
         pdf.save("Fleet.pdf");
-    });
-
-    $(".fleetList input").on("change", function() {
-        let id = $(this).parents().find("#vesselId").val();
-        let vesselShipowner = $(this).parents().find("#vesselShipowner").val();
-        let name = $(this).parents().find("#vesselName").val();
-        let flag = $(this).parents().find("#vesselFlag").val();
-        let dwt = $(this).parents().find("#vesselDwt").val();
-        let vesselYearBuilt = $(this).parents().find("#vesselYearBuilt").val();
-        let vesselCosts = $(this).parents().find("#vesselCosts").val();
-        let vesselActive = $(this).parents().find("#vesselActive").prop('checked');
-
-        if (id && vesselShipowner && name && flag && dwt && vesselYearBuilt && vesselCosts && vesselActive) {
-            $.ajax({
-                type: "POST",
-                url: "/wavemagister/vessel.html",
-                data: $(this).parents("form").serialize(),
-                success: function() {
-                    $("[data-notification-status='success']")
-                        .show()
-                        .removeClass()
-                        .attr("data-notification-status", "success")
-                        .addClass("bottom-right" + " notify")
-                        .addClass("do-show")
-                        .empty()
-                        .append(`The vessel has been updated.`)
-                        .delay(6000).fadeOut();
-                },
-                fail: function() {
-                    $("[data-notification-status='error']")
-                        .show()
-                        .removeClass()
-                        .attr("data-notification-status", "error")
-                        .addClass("bottom-right" + " notify")
-                        .addClass("do-show")
-                        .empty()
-                        .append(`Something happened and the vessel failed to update. Please refresh the page.`)
-                        .delay(10000).fadeOut();
-                }
-            });
-        }
-        return false;
     });
 });

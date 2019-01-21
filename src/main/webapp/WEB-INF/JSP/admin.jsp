@@ -81,7 +81,7 @@
                                             <input hidden type="text" name="password" value=${shipowner.password} />
                                             <input type="text" name="company" title="Rename" maxlength="100" value=${shipowner.company} placeholder="Rename"/>
                                             <input hidden type="text" name="role" value=${shipowner.role} />
-                                            <input hidden type="text" name="id" value=${shipowner.activated} />
+                                            <input hidden type="text" name="activated" value=${shipowner.activated} />
                                         </form>
                                     </div>
                                     <div class="col-4 col4">
@@ -96,10 +96,10 @@
                                                 <label class="toggle">
                                                     <c:choose>
                                                         <c:when test="${shipowner.activated=='false'}">
-                                                            <input title="Activated" name="Activated" type="checkbox"/>
+                                                            <input title="Activated" name="activated" type="checkbox"/>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <input title="Activated" name="Activated" type="checkbox" checked/>
+                                                            <input title="Activated" name="activated" type="checkbox" checked/>
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <div></div>
@@ -133,7 +133,7 @@
                                             <input hidden type="text" name="password" value=${charterer.password} />
                                             <input type="text" name="company" title="Rename" maxlength="100" value=${charterer.company} placeholder="Rename"/>
                                             <input hidden type="text" name="role" value=${charterer.role} />
-                                            <input hidden type="text" name="id" value=${charterer.activated} />
+                                            <input hidden type="text" name="activated" value=${charterer.activated} />
                                         </form>
                                     </div>
                                     <div class="col-4 col4">
@@ -148,10 +148,10 @@
                                                 <label class="toggle">
                                                     <c:choose>
                                                         <c:when test="${charterer.activated=='false'}">
-                                                            <input title="Activated" name="Activated" type="checkbox"/>
+                                                            <input title="Activated" name="activated" type="checkbox"/>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <input title="Activated" name="Activated" type="checkbox" checked/>
+                                                            <input title="Activated" name="activated" type="checkbox" checked/>
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <div></div>

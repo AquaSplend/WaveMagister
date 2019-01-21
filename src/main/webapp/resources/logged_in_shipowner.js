@@ -1,0 +1,107 @@
+$(document).ready(()=> {
+    let shipownerAgreementsButton = $("[name='shipownerAgreementsButton']");
+    let shipownerAgreementsParent = $(".shipowner-agreements-parent");
+    let fleet = $(".fleet");
+
+    function updateFleet() {
+        let id = $(this).parents().find("#vesselId").val();
+        let vesselShipowner = $(this).parents().find("#vesselShipowner").val();
+        let name = $(this).parents().find("#vesselName").val();
+        let flag = $(this).parents().find("#vesselFlag").val();
+        let dwt = $(this).parents().find("#vesselDwt").val();
+        let vesselYearBuilt = $(this).parents().find("#vesselYearBuilt").val();
+        let vesselCosts = $(this).parents().find("#vesselCosts").val();
+        let vesselActive = $(this).parents().find("#vesselActive").prop('checked');
+
+        if (id && vesselShipowner && name && flag && dwt && vesselYearBuilt && vesselCosts && vesselActive) {
+            $.ajax({
+                type: "POST",
+                url: "/wavemagister/vessel.html",
+                data: $(this).parents("form").serialize(),
+                success: function() {
+                    $("[data-notification-status='success']")
+                        .show()
+                        .removeClass()
+                        .attr("data-notification-status", "success")
+                        .addClass("bottom-right" + " notify")
+                        .addClass("do-show")
+                        .empty()
+                        .append(`The vessel has been updated.`)
+                        .delay(6000).fadeOut();
+                },
+                fail: function() {
+                    $("[data-notification-status='error']")
+                        .show()
+                        .removeClass()
+                        .attr("data-notification-status", "error")
+                        .addClass("bottom-right" + " notify")
+                        .addClass("do-show")
+                        .empty()
+                        .append(`Something went wrong and the vessel failed to update. Please try again.`)
+                        .delay(10000).fadeOut();
+                }
+            });
+        }
+        return false;
+    }
+
+    function showShipownerAgreements() {
+        $.ajax({
+            type: "GET",
+            url: "/wavemagister/shipowner_agreements.html",
+            success: function(response) {
+                fleet.fadeOut();
+                fleet.empty();
+                shipownerAgreementsParent.empty();
+                shipownerAgreementsParent.append(response);
+                shipownerAgreementsParent.delay(450).fadeIn();
+            },
+            fail: function() {
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the system could not fetch the shipowner's agreements. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+    }
+
+    function showFleet() {
+        $.ajax({
+            type: "GET",
+            url: "/wavemagister/vessels.html",
+            success: function(response) {
+                fleet.fadeOut();
+                fleet.empty();
+                fleet.append(response);
+                fleet.delay(450).fadeIn();
+            },
+            fail: function() {
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the system could not fetch the fleet data. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+    }
+
+    showShipownerAgreements();
+    showFleet();
+
+    shipownerAgreementsButton.on("click", ()=> {
+        showShipownerAgreements();
+    });
+
+    $(".fleetList input").on("change", function() {
+        updateFleet();
+    });
+});

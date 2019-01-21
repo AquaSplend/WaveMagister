@@ -72,7 +72,7 @@ public class AgreementController
     @RequestMapping(value = "/charterer_agreements")
     public ModelAndView listChartererAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
-        ModelAndView model = new ModelAndView("charterer-agreements");
+        ModelAndView model = new ModelAndView("charterer_agreements");
         
         // for testing :
         User loggedInUser = new User();

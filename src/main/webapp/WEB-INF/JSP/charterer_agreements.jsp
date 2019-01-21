@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="title">Agreements</div>
-<button type="button" class="smallButton" name="downloadAgreementsAsShipowner">Download agreements</button>
+<button type="button" class="smallButton" name="downloadAgreementsAsCharterer">Download agreements</button>
 <div class="container">
-    <c:forEach items="${shipownerAgreementList}" var="agreement">
+    <c:forEach items="${chartererAgreementList}" var="agreement">
         <div class="row">
             <div class="col-md col8">
                 <div class="activated">Vessel</div>
                 <div class="underItem">${agreement.vessel.name}</div>
             </div>
             <div class="col-md col8">
-                <div class="activated">Charterer</div>
-                <div class="underItem">${agreement.charterer.company}</div>
+                <div class="activated">Shipowner</div>
+                <div class="underItem">${agreement.vessel.shipowner.company}</div>
             </div>
             <div class="col-md col8">
                 <div class="activated">Voyage start</div>
@@ -32,17 +32,17 @@
     <thead>
     <tr>
         <th>Vessel</th>
-        <th>Charterer</th>
+        <th>Shipowner</th>
         <th>Voyage start</th>
         <th>Voyage end</th>
         <th>Freight</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${shipownerAgreementList}" var="agreement">
+    <c:forEach items="${chartererAgreementList}" var="agreement">
         <tr>
             <td>${agreement.vessel.name}</td>
-            <td>${agreement.charterer.company}</td>
+            <td>${agreement.vessel.shipowner.company}</td>
             <td>${agreement.start}</td>
             <td>${agreement.end}</td>
             <td>${agreement.freight}</td>

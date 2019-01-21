@@ -1,5 +1,5 @@
 $(document).ready(()=> {
-    let agreementsButton = $("[name='agreementsButton']");
+    let agreementsButton = $("[name='chartererAgreementsButton']");
     let offersButton = $("[name='offersButton']");
     let oilPrice = $(".oilpricenettable2 tbody tr").next().find("span").html().substr(1);
     let oilParent = $(".oil-parent");
