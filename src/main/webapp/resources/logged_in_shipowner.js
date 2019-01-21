@@ -34,7 +34,8 @@ $(document).ready(()=> {
             type: "GET",
             url: "/wavemagister/vessels.html",
             success: function(response) {
-                fleet.fadeOut();
+                shipownerAgreementsParent.fadeOut();
+                shipownerAgreementsParent.empty();
                 fleet.empty();
                 fleet.append(response);
                 fleet.delay(450).fadeIn();

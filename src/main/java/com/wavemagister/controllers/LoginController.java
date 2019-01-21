@@ -33,9 +33,9 @@ public class LoginController
                     case "admin":
                         return new ModelAndView("redirect:/users");
                     case "shipowner":
-                        return new ModelAndView("redirect:/shipowner_agreements");
+                        return new ModelAndView("redirect:/shipowner");
                     case "charterer":
-                        return new ModelAndView("redirect:/charterer_agreements");
+                        return new ModelAndView("redirect:/charterer");
                 }
             }
             else{
@@ -50,5 +50,17 @@ public class LoginController
             @ModelAttribute("register") User user)
     {
         return new ModelAndView("login"); 
+    }
+    
+    @RequestMapping( value = "/shipowner")
+    public ModelAndView shipowner()
+    {
+        return new ModelAndView("shipowner"); 
+    }
+    
+    @RequestMapping( value = "/charterer")
+    public ModelAndView charterer()
+    {
+        return new ModelAndView("charterer"); 
     }
 }
