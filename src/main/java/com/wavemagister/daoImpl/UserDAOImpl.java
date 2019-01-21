@@ -61,23 +61,30 @@ public class UserDAOImpl implements UserDAO
     
     public User getUserByUsername(String username)
     {
+        User user = null;
         String sql = "SELECT * FROM users WHERE username=?";
-        User user = (User) jdbcTemplate.queryForObject(sql, new Object[]
-        { username }, new RowMapper<User>()
-        {
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException 
-            {
-                User user = new User();
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setCompany(rs.getString("company"));
-                user.setRole(rs.getString("role"));
-                user.setActivated(rs.getBoolean("activated"));
-                user.setId(rs.getInt("id"));
-                return user;
-            }
-        });
+        
+        try{
+            user = (User) jdbcTemplate.queryForObject(sql, new Object[]
+            { username }, new RowMapper<User>()
+            { 
+                @Override
+                public User mapRow(ResultSet rs, int rowNum) throws SQLException 
+                {
+                    User user = new User();
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                    user.setCompany(rs.getString("company"));
+                    user.setRole(rs.getString("role"));
+                    user.setActivated(rs.getBoolean("activated"));
+                    user.setId(rs.getInt("id"));
+                    return user;
+                }
+            });
+        }
+        catch(DataAccessException e){
+            e.printStackTrace();
+        }
         return user;
     }
 
