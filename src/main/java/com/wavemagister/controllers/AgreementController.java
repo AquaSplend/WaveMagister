@@ -32,7 +32,7 @@ public class AgreementController
         return new ModelAndView("redirect:/agreements");
     }
     
-    @RequestMapping(value = "/edit/{id}")
+    @RequestMapping(value = "/editagreement/{id}")
     public ModelAndView editAgreement(@ModelAttribute("agreement") Agreement agreement,@PathVariable("id") int id)
     {
         ModelAndView model = new ModelAndView("agreements");
@@ -47,7 +47,7 @@ public class AgreementController
         
     }
     
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/deleteagreement/{id}")
     public ModelAndView deleteAgreement(@ModelAttribute("agreement") Agreement employee,@PathVariable("id") int id)
     {
         agreementDAO.deleteAgreement(id);
@@ -63,8 +63,8 @@ public class AgreementController
         User loggedInUser = new User();
         loggedInUser.setId(2);
     
-        List<Agreement> agreementList = agreementDAO.getShipownerAgreements(loggedInUser);
-        model.addObject("agreementList", agreementList);
+        List<Agreement> shipownerAgreementList = agreementDAO.getShipownerAgreements(loggedInUser);
+        model.addObject("shipownerAgreementList", shipownerAgreementList);
         
         return model;
     }
@@ -72,14 +72,14 @@ public class AgreementController
     @RequestMapping(value = "/charterer_agreements")
     public ModelAndView listChartererAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
-        ModelAndView model = new ModelAndView("agreements");
+        ModelAndView model = new ModelAndView("charterer-agreements");
         
         // for testing :
         User loggedInUser = new User();
         loggedInUser.setId(2);
         
-        List<Agreement> agreementList = agreementDAO.getShipownerAgreements(loggedInUser);
-        model.addObject("agreementList", agreementList);
+        List<Agreement> chartererAgreementList = agreementDAO.getShipownerAgreements(loggedInUser);
+        model.addObject("chartererAgreementList", chartererAgreementList);
         
         return model;
     }

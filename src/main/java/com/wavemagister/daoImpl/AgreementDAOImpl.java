@@ -66,20 +66,21 @@ public class AgreementDAOImpl implements AgreementDAO {
                 + "`shipowner`.`company` AS 'Shipowner', \n"
                 + "`name` AS 'Vessel', \n"
                 + "`charterer`.`company` AS 'Charterer', \n"
-                + "`start`, `end`, `freight`\n"
-                + "FROM `bteam`.`agreements`\n"
-                + "INNER JOIN `bteam`.`vessels`\n"
-                + "ON `agreements`.`vessel_id`=`vessels`.`id`\n"
-                + "INNER JOIN `users` `shipowner`\n"
-                + "ON `vessels`.`shipowner`=`shipowner`.`id`\n"
-                + "INNER JOIN `users` `charterer`\n"
-                + "ON `agreements`.`user_id`=`charterer`.`id`"
-                + "WHERE `shipowner`.`id`='" + loggedInUser.getId() + "';";
-
+                + "`start`, `end`, `freight` \n"
+                + "FROM `bteam`.`agreements` \n"
+                + "INNER JOIN `bteam`.`vessels` \n"
+                + "ON `agreements`.`vessel_id`=`vessels`.`id` \n"
+                + "INNER JOIN `users` `shipowner` \n"
+                + "ON `vessels`.`shipowner`=`shipowner`.`id` \n"
+                + "INNER JOIN `users` `charterer` \n"
+                + "ON `agreements`.`user_id`=`charterer`.`id` \n"
+                + "WHERE `shipowner`.`id`=" + loggedInUser.getId() + ";";
+        
         List<Agreement> agreementList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Agreement>>() {
             @Override
             public List<Agreement> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 List<Agreement> list = new ArrayList<>();
+                
                 while (rs.next()) {
                     Agreement agreement = new Agreement();
                     Vessel vessel = new Vessel();
@@ -90,7 +91,7 @@ public class AgreementDAOImpl implements AgreementDAO {
                     agreement.setEnd(rs.getString("end"));
                     shipowner.setCompany(rs.getString("Shipowner"));
                     vessel.setShipowner(shipowner);
-                    vessel.setName(rs.getString("name"));
+                    vessel.setName(rs.getString("Vessel"));
                     agreement.setVessel(vessel);
                     charterer.setCompany(rs.getString("Charterer"));
                     agreement.setCharterer(charterer);
@@ -116,7 +117,7 @@ public class AgreementDAOImpl implements AgreementDAO {
                 + "INNER JOIN `users` `shipowner`\n"
                 + "ON `vessels`.`shipowner`=`shipowner`.`id`\n"
                 + "INNER JOIN `users` `charterer`\n"
-                + "ON `agreements`.`user_id`=`charterer`.`id`"
+                + "ON `agreements`.`user_id`=`charterer`.`id` \n"
                 + "WHERE `shipowner`.`id`='" + loggedInUser.getId() + "';";
 
         List<Agreement> agreementList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Agreement>>() {
@@ -133,7 +134,7 @@ public class AgreementDAOImpl implements AgreementDAO {
                     agreement.setEnd(rs.getString("end"));
                     shipowner.setCompany(rs.getString("Shipowner"));
                     vessel.setShipowner(shipowner);
-                    vessel.setName(rs.getString("name"));
+                    vessel.setName(rs.getString("Vessel"));
                     agreement.setVessel(vessel);
                     charterer.setCompany(rs.getString("Charterer"));
                     agreement.setCharterer(charterer);
@@ -175,7 +176,7 @@ public class AgreementDAOImpl implements AgreementDAO {
                     agreement.setEnd(rs.getString("end"));
                     shipowner.setCompany(rs.getString("Shipowner"));
                     vessel.setShipowner(shipowner);
-                    vessel.setName(rs.getString("name"));
+                    vessel.setName(rs.getString("Vessel"));
                     agreement.setVessel(vessel);
                     charterer.setCompany(rs.getString("Charterer"));
                     agreement.setCharterer(charterer);

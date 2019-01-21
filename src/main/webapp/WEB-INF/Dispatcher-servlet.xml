@@ -19,6 +19,10 @@
         <bean id="vesselDAOImpl" class="com.wavemagister.daoImpl.VesselDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
+        
+        <bean id="agreementDAOImpl" class="com.wavemagister.daoImpl.AgreementDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
 
 	<!-- Database Configurations -->
 	<bean id="dataSource"
