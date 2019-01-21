@@ -39,7 +39,7 @@ public class VesselController
     }
 
     @RequestMapping(value = "/Vedit/{id}")
-    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel,@PathVariable("id") int id)
+    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel, @PathVariable("id") int id)
     {
         ModelAndView model = new ModelAndView("shipowner");
 
@@ -53,7 +53,7 @@ public class VesselController
     }
 
     @RequestMapping(value = "/Vdelete/{id}")
-    public ModelAndView deleteVessel(@ModelAttribute("vessel") Vessel vessel,@PathVariable("id") int id)
+    public ModelAndView deleteVessel(@ModelAttribute("vessel") Vessel vessel, @PathVariable("id") int id)
     {
         vesselDAO.deleteVessel(id);
 

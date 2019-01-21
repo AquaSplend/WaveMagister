@@ -19,7 +19,7 @@ public class AgreementController
 {
     @Autowired
     private AgreementDAO agreementDAO;
-        
+
     @RequestMapping(value = "/agreement",method=RequestMethod.POST)
     public ModelAndView saveAgreement(@ModelAttribute("agreement") Agreement agreement)
     {
@@ -55,10 +55,10 @@ public class AgreementController
         return new ModelAndView("redirect:/agreements");
     }
 
-    @RequestMapping(value = "/spot_offers")
+    @RequestMapping(value = "/shipowner_agreements")
     public ModelAndView listShipownerAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
-        ModelAndView model = new ModelAndView("agreements");
+        ModelAndView model = new ModelAndView("shipowner_agreements");
         // for testing :
         User loggedInUser = new User();
         loggedInUser.setId(2);

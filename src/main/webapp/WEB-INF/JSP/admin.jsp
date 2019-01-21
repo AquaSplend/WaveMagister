@@ -15,7 +15,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-light navbarColored">
-        <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" src="resources/logo.svg"/></span></a>
+        <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" class="logoImage" src="resources/logo.svg"/></span></a>
         <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
