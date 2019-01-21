@@ -27,13 +27,19 @@ public class LoginController
         
         if(login.checkLogin()){
             User user = Login.loggedUser;
-            switch(user.getRole()){
-                case "admin":
-                    return new ModelAndView("redirect:/users");
-                case "shipowner":
-                    return new ModelAndView("redirect:/shipowner_agreements");
-                case "charterer":
-                    return new ModelAndView("redirect:/charterer_agreements");
+            
+            if(user.isActivated()){
+                switch(user.getRole()){
+                    case "admin":
+                        return new ModelAndView("redirect:/users");
+                    case "shipowner":
+                        return new ModelAndView("redirect:/shipowner_agreements");
+                    case "charterer":
+                        return new ModelAndView("redirect:/charterer_agreements");
+                }
+            }
+            else{
+               return new ModelAndView("activation_pending"); 
             }
         }
         return new ModelAndView("redirect:/login");          

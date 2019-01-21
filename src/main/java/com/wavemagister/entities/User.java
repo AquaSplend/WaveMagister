@@ -8,7 +8,7 @@ public class User {
     private String password;
     private String company;
     private String role;
-    private boolean activated;
+    private boolean activated = false;
     
     public User(){};
     public User(String username, String password, String company, String role, boolean activated){
