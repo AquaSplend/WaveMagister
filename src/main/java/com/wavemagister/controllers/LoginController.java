@@ -21,46 +21,40 @@ public class LoginController
     private UserDAO userDAO;
 
     @RequestMapping(value = "/main", method=RequestMethod.POST)
-    public ModelAndView main(@ModelAttribute("login") Login login)
-    {
+    public ModelAndView main(@ModelAttribute("login") Login login) {
         login.setUserDAO(userDAO);
-        
-        if(login.checkLogin()){
+
+        if (login.checkLogin()) {
             User user = Login.loggedUser;
-            
-            if(user.isActivated()){
+
+            if (user.isActivated()){
                 switch(user.getRole()){
                     case "admin":
-                        return new ModelAndView("redirect:/users");
+                        return new ModelAndView("redirect:/admin");
                     case "shipowner":
                         return new ModelAndView("redirect:/shipowner");
                     case "charterer":
                         return new ModelAndView("redirect:/charterer");
                 }
-            }
-            else{
-               return new ModelAndView("activation_pending"); 
+            } else {
+                return new ModelAndView("activation_pending");
             }
         }
-        return new ModelAndView("redirect:/login");          
+        return new ModelAndView("redirect:/login");
     }
-    
+
     @RequestMapping( value = "/login")
-    public ModelAndView loginUser(@ModelAttribute("login") Login login, 
-            @ModelAttribute("register") User user)
-    {
-        return new ModelAndView("login"); 
+    public ModelAndView loginUser(@ModelAttribute("login") Login login, @ModelAttribute("register") User user) {
+        return new ModelAndView("login");
     }
-    
+
     @RequestMapping( value = "/shipowner")
-    public ModelAndView shipowner()
-    {
-        return new ModelAndView("shipowner"); 
+    public ModelAndView shipowner() {
+        return new ModelAndView("shipowner");
     }
-    
+
     @RequestMapping( value = "/charterer")
-    public ModelAndView charterer()
-    {
-        return new ModelAndView("charterer"); 
+    public ModelAndView charterer() {
+        return new ModelAndView("charterer");
     }
 }

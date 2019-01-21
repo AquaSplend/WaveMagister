@@ -5,11 +5,11 @@ $(document).ready(()=> {
     let fleetButton = $("[name='fleetButton']");
 
     function showShipownerAgreements() {
+        fleet.fadeOut();
         $.ajax({
             type: "GET",
             url: "/wavemagister/shipowner_agreements.html",
             success: function(response) {
-                fleet.fadeOut();
                 fleet.empty();
                 shipownerAgreementsParent.empty();
                 shipownerAgreementsParent.append(response);
@@ -30,17 +30,18 @@ $(document).ready(()=> {
     }
 
     function showFleet() {
+        shipownerAgreementsParent.fadeOut();
         $.ajax({
             type: "GET",
             url: "/wavemagister/vessels.html",
             success: function(response) {
-                shipownerAgreementsParent.fadeOut();
                 shipownerAgreementsParent.empty();
                 fleet.empty();
                 fleet.append(response);
                 fleet.delay(450).fadeIn();
             },
             fail: function() {
+                shipownerAgreementsParent.fadeIn();
                 $("[data-notification-status='error']")
                     .show()
                     .removeClass()
@@ -86,17 +87,13 @@ $(document).ready(()=> {
     }
 
     showShipownerAgreements();
-    showFleet();
 
     shipownerAgreementsButton.on("click", ()=> {
         showShipownerAgreements();
     });
 
     fleetButton.on("click", ()=> {
-        shipownerAgreementsParent.fadeOut();
-        shipownerAgreementsParent.empty();
-        fleet.load("shipowner_fleet.jsp");
-        fleet.delay(450).fadeIn();
+        showFleet();
     });
 
     $(".fleetList input").on("change", function() {

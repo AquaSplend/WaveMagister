@@ -20,27 +20,23 @@ public class UserController
     private UserDAO userDAO;
 
     @RequestMapping(value = "/user",method=RequestMethod.POST)
-    public ModelAndView insertUser(@ModelAttribute("admin") User user)
-    {
-        try
-        {
+    public ModelAndView insertUser(@ModelAttribute("admin") User user) {
+        try {
             User existingUser = userDAO.getUserByUsername(user.getUsername());
             if(existingUser != null){
                 user.setId(existingUser.getId());
                 userDAO.updateUser(user);
             }
         }
-        catch(EmptyResultDataAccessException e)
-        {
+        catch(EmptyResultDataAccessException e) {
             System.out.println("inside catch");
             userDAO.insertUser(user);
         }
-        return new ModelAndView("redirect:/users");
+        return new ModelAndView("redirect:/admin");
     }
 
     @RequestMapping(value = "/edit/{id}")
-    public ModelAndView editUser(@ModelAttribute("user") User user,@PathVariable("id") int id)
-    {
+    public ModelAndView editUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         ModelAndView model = new ModelAndView("admin");
 
         user = userDAO.getUserById(id);
@@ -53,17 +49,15 @@ public class UserController
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public ModelAndView deleteUser(@ModelAttribute("admin") User user,@PathVariable("id") int id)
-    {
+    public ModelAndView deleteUser(@ModelAttribute("admin") User user,@PathVariable("id") int id) {
         userDAO.deleteUser(id);
 
         // go to Dispatcher and the Dispatcher sends to appropriate controller
-        return new ModelAndView("redirect:/users");
+        return new ModelAndView("redirect:/admin");
     }
 
-    @RequestMapping(value = "/users")
-    public ModelAndView listUsers(@ModelAttribute("user") User user)
-    {
+    @RequestMapping(value = "/admin")
+    public ModelAndView listUsers(@ModelAttribute("user") User user) {
         ModelAndView model = new ModelAndView("admin");
 
         //List<User> userList = userDAO.getAllUsers();
