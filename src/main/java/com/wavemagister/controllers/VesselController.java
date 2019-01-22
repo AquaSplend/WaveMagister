@@ -58,7 +58,38 @@ public class VesselController
         // go to Dispatcher and the Dispatcher sends to appropriate controller
         return new ModelAndView("redirect:/vessels");
     }
+    
+    @RequestMapping(value = "/fleet")
+    public ModelAndView listFleet(@ModelAttribute("vessel") Vessel vessel)
+    {
+        //for testing:
+        int shipownerId = 2;
+        
+        ModelAndView model = new ModelAndView("shipowner_fleet");
 
+        List<Vessel> vesselList = vesselDAO.getFleet(shipownerId);
+        
+        model.addObject("vesselList", vesselList);
+
+        return model;
+    }
+
+    @RequestMapping(value = "/charterer_offers", method=RequestMethod.POST)
+    public ModelAndView listOffers(@ModelAttribute("vessel") Vessel vessel)
+    {
+        //for testing:
+        int searchQuantity = 160500; 
+        String searchStartDate= "2019-01-15", searchEndDate = "2019-01-30";
+        
+        ModelAndView model = new ModelAndView("charterer_offers");
+
+        List<Vessel> vesselList = vesselDAO.getSpotOffers(searchQuantity, searchStartDate, searchEndDate);
+        
+        model.addObject("vesselList", vesselList);
+
+        return model;
+    }
+    
     @RequestMapping(value = "/vessels")
     public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel)
     {

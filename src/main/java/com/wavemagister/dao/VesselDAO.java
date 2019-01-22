@@ -12,4 +12,6 @@ public interface VesselDAO
     public void deleteVessel(int id);
     public List<Vessel> getAllVessels();
     public Vessel getVesselByName(String Vname);
+    public List<Vessel> getSpotOffers(int searchQuantity, String searchStartDate, String searchEndDate);
+    public List<Vessel> getFleet(int shipownerId);
 }

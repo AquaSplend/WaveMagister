@@ -6,7 +6,7 @@ public class Vessel {
     private int id;
     private String name;
     private String flag;
-    private String year_built;
+    private int year_built;
     private int dwt;
     private int costs;
     private User shipowner;
@@ -16,7 +16,7 @@ public class Vessel {
         
     }
 
-    public Vessel(int id, String name, String flag, String year_built, int dwt, User shipowner,int costs ,boolean active) {
+    public Vessel(int id, String name, String flag, int year_built, int dwt, User shipowner,int costs ,boolean active) {
         this.id = id;
         this.name = name;
         this.flag = flag;
@@ -51,11 +51,11 @@ public class Vessel {
         this.flag = flag;
     }
 
-    public String getYear_built() {
+    public int getYear_built() {
         return year_built;
     }
 
-    public void setYear_built(String year_built) {
+    public void setYear_built(int year_built) {
         this.year_built = year_built;
     }
 

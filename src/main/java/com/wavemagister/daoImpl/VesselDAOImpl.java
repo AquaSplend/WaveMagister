@@ -44,7 +44,7 @@ public class VesselDAOImpl implements VesselDAO {
                 User shipowner = new User();
                 vessel.setName(rs.getString("name"));
                 vessel.setFlag(rs.getString("flag"));
-                vessel.setYear_built(rs.getString("year_built"));
+                vessel.setYear_built(rs.getInt("year_built"));
                 vessel.setDwt(rs.getInt("dwt"));
                 vessel.setCosts(rs.getInt("costs"));
                 shipowner.setId(rs.getInt("shipowner"));
@@ -66,7 +66,7 @@ public class VesselDAOImpl implements VesselDAO {
                 User shipowner = new User();
                 vessel.setName(rs.getString("name"));
                 vessel.setFlag(rs.getString("flag"));
-                vessel.setYear_built(rs.getString("year_built"));
+                vessel.setYear_built(rs.getInt("year_built"));
                 vessel.setDwt(rs.getInt("dwt"));
                 vessel.setCosts(rs.getInt("costs"));
                 shipowner.setId(rs.getInt("shipowner"));
@@ -79,7 +79,85 @@ public class VesselDAOImpl implements VesselDAO {
         return vessel;
     }
 
-    // Getting all the Users
+    // Getting Vessel info for offers
+    @Override
+    public List<Vessel> getSpotOffers(int searchQuantity, String searchStartDate, String searchEndDate) {
+        String sql = "SELECT DISTINCT \n"
+                + "`vessels`.`id` AS 'vessel_id', \n"
+                + "`users`.`company` AS 'Shipowner', \n"
+                + "`name` AS 'Vessel', `flag`, \n"
+                + "`year_built`, `dwt`, `costs`\n"
+                + "FROM `bteam`.`vessels`\n"
+                + "LEFT JOIN `bteam`.`agreements`\n"
+                + "ON `vessels`.`id`=`agreements`.`vessel_id`\n"
+                + "INNER JOIN `bteam`.`users`\n"
+                + "ON `vessels`.`shipowner`=`users`.`id`\n"
+                + "WHERE `vessels`.`active`='1'\n"
+                + "AND (`dwt` >= " + searchQuantity + ")\n"
+                + "AND `agreements`.`vessel_id` \n"
+                + "NOT IN (SELECT DISTINCT `vessel_id` \n"
+                + "FROM `agreements`\n"
+                + "WHERE ((`start` BETWEEN '" + searchStartDate + "' AND '" + searchEndDate + "' )\n"
+                + "OR (`end` BETWEEN '" + searchStartDate + "' AND '" + searchEndDate + "'))\n"
+                + "OR ('" + searchStartDate + "' < `start` AND `end` < '" + searchEndDate + "'))\n"
+                + "ORDER BY `costs`, `dwt`;";
+
+        List<Vessel> vesselList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Vessel>>() {
+            @Override
+            public List<Vessel> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Vessel> offerList = new ArrayList<>();
+                while (rs.next()) {
+                    Vessel vessel = new Vessel();
+                    User shipowner = new User();
+                    vessel.setName(rs.getString("Vessel"));
+                    vessel.setFlag(rs.getString("flag"));
+                    vessel.setYear_built(rs.getInt("year_built"));
+                    vessel.setDwt(rs.getInt("dwt"));
+                    vessel.setCosts(rs.getInt("costs"));
+                    shipowner.setCompany(rs.getString("Shipowner"));
+                    vessel.setShipowner(shipowner);
+                    vessel.setId(rs.getInt("vessel_id"));
+
+                    offerList.add(vessel);
+                }
+                return offerList;
+            }
+        });
+        return vesselList;
+    }
+
+    // Getting shipowner's Vessels
+    @Override
+    public List<Vessel> getFleet(int shipownerId) {
+        String sql = "SELECT * FROM vessels WHERE shipowner=" + shipownerId + ";";
+
+        List<Vessel> vesselList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Vessel>>() {
+            @Override
+            public List<Vessel> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<Vessel> list = new ArrayList<Vessel>();
+                while (rs.next()) {
+                    Vessel vessel = new Vessel();
+                    User shipowner = new User();
+                    vessel.setName(rs.getString("name"));
+                    vessel.setFlag(rs.getString("flag"));
+                    vessel.setYear_built(rs.getInt("year_built"));
+                    vessel.setDwt(rs.getInt("dwt"));
+                    vessel.setCosts(rs.getInt("costs"));
+                    shipowner.setId(rs.getInt("shipowner"));
+                    vessel.setShipowner(shipowner);
+                    vessel.setActive(rs.getBoolean("active"));
+                    vessel.setId(rs.getInt("id"));
+
+                    list.add(vessel);
+                }
+                return list;
+            }
+        });
+        return vesselList;
+    }
+
+    
+    // Getting all Vessels
     @Override
     public List<Vessel> getAllVessels() {
         String sql = "SELECT * FROM vessels";
@@ -93,7 +171,7 @@ public class VesselDAOImpl implements VesselDAO {
                     User shipowner = new User();
                     vessel.setName(rs.getString("name"));
                     vessel.setFlag(rs.getString("flag"));
-                    vessel.setYear_built(rs.getString("year_built"));
+                    vessel.setYear_built(rs.getInt("year_built"));
                     vessel.setDwt(rs.getInt("dwt"));
                     vessel.setCosts(rs.getInt("costs"));
                     shipowner.setId(rs.getInt("shipowner"));
