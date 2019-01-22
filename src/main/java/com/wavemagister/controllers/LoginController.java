@@ -50,11 +50,21 @@ public class LoginController
 
     @RequestMapping( value = "/shipowner")
     public ModelAndView shipowner() {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("shipowner"))
+            return new ModelAndView("access_denied");
+            
         return new ModelAndView("shipowner");
     }
 
-    @RequestMapping( value = "/charterer")
+    @RequestMapping(value = "/charterer")
     public ModelAndView charterer() {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("charterer"))
+            return new ModelAndView("access_denied");
+        
         return new ModelAndView("charterer");
     }
 }

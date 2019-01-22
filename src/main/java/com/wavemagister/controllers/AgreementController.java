@@ -2,6 +2,7 @@ package com.wavemagister.controllers;
 
 import com.wavemagister.dao.AgreementDAO;
 import com.wavemagister.entities.Agreement;
+import com.wavemagister.entities.Login;
 import com.wavemagister.entities.User;
 import java.util.List;
 
@@ -20,50 +21,39 @@ public class AgreementController
     @Autowired
     private AgreementDAO agreementDAO;
 
-    @RequestMapping(value = "/agreement",method=RequestMethod.POST)
+    
+    @RequestMapping(value = "/agreement", method=RequestMethod.POST)
     public ModelAndView saveAgreement(@ModelAttribute("agreement") Agreement agreement)
     {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("charterer"))
+            return new ModelAndView("access_denied");
+        
+        
         if(agreement.getId() != null){
             agreementDAO.getAgreementById(agreement.getId());
             agreementDAO.updateAgreement(agreement);
-            }else{            
-            agreementDAO.saveAgreement(agreement);  
             }
-        return new ModelAndView("redirect:/agreements");
+        else{            
+            agreementDAO.saveAgreement(agreement);  
+        }
+        return new ModelAndView("redirect:/charterer_agreements");
     }
-    
-    @RequestMapping(value = "/editagreement/{id}")
-    public ModelAndView editAgreement(@ModelAttribute("agreement") Agreement agreement,@PathVariable("id") int id)
-    {
-        ModelAndView model = new ModelAndView("agreements");
-        
-        agreement = agreementDAO.getAgreementById(id);
-        List<Agreement> agreementList = agreementDAO.getAllAgreements();
-        
-        model.addObject("agreement",agreement);        
-        model.addObject("agreementList",agreementList);
-        
-        return model;
-        
-    }
-    
-    @RequestMapping(value = "/deleteagreement/{id}")
-    public ModelAndView deleteAgreement(@ModelAttribute("agreement") Agreement employee,@PathVariable("id") int id)
-    {
-        agreementDAO.deleteAgreement(id);
-        
-        return new ModelAndView("redirect:/agreements");
-    }
+ 
 
     @RequestMapping(value = "/shipowner_agreements")
     public ModelAndView listShipownerAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("shipowner"))
+            return new ModelAndView("access_denied");
+        
+        
         ModelAndView model = new ModelAndView("shipowner_agreements");
-        // for testing :
-        User loggedInUser = new User();
-        loggedInUser.setId(2);
-    
-        List<Agreement> shipownerAgreementList = agreementDAO.getShipownerAgreements(loggedInUser);
+
+        List<Agreement> shipownerAgreementList = agreementDAO.getShipownerAgreements(Login.loggedUser);
         model.addObject("shipownerAgreementList", shipownerAgreementList);
         
         return model;
@@ -72,26 +62,29 @@ public class AgreementController
     @RequestMapping(value = "/charterer_agreements")
     public ModelAndView listChartererAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("charterer"))
+            return new ModelAndView("access_denied");
+        
+        
         ModelAndView model = new ModelAndView("charterer_agreements");
         
-        // for testing :
-        User loggedInUser = new User();
-        loggedInUser.setId(2);
-        
-        List<Agreement> chartererAgreementList = agreementDAO.getShipownerAgreements(loggedInUser);
+        List<Agreement> chartererAgreementList = agreementDAO.getShipownerAgreements(Login.loggedUser);
         model.addObject("chartererAgreementList", chartererAgreementList);
         
         return model;
     }
     
-    @RequestMapping(value = "/agreements")
-    public ModelAndView listAgreements(@ModelAttribute("agreement") Agreement agreement)
-    {
-        ModelAndView model = new ModelAndView("agreements");
-
-        List<Agreement> agreementList = agreementDAO.getAllAgreements();
-        model.addObject("agreementList", agreementList);
-        
-        return model;
-    }
+    
+//    @RequestMapping(value = "/agreements")
+//    public ModelAndView listAgreements(@ModelAttribute("agreement") Agreement agreement)
+//    {
+//        ModelAndView model = new ModelAndView("agreements");
+//
+//        List<Agreement> agreementList = agreementDAO.getAllAgreements();
+//        model.addObject("agreementList", agreementList);
+//        
+//        return model;
+//    }
 }

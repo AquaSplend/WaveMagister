@@ -18,7 +18,7 @@ public class RegController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView showRegister(@ModelAttribute("register") User user) {
-
+        
         RegDAO.register(user);
         return new ModelAndView("activation_pending");
     }

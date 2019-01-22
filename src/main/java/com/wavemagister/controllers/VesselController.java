@@ -19,7 +19,7 @@ public class VesselController
     @Autowired
     private VesselDAO vesselDAO;
 
-    @RequestMapping(value = "/vessel",method=RequestMethod.POST)
+    @RequestMapping(value = "/vessel", method=RequestMethod.POST)
     public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel)
     {
         try
@@ -38,15 +38,13 @@ public class VesselController
         return new ModelAndView("redirect:/vessels");
     }
 
-    @RequestMapping(value = "/Vedit/{id}")
-    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel, @PathVariable("id") int id)
+    @RequestMapping(value = "/Vedit")
+    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel)
     {
         ModelAndView model = new ModelAndView("shipowner");
 
-        vessel = vesselDAO.getVesselById(id);
+        vesselDAO.updateVessel(vessel);
         List<Vessel> vesselList = vesselDAO.getAllVessels();
-
-        model.addObject("vessel",vessel);
         model.addObject("vesselList",vesselList);
 
         return model;
