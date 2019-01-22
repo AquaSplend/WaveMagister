@@ -23,7 +23,7 @@
             </div>
             <div class="col-md col8">
                 <div class="activated">Freight ($)</div>
-                <div class="underItem">${agreement.freight}</div>
+                <div class="shFreight underItem">${agreement.freight}</div>
             </div>
         </div>
     </c:forEach>

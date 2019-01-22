@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="wheel.jsp" %>
 <html style="display: none;">
 <head>
     <title>Dashboard</title>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="resources/style.css"/>
     <link rel="shortcut icon" href="resources/favicon.ico" />
 </head>
-<video class="video-blurred" autoplay muted loop>
+<video class="video-blurred" muted loop>
     <source src="resources/video.mp4" type="video/mp4">
 </video>
 <body>
@@ -25,7 +26,7 @@
                     <button type="button" class="navBut otherButton1" name="chartererAgreementsButton">Agreements</button>
                 </li>
                 <li class="nav-item otherButtonParent">
-                    <button type="button" class="navBut" name="offersButton">Spot offers</button>
+                    <button type="button" class="navBut userIdentifier" name="offersButton">Spot offers</button>
                 </li>
             </ul>
             <ul class="navbar-nav">

@@ -1,11 +1,14 @@
 $(document).ready(()=> {
-    let shipownerAgreementsButton = $("[name='shipownerAgreementsButton']");
     let shipownerAgreementsParent = $(".shipowner-agreements-parent");
     let fleet = $(".fleet");
-    let fleetButton = $("[name='fleetButton']");
+    let waitWheelText = $(".waitWheelText");
+    let cancelWheel = $(".cancelWheel");
+    let modalOverlayWheel = $(".modal-overlay-wheel");
+    let modalNewVesselElements = $(".modal-overlay-newVessel, .modal-newVessel");
 
     function showShipownerAgreements() {
         fleet.fadeOut();
+        openWait();
         $.ajax({
             type: "GET",
             url: "/wavemagister/shipowner_agreements.html",
@@ -13,9 +16,12 @@ $(document).ready(()=> {
                 fleet.empty();
                 shipownerAgreementsParent.empty();
                 shipownerAgreementsParent.append(response);
+                closeWait();
                 shipownerAgreementsParent.delay(450).fadeIn();
             },
             fail: function() {
+                closeWait();
+                fleet.fadeIn();
                 $("[data-notification-status='error']")
                     .show()
                     .removeClass()
@@ -31,6 +37,7 @@ $(document).ready(()=> {
 
     function showFleet() {
         shipownerAgreementsParent.fadeOut();
+        openWait();
         $.ajax({
             type: "GET",
             url: "/wavemagister/vessels.html",
@@ -38,9 +45,11 @@ $(document).ready(()=> {
                 shipownerAgreementsParent.empty();
                 fleet.empty();
                 fleet.append(response);
+                closeWait();
                 fleet.delay(450).fadeIn();
             },
             fail: function() {
+                closeWait();
                 shipownerAgreementsParent.fadeIn();
                 $("[data-notification-status='error']")
                     .show()
@@ -56,11 +65,13 @@ $(document).ready(()=> {
     }
 
     function updateFleet() {
+        openWait();
         $.ajax({
             type: "POST",
             url: "/wavemagister/vessel.html",
             data: $(this).parents("form").serialize(),
             success: function() {
+                closeWait();
                 $("[data-notification-status='success']")
                     .show()
                     .removeClass()
@@ -72,6 +83,7 @@ $(document).ready(()=> {
                     .delay(6000).fadeOut();
             },
             fail: function() {
+                closeWait();
                 $("[data-notification-status='error']")
                     .show()
                     .removeClass()
@@ -79,7 +91,7 @@ $(document).ready(()=> {
                     .addClass("bottom-right" + " notify")
                     .addClass("do-show")
                     .empty()
-                    .append(`Something went wrong and the vessel failed to update. Please try again.`)
+                    .append(`Something went wrong and the vessel data failed to update. Please try again.`)
                     .delay(10000).fadeOut();
             }
         });
@@ -88,19 +100,27 @@ $(document).ready(()=> {
 
     showShipownerAgreements();
 
-    shipownerAgreementsButton.on("click", ()=> {
+    $(document).on("click", "[name='shipownerAgreementsButton']", ()=> {
         showShipownerAgreements();
     });
 
-    fleetButton.on("click", ()=> {
+    $(document).on("click", "[name='fleetButton']", ()=> {
         showFleet();
     });
 
-    $(".fleetList input").on("change", function() {
+    $(document).on("click", ".addVesselIcon", ()=> {
+        modalNewVesselElements.addClass("active");
+    });
+
+    $(document).on("click", ".close-modal-newVessel", ()=> {
+        modalNewVesselElements.removeClass("active");
+    });
+
+    $(document).on("change", ".fleetList input", function() {
         updateFleet();
     });
 
-    $("[name='downloadAgreementsAsShipowner']").on("click", ()=> {
+    $(document).on("click", "[name='downloadAgreementsAsShipowner']", ()=> {
         let pdf = new jsPDF();
         pdf.setFontSize(18);
         pdf.text("Agreements", 14, 22);
@@ -108,11 +128,30 @@ $(document).ready(()=> {
         pdf.save("Agreements.pdf");
     });
 
-    $("[name='downloadFleet']").on("click", ()=> {
+    $(document).on("click", "[name='downloadFleet']", ()=> {
         let pdf = new jsPDF();
         pdf.setFontSize(18);
         pdf.text("Fleet", 14, 22);
         pdf.autoTable({html: ".tableFleet", startY: 30});
         pdf.save("Fleet.pdf");
     });
+
+    function openWait() {
+        if (!modalOverlayWheel.hasClass("active")) {
+            waitWheelText.hide();
+            cancelWheel.hide();
+            modalOverlayWheel.addClass("active");
+            waitWheelText.show();
+            setTimeout(() => {
+                waitWheelText.hide();
+                cancelWheel.show();
+            }, 6000);
+        }
+    }
+
+    function closeWait() {
+        if (modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.removeClass("active");
+        }
+    }
 });

@@ -1,10 +1,11 @@
 $(document).ready(()=> {
-    let chartererAgreementsButton = $("[name='chartererAgreementsButton']");
-    let offersButton = $("[name='offersButton']");
     let oilPrice = $(".oilpricenettable2 tbody tr").next().find("span").html().substr(1);
     let oilParent = $(".oil-parent");
     let offersBigParent = $(".offers-big-parent");
     let chartererAgreementsParent = $(".charterer-agreements-parent");
+    let waitWheelText = $(".waitWheelText");
+    let cancelWheel = $(".cancelWheel");
+    let modalOverlayWheel = $(".modal-overlay-wheel");
 
     $(".oilIndication").html(oilPrice);
 
@@ -17,32 +18,94 @@ $(document).ready(()=> {
         $(this).val(Math.round((oilPrice * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / totalDays));
     });
 
-    chartererAgreementsButton.on("click", ()=> {
+    function showChartererAgreements() {
         offersBigParent.fadeOut();
-        offersBigParent.empty();
-        chartererAgreementsParent.load("charterer_agreements.jsp");
-        chartererAgreementsParent.delay(450).fadeIn();
-    });
+        openWait();
+        $.ajax({
+            type: "GET",
+            url: "/wavemagister/charterer_agreements.html",
+            success: function(response) {
+                offersBigParent.empty();
+                chartererAgreementsParent.empty();
+                chartererAgreementsParent.append(response);
+                closeWait();
+                chartererAgreementsParent.delay(450).fadeIn();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the system could not fetch the shipowner's agreements. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+    }
 
-    offersButton.on("click", ()=> {
+    function showChartererOffers() {
         chartererAgreementsParent.fadeOut();
-        offersBigParent.load("charterer_offers.jsp");
-        offersBigParent.delay(450).fadeIn();
-    });
+        openWait();
+        $.ajax({
+            type: "GET",
+            url: "/wavemagister/charterer_offers.html",
+            success: function(response) {
+                chartererAgreementsParent.empty();
+                offersBigParent.empty();
+                offersBigParent.append(response);
+                closeWait();
+                offersBigParent.delay(450).fadeIn();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the system could not fetch the shipowner's agreements. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+    }
 
-    chartererAgreementsButton.on("click", ()=> {
+    showChartererAgreements();
+
+    $(document).on("click", "[name='chartererAgreementsButton']", ()=> {
         oilParent.fadeOut();
+        showChartererAgreements();
     });
 
-    offersButton.on("click", ()=> {
+    $(document).on("click", "[name='offersButton']", ()=> {
         oilParent.delay(450).fadeIn();
+        showChartererOffers();
     });
 
-    $("[name='downloadAgreementsAsCharterer']").on("click", ()=> {
+    $(document).on("click", "[name='downloadAgreementsAsCharterer']", ()=> {
         let pdf = new jsPDF();
         pdf.setFontSize(18);
         pdf.text("Agreements", 14, 22);
         pdf.autoTable({html: ".tableAgreements", startY: 30});
         pdf.save("Agreements.pdf");
     });
+
+    function openWait() {
+        modalOverlayWheel.addClass("active");
+        waitWheelText.hide();
+        cancelWheel.hide();
+        waitWheelText.show();
+        setTimeout(()=> {
+            waitWheelText.hide();
+            cancelWheel.show();
+        }, 6000);
+    }
+
+    function closeWait() {
+        modalOverlayWheel.removeClass("active");
+    }
 });

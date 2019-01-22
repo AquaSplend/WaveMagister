@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="wheel.jsp" %>
 <html style="display:none;">
 <head>
     <title>Admin Panel</title>
@@ -73,7 +74,7 @@
                     <div class="card-body">
                         <div class="container itemInRow">
                             <c:forEach items="${shipowners}" var="shipowner">
-                                <div class="row">
+                                <div class="row userData">
                                     <div class="col-8 col8 nameInput">
                                         <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
                                             <input hidden type="text" name="id" value=${shipowner.id} />
@@ -125,7 +126,7 @@
                     <div class="card-body">
                         <div class="container itemInRow">
                             <c:forEach items="${charterers}" var="charterer">
-                                <div class="row">
+                                <div class="row userData">
                                     <div class="col-8 col8 nameInput">
                                         <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
                                             <input hidden type="text" name="id" value=${charterer.id} />

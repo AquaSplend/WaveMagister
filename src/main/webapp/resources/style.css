@@ -215,6 +215,10 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     line-height: 1;
 }
 
+.shFreight, .chFreight {
+    width: 147px;
+}
+
 .row {
     background-color: rgba(255, 255, 255, .6);
     line-height: 0;
@@ -442,6 +446,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     font-weight: 700;
     line-height: 1;
     color: rgba(0, 23, 85, .8);
+    margin-bottom: 5px !important;
 }
 
 .passwordChange {
@@ -871,4 +876,71 @@ form #vesselDwt, #resVesselDwt {
     margin-bottom: 3.5rem;
     font-style: italic;
     font-size: .84rem;
+}
+
+.wheel {
+    opacity: .85;
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.waitWheelText {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .85);
+}
+
+.waitPrompt {
+    font-weight: 700;
+    color: rgba(255, 255, 255, .85);
+}
+
+.modal-overlay-wheel {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.cancelWheel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.waitPrompt {
+    text-align: center;
 }

@@ -5,8 +5,6 @@ $(document).ready(()=> {
     let input = $("input");
     let reset = $("[type='reset']");
     let otherButtons = $(".mr-auto .navBut");
-    let dynamicWidth = $('.width-dynamic');
-    let modalNewVesselElements = $(".modal-overlay-newVessel, .modal-newVessel");
     let modalPasswordElements = $(".modal-overlay-password, .modal-password");
     let startDate = $("#startDate");
     let endDate = $("#endDate");
@@ -29,7 +27,7 @@ $(document).ready(()=> {
         }
     });
 
-    $(".row input, .underItem form input, .offers-search-parent form input").on("change", function() {
+    $(".userData input, .offers-search-parent form input").on("change", function() {
         $(this).parents("form").submit();
     });
 
@@ -39,23 +37,18 @@ $(document).ready(()=> {
         return $.fn.textWidth.fakeEl.width();
     };
 
-    dynamicWidth.on("input", function() {
+    $(document).on("input", ".width-dynamic", function() {
         let inputWidth = $(this).textWidth();
         $(this).css({
             width: inputWidth
         })
     }).trigger("input");
 
-    $(".plus").on("click", ()=> {
-        modalNewVesselElements.addClass("active");
-    });
-
-    $(".changePasswordButton").on("click", ()=> {
+    $(document).on("click", ".changePasswordButton", ()=> {
         modalPasswordElements.addClass("active");
     });
 
-    $(".close-modal").on("click", ()=> {
-        modalNewVesselElements.removeClass("active");
+    $(document).on("click", ".close-modal", ()=> {
         modalPasswordElements.removeClass("active");
     });
 

@@ -14,6 +14,7 @@ $(document).ready(()=> {
     let otherButton_parent = $(".otherButtonParent");
     let otherButtons = $(".mr-auto .navBut");
     let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
+    let modalOverlayWheel = $(".modal-overlay-wheel");
 
     navbar_brand.hide();
     login.hide();
@@ -21,11 +22,11 @@ $(document).ready(()=> {
     reset.hide();
     html.fadeIn(1000);
 
-    $(".notesButton").on("click", function() {
+    $(document).on("click", ".notesButton", ()=> {
         modalNotesElements.addClass("active");
     });
 
-    $(".close-modal").on("click", function() {
+    $(document).on("click", ".close-modal-notes", ()=> {
         modalNotesElements.removeClass("active");
     });
 
@@ -64,5 +65,15 @@ $(document).ready(()=> {
         if (input.val != null) {
             reset.show();
         }
+    });
+
+    function closeWait() {
+        if (modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.removeClass("active");
+        }
+    }
+
+    $(document).on("click", ".specificCancelWheelButton", ()=> {
+        closeWait();
     });
 });
