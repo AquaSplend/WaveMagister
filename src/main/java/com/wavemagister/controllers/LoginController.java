@@ -47,6 +47,13 @@ public class LoginController
     public ModelAndView loginUser(@ModelAttribute("login") Login login, @ModelAttribute("register") User user) {
         return new ModelAndView("login");
     }
+    
+    @RequestMapping( value = "/logout")
+    public ModelAndView logoutUser(@ModelAttribute("login") Login login, @ModelAttribute("register") User user) {
+        Login.loggedUser = null;
+        Login.loggedIn = false;
+        return new ModelAndView("redirect:/login");
+    }
 
     @RequestMapping( value = "/shipowner")
     public ModelAndView shipowner() {

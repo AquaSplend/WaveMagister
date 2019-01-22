@@ -2,6 +2,7 @@ package com.wavemagister.controllers;
 
 import com.wavemagister.entities.User;
 import com.wavemagister.dao.UserDAO;
+import com.wavemagister.entities.Login;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class UserController
     @Autowired
     private UserDAO userDAO;
 
-    @RequestMapping(value = "/user",method=RequestMethod.POST)
+    @RequestMapping(value = "/user", method=RequestMethod.POST)
     public ModelAndView insertUser(@ModelAttribute("admin") User user) {
+        
         try {
             User existingUser = userDAO.getUserByUsername(user.getUsername());
             if(existingUser != null){
@@ -37,6 +39,11 @@ public class UserController
 
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView editUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("admin"))
+            return new ModelAndView("access_denied");
+        
         ModelAndView model = new ModelAndView("admin");
 
         user = userDAO.getUserById(id);
@@ -50,22 +57,26 @@ public class UserController
 
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteUser(@ModelAttribute("admin") User user,@PathVariable("id") int id) {
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("admin"))
+            return new ModelAndView("access_denied");
+        
         userDAO.deleteUser(id);
-
-        // go to Dispatcher and the Dispatcher sends to appropriate controller
         return new ModelAndView("redirect:/admin");
     }
 
     @RequestMapping(value = "/admin")
     public ModelAndView listUsers(@ModelAttribute("user") User user) {
-        ModelAndView model = new ModelAndView("admin");
-
-        //List<User> userList = userDAO.getAllUsers();
+        if(!Login.loggedIn)
+            return new ModelAndView("redirect:/login");
+        if(!Login.loggedUser.getRole().equals("admin"))
+            return new ModelAndView("access_denied");
+        
         List<User> charterers = userDAO.getUsersByRole("charterer");
         List<User> shipowners = userDAO.getUsersByRole("shipowner");
 
-        //System.out.println(userList);
-        //model.addObject("userList", userList);
+        ModelAndView model = new ModelAndView("admin");
         model.addObject("charterers", charterers);
         model.addObject("shipowners", shipowners);
 

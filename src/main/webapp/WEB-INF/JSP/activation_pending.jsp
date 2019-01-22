@@ -22,7 +22,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <form action="index.jsp"><button type="submit" class="nav-item navBut">Logout</button></form>
+                    <form action="/wavemagister/logout"><button type="submit" class="nav-item navBut">Logout</button></form>
                 </li>
             </ul>
         </div>

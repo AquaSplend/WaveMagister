@@ -6,7 +6,7 @@
         <div class="title">Spot offers</div>
         <div class="bg-text searchOffers">
             <div class="smallTitle">Search for freight offers</div>
-            <form:form action="/wavemagister/charterer_offers/" method="GET" modelAttribute="offer">
+            <form:form action="/wavemagister/charterer_offers" method="GET" modelAttribute="offer">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="quantity">Cargo quantity (MT)</label>
