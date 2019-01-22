@@ -2,6 +2,7 @@ $(document).ready(()=> {
     let oilPrice = $(".oilpricenettable2 tbody tr").next().find("span").html().substr(1);
     let oilParent = $(".oil-parent");
     let offersBigParent = $(".offers-big-parent");
+    let offersParent = $(".offers-parent");
     let chartererAgreementsParent = $(".charterer-agreements-parent");
     let waitWheelText = $(".waitWheelText");
     let cancelWheel = $(".cancelWheel");
@@ -57,6 +58,8 @@ $(document).ready(()=> {
                 offersBigParent.empty();
                 offersBigParent.append(response);
                 closeWait();
+                $(".offers-parent").show();
+                $(".results-parent").show();
                 offersBigParent.delay(450).fadeIn();
             },
             fail: function() {
@@ -78,6 +81,7 @@ $(document).ready(()=> {
 
     $(document).on("click", "[name='chartererAgreementsButton']", ()=> {
         oilParent.fadeOut();
+        offersParent.fadeOut();
         showChartererAgreements();
     });
 

@@ -40,7 +40,7 @@ $(document).ready(()=> {
         openWait();
         $.ajax({
             type: "GET",
-            url: "/wavemagister/vessels.html",
+            url: "/wavemagister/fleet.html",
             success: function(response) {
                 shipownerAgreementsParent.empty();
                 fleet.empty();

@@ -25,7 +25,7 @@ public class VesselDAOImpl implements VesselDAO {
     }
 
     //String username, String password, String company, String role, boolean activated
-    // Saving a new Employee
+    // Saving a new Vessel
     @Override
     public void insertVessel(Vessel vessel) {
         String sql = "INSERT INTO vessels(name, flag, year_built, dwt, costs, shipowner, active) VALUES(?,?,?,?,?,?,?)";
@@ -33,7 +33,7 @@ public class VesselDAOImpl implements VesselDAO {
         jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive()});
     }
 
-    // Getting a particular Employee
+    // Getting a particular Vessel
     @Override
     public Vessel getVesselById(int id) {
         String sql = "SELECT * FROM vessels WHERE id=?";
@@ -196,7 +196,7 @@ public class VesselDAOImpl implements VesselDAO {
         jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive(), vessel.getId()});
     }
 
-    // Deletion of a particular User
+    // Deletion of a particular Vessel
     @Override
     public void deleteVessel(int id) {
         String sql = "DELETE FROM vessels WHERE id=?";

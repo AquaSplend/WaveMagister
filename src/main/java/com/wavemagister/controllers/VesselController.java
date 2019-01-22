@@ -1,6 +1,8 @@
 package com.wavemagister.controllers;
 
 import com.wavemagister.dao.VesselDAO;
+import com.wavemagister.entities.Login;
+import com.wavemagister.entities.Offer;
 import com.wavemagister.entities.Vessel;
 import java.util.List;
 
@@ -14,24 +16,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class VesselController
-{
+public class VesselController {
     @Autowired
     private VesselDAO vesselDAO;
 
     @RequestMapping(value = "/vessel", method=RequestMethod.POST)
-    public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel)
-    {
-        try
-        {
+    public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel) {
+        try {
             Vessel existingVessel = vesselDAO.getVesselById(vessel.getId());
             if(existingVessel != null){
                 vessel.setId(existingVessel.getId());
                 vesselDAO.updateVessel(vessel);
             }
         }
-        catch(EmptyResultDataAccessException e)
-        {
+        catch(EmptyResultDataAccessException e) {
             System.out.println("inside catch");
             vesselDAO.insertVessel(vessel);
         }
@@ -39,8 +37,7 @@ public class VesselController
     }
 
     @RequestMapping(value = "/Vedit")
-    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel)
-    {
+    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel) {
         ModelAndView model = new ModelAndView("shipowner");
 
         vesselDAO.updateVessel(vessel);
@@ -58,41 +55,33 @@ public class VesselController
         // go to Dispatcher and the Dispatcher sends to appropriate controller
         return new ModelAndView("redirect:/vessels");
     }
-    
+
     @RequestMapping(value = "/fleet")
-    public ModelAndView listFleet(@ModelAttribute("vessel") Vessel vessel)
-    {
-        //for testing:
-        int shipownerId = 2;
-        
+    public ModelAndView listFleet(@ModelAttribute("vessel") Vessel vessel) {
+
         ModelAndView model = new ModelAndView("shipowner_fleet");
 
-        List<Vessel> vesselList = vesselDAO.getFleet(shipownerId);
-        
+        List<Vessel> vesselList = vesselDAO.getFleet(Login.loggedUser.getId());
+
         model.addObject("vesselList", vesselList);
 
         return model;
     }
 
-    @RequestMapping(value = "/charterer_offers", method=RequestMethod.POST)
-    public ModelAndView listOffers(@ModelAttribute("vessel") Vessel vessel)
-    {
-        //for testing:
-        int searchQuantity = 160500; 
-        String searchStartDate= "2019-01-15", searchEndDate = "2019-01-30";
-        
+    @RequestMapping(value = "/charterer_offers")
+    public ModelAndView listOffers(@ModelAttribute("offer") Offer offer) {
+
         ModelAndView model = new ModelAndView("charterer_offers");
 
-        List<Vessel> vesselList = vesselDAO.getSpotOffers(searchQuantity, searchStartDate, searchEndDate);
-        
-        model.addObject("vesselList", vesselList);
+        List<Vessel> offers = vesselDAO.getSpotOffers(offer.getQuantity(), offer.getStart(), offer.getEnd());
+
+        model.addObject("offers", offers);
 
         return model;
     }
-    
+
     @RequestMapping(value = "/vessels")
-    public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel)
-    {
+    public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel) {
         ModelAndView model = new ModelAndView("shipowner_fleet");
 
         List<Vessel> vesselList = vesselDAO.getAllVessels();
