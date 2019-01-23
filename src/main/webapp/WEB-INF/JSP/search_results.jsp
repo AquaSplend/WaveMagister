@@ -35,7 +35,7 @@
                     <input type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
                 </div>
                 <div class="addVesselIcon">
-                    <button type="submit" title="Conclude agreement" class="plus"><span>+</span></button>
+                    <button type="submit" title="Conclude agreement" class="plus concludeOffer">><span></span></button>
                 </div>
             </div>
         </form>

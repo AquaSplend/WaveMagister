@@ -27,8 +27,6 @@ $(document).ready(()=> {
         }
     });
 
- 
-
     $(".userData input").on("change", function() {
         openWait();
         $.ajax({

@@ -497,6 +497,31 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     border: 2px rgba(255, 255, 255, .3) !important;
 }
 
+.concludeOffer {
+    height: 45px  !important;
+    width: 45px  !important;
+    font-size: 34px !important;
+    line-height: .8 !important;
+    font-weight: 700;
+    padding-bottom: 7px !important;
+    padding-left: 9px !important;
+    background-color: transparent;
+    color: rgba(0, 23, 85, .8);
+    border: 2px solid rgba(0, 23, 85, .8) !important;
+}
+
+.concludeOffer:hover {
+    background-color: rgba(222, 91, 39, .8) !important;
+    color: rgba(255, 255, 255, .8);
+    border: 2px solid rgba(222, 91, 39, .8) !important;
+}
+
+.concludeOffer:active {
+    background-color: rgba(182, 76, 33, 0.8) !important;
+    color: rgba(224, 224, 224, 0.8);
+    border: 2px solid rgba(182, 76, 33, 0.8)!important;
+}
+
 .nameInput {
     display: flex;
     flex-direction: column;
@@ -940,4 +965,8 @@ form #vesselDwt, #resVesselDwt {
 
 .voy {
     width: 240px;
+}
+
+.lead {
+    font-weight: 700;
 }

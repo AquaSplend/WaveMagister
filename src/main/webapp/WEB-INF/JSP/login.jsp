@@ -20,7 +20,7 @@
     <div class="jumbotron-parent">
         <div class="jumbotron">
             <h1 class="display-4"><span><img alt="Logo" src="resources/logo_big.svg"/></span></h1>
-            <p class="lead">This project is under development. It will be up and live soon.</p>
+            <p class="lead">Interconnecting maritime Titans.</p>
             <hr class="my-4">
             <div class="jumbotron-buttons">
                 <button type="button" class="button jumbotron-button" name="login">Login</button>

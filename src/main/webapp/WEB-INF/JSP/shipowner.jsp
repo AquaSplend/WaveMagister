@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="button afterForm" name="Register">Add vessel</button>
+                            <button type="submit" class="button afterForm addNewVesselButton" name="Register">Add vessel</button>
                             <input class="button afterForm resetBtn" type="reset" value="Reset">
                         </div>
                     </form>

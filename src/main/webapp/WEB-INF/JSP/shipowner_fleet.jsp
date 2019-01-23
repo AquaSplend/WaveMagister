@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div class="title">Fleet</div>
 <button type="button" class="smallButton downloadFleetButton" name="downloadFleet">Download fleet data</button>
@@ -8,50 +9,48 @@
 <div class="container">
     <c:forEach items="${vesselList}" var="vessel">
         <div class="bg-text fleetList">
-            
-            <form action="/wavemagister/Vedit">
+            <form:form>
                 <div class="form-row">
                     <div class="form-group vesselUpdateForm">
                         <label style="display:none;" for="vesselId"></label>
-                        <input hidden value="${vessel.id}" name="id" type="number" class="input form-control" id="vesselId" title="Vessel ID">
+                        <form:input hidden="hidden" value="${vessel.id}"  path="id" type="number" class="input form-control" id="vesselId" title="Vessel ID"/>
                         <label style="display:none;" for="vesselShipowner"></label>
-                        <input hidden value="${vessel.shipowner.id}" name="shipowner" type="number" class="input form-control" id="vesselShipowner" title="Shipowner">
+                        <form:input hidden="hidden" value="${vessel.shipowner}" path="shipowner" type="text" class="input form-control" id="vesselShipowner" title="Shipowner" />
                         <label for="vesselName">Name</label>
-                        <input value="${vessel.name}" name="name" type="text" class="input form-control" id="vesselName" title="Vessel name">
+                        <form:input value="${vessel.name}" path="name" type="text" class="input form-control" id="vesselName" title="Vessel name" />
                     </div>
                     <div class="form-group">
                         <label for="vesselFlag">Flag</label>
-                        <input value="${vessel.flag}" name="flag" type="text" class="input form-control" id="vesselFlag" title="Flag">
+                        <form:input value="${vessel.flag}" path="flag" type="text" class="input form-control" id="vesselFlag" title="Flag" />
                     </div>
                     <div class="form-group">
                         <label for="vesselDwt">DWT</label>
-                        <input value="${vessel.dwt}" name="dwt" type="text" class="input form-control" id="vesselDwt" title="Dead weight tonnage">
+                        <form:input value="${vessel.dwt}" path="dwt" type="text" class="input form-control" id="vesselDwt" title="Dead weight tonnage" />
                     </div>
                     <div class="form-group">
                         <label for="vesselYearBuilt">Year built</label>
-                        <input value="${vessel.year_built}" name="year_built" type="text" class="input form-control" id="vesselYearBuilt" title="Year built">
+                        <form:input value="${vessel.year_built}" path="year_built" type="text" class="input form-control" id="vesselYearBuilt" title="Year built" />
                     </div>
                     <div class="form-group">
                         <label for="vesselCosts">Daily costs ($)</label>
-                        <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="${vessel.costs}" name="costs" type="text" maxlength="6" class="input form-control" id="vesselCosts" title="Daily costs ($)">
+                        <form:input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="${vessel.costs}" path="costs" type="text" maxlength="6" class="input form-control" id="vesselCosts" title="Daily costs ($)" />
                     </div>
                     <div class="form-group vesselActive">
                         <label for="vesselActive">Active</label>
                         <label class="toggle">
                             <c:choose>
                                 <c:when test="${vessel.active=='false'}">
-                                    <input title="Active" name="active" id="vesselActive" type="checkbox"/>
+                                    <form:input title="Active" path="active" id="vesselActive" type="checkbox"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <input title="Active" name="active" id="vesselActive" type="checkbox" checked/>
+                                    <form:input title="Active" path="active" id="vesselActive" type="checkbox" checked="checked"/>
                                 </c:otherwise>
                             </c:choose>
                             <div></div>
                         </label>
                     </div>
-                    
                 </div>
-            </form>
+            </form:form>
         </div>
     </c:forEach>
     <table style="display:none;" class="tableFleet">
