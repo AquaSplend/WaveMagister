@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%response.sendRedirect("users");%>
+<%response.sendRedirect("vessels");%>
 <html>
 <body>
 <h2>Hello World!</h2>
