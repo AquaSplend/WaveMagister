@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Unauthorized Access</title>
+    <title>Unauthorized access</title>
     <link rel="stylesheet" type="text/css" href="resources/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="resources/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -31,7 +31,7 @@
         <div class="jumbotron">
             <h1 class="unText display-4">Unauthorized Access</h1>
             <hr class="my-4">
-            <p class="lead">Once your account is activated, you may access the application.</p>
+            <p class="lead">You do not have permission for this operation.</p>
         </div>
     </div>
 </main>

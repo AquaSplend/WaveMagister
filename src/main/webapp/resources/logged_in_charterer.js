@@ -63,7 +63,7 @@ $(document).ready(()=> {
         chartererAgreementsParent.fadeOut();
         openWait();
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/wavemagister/search_results.html",
             success: function(response) {
                 chartererAgreementsParent.empty();
@@ -71,6 +71,8 @@ $(document).ready(()=> {
                 offersResults.append(response);
                 $(".resultsStartDate").val($("#startDate").val());
                 $(".resultsEndDate").val($("#endDate").val());
+                $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+                $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
                 $(".dailyFreight").each(function () {
                     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parent().prev().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 });
@@ -114,7 +116,7 @@ $(document).ready(()=> {
     $(document).on("change", ".searchOffers input", function() {
         openWait();
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/wavemagister/search_results.html",
             success: function(response) {
                 offersResults.fadeOut();
@@ -122,6 +124,8 @@ $(document).ready(()=> {
                 offersResults.append(response);
                 $(".resultsStartDate").val($("#startDate").val());
                 $(".resultsEndDate").val($("#endDate").val());
+                $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+                $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
                 $(".dailyFreight").each(function () {
                     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 });

@@ -61,6 +61,8 @@
                             <div class="form-group col-md-4">
                                 <label for="quantity">Cargo quantity (MT)</label>
                                 <input value="200000" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="quantity" placeholder="e.g. 200000" title="Cargo quantity (MT)" required="required" />
+                                <input hidden class="resultsPrice" type="number" name="oilPrice">
+                                <input hidden class="resultsDays" type="number" name="days">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="startDate">Start date</label>

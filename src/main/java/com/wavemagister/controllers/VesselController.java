@@ -87,7 +87,7 @@ public class VesselController {
     }
 
     
-    @RequestMapping(value = "/search_results")
+    @RequestMapping(value = "/search_results", method=RequestMethod.POST)
     public ModelAndView listOffers(@ModelAttribute("offer") Offer offer) {
 
         ModelAndView model = new ModelAndView("search_results");
@@ -101,7 +101,7 @@ public class VesselController {
             //System.out.println(offer.getOilPrice());
             //System.out.println(offer.getQuantity());
             //System.out.println(availableVessel.getCosts());
-            int calc = ((int)(offer.getOilPrice()*0.13*offer.getQuantity())+availableVessel.getCosts())/offer.getDays();
+            int calc = ((int)(offer.getOilPrice()*0.13642565*offer.getQuantity())+availableVessel.getCosts())/offer.getDays();
             freight.add(calc);
             //System.out.println(freight.get(count));
             //count++;
