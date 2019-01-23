@@ -62,23 +62,14 @@ $(document).ready(()=> {
         });
     }
 
-    function updateFleet() {
+    $(document).on("click", ".addNewVesselButton", ()=> {
         openWait();
         $.ajax({
             type: "POST",
             url: "/wavemagister/vessel.html",
             data: $(this).parents("form").serialize(),
             success: function() {
-                closeWait();
-                $("[data-notification-status='success']")
-                    .show()
-                    .removeClass()
-                    .attr("data-notification-status", "success")
-                    .addClass("bottom-right" + " notify")
-                    .addClass("do-show")
-                    .empty()
-                    .append(`The vessel has been updated.`)
-                    .delay(6000).fadeOut();
+                showFleet();
             },
             fail: function() {
                 closeWait();
@@ -94,7 +85,7 @@ $(document).ready(()=> {
             }
         });
         return false;
-    }
+    });
 
     showShipownerAgreements();
 
@@ -115,7 +106,28 @@ $(document).ready(()=> {
     });
 
     $(document).on("change", ".fleetList input", function() {
-        updateFleet();
+        openWait();
+        $.ajax({
+            type: "POST",
+            url: "/wavemagister/Vedit.html",
+            data: $(this).parents("form").serialize(),
+            success: function() {
+                showFleet();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the vessel data failed to update. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+        return false;
     });
 
     $(document).on("click", "[name='downloadAgreementsAsShipowner']", ()=> {

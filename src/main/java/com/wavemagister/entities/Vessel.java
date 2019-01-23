@@ -16,13 +16,14 @@ public class Vessel {
         
     }
 
-    public Vessel(int id, String name, String flag, int year_built, int dwt, User shipowner,int costs ,boolean active) {
+    public Vessel(int id, String name, String flag, int year_built, int dwt, User shipowner, int costs ,boolean active) {
         this.id = id;
         this.name = name;
         this.flag = flag;
         this.year_built = year_built;
         this.dwt = dwt;
         this.shipowner = shipowner;
+        this.costs = costs;
         this.active = active;
     }
     

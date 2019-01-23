@@ -30,7 +30,7 @@ public class VesselDAOImpl implements VesselDAO {
     public void insertVessel(Vessel vessel) {
         String sql = "INSERT INTO vessels(name, flag, year_built, dwt, costs, shipowner, active) VALUES(?,?,?,?,?,?,?)";
         //System.out.println("dao called");
-        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive()});
+        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner().getId(), vessel.getActive()});
     }
 
     // Getting a particular Vessel
@@ -193,7 +193,7 @@ public class VesselDAOImpl implements VesselDAO {
         String sql = "UPDATE vessels SET name = ?, flag = ?, year_built = ?, dwt = ?, costs = ?,shipowner = ?, active=?"
                 + " WHERE id = ?";
 
-        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner(), vessel.getActive(), vessel.getId()});
+        jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner().getId(), vessel.getActive(), vessel.getId()});
     }
 
     // Deletion of a particular Vessel

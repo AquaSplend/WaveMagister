@@ -1,8 +1,10 @@
 package com.wavemagister.controllers;
 
+import com.wavemagister.dao.UserDAO;
 import com.wavemagister.dao.VesselDAO;
 import com.wavemagister.entities.Login;
 import com.wavemagister.entities.Offer;
+import com.wavemagister.entities.User;
 import com.wavemagister.entities.Vessel;
 import java.util.List;
 
@@ -13,12 +15,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class VesselController {
     @Autowired
     private VesselDAO vesselDAO;
+    
+    @Autowired
+    private UserDAO userDAO;
 
     @RequestMapping(value = "/vessel", method=RequestMethod.POST)
     public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel) {
@@ -37,9 +43,20 @@ public class VesselController {
     }
 
     @RequestMapping(value = "/Vedit")
-    public ModelAndView editVessels(@ModelAttribute("vessel") Vessel vessel) {
+    public ModelAndView editVessels( @RequestParam("id") int id,
+     @RequestParam("shipowner") int shipowner_id,
+     @RequestParam("name") String name,
+     @RequestParam("flag") String flag,
+     @RequestParam("year_built") int year_built,
+     @RequestParam("dwt") int dwt,
+     @RequestParam("costs") int costs,
+     @RequestParam("active") boolean active ) {
+        
         ModelAndView model = new ModelAndView("shipowner");
-
+        System.out.println(shipowner_id);
+        User user = userDAO.getUserById(shipowner_id);
+        Vessel vessel = new Vessel(id, name, flag, year_built, dwt, user, costs, active);
+        
         vesselDAO.updateVessel(vessel);
         List<Vessel> vesselList = vesselDAO.getAllVessels();
         model.addObject("vesselList",vesselList);
