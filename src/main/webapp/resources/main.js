@@ -14,7 +14,6 @@ $(document).ready(()=> {
     let otherButton_parent = $(".otherButtonParent");
     let otherButtons = $(".mr-auto .navBut");
     let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
-    let modalOverlayWheel = $(".modal-overlay-wheel");
 
     navbar_brand.hide();
     login.hide();

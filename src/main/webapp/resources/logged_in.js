@@ -27,9 +27,7 @@ $(document).ready(()=> {
         }
     });
 
-    $(".offers-search-parent form input").on("change", function() {
-        $(this).parents("form").submit();
-    });
+ 
 
     $(".userData input").on("change", function() {
         openWait();

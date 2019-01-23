@@ -50,8 +50,8 @@
     </nav>
 </header>
 <main>
-    <div class="charterer-agreements-parent"></div>
-    <div class="offers-big-parent">
+    <div class="charterer-agreements-parent" style="display:none"></div>
+    <div class="offers-parent" style="display:none">
             <div class="offers-search-parent">
                 <div class="title">Spot offers</div>
                 <div class="bg-text searchOffers">

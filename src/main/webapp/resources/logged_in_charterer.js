@@ -1,6 +1,6 @@
 $(document).ready(()=> {
     let oilParent = $(".oil-parent");
-    let offersBigParent = $(".offers-big-parent");
+    let offersParent = $(".offers-parent");
     let chartererAgreementsParent = $(".charterer-agreements-parent");
     let modalOverlayWheel = $(".modal-overlay-wheel");
     let startDate = $("#startDate");
@@ -31,13 +31,14 @@ $(document).ready(()=> {
     $(".oilIndication").html($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
 
     function showChartererAgreements() {
-        offersBigParent.fadeOut();
+        oilParent.fadeOut();
+        offersParent.fadeOut();
         openWait();
         $.ajax({
             type: "GET",
             url: "/wavemagister/charterer_agreements.html",
             success: function(response) {
-                offersBigParent.empty();
+                offersResults.empty();
                 chartererAgreementsParent.empty();
                 chartererAgreementsParent.append(response);
                 closeWait();
@@ -72,8 +73,8 @@ $(document).ready(()=> {
                     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 });
                 closeWait();
-                oilParent.fadeIn();
-                offersBigParent.delay(450).fadeIn();
+                oilParent.delay(450).fadeIn();
+                offersParent.delay(450).fadeIn();
             },
             fail: function() {
                 closeWait();
@@ -93,8 +94,6 @@ $(document).ready(()=> {
     showChartererAgreements();
 
     $(document).on("click", "[name='chartererAgreementsButton']", ()=> {
-        oilParent.fadeOut();
-        offersBigParent.fadeOut();
         showChartererAgreements();
     });
 

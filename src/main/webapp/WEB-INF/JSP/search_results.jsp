@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<div class="bg-text">
-    <form>
-        <c:forEach items="${offers}" var="offer">
+<c:forEach items="${offers}" var="offer">
+    <div class="bg-text results">
+        <form>
             <div class="form-row">
                 <div class="form-group">
                     <label for="resVesselName">Vessel</label>
@@ -38,6 +38,6 @@
                     <button type="submit" title="Conclude agreement" class="plus"><span>+</span></button>
                 </div>
             </div>
-        </c:forEach>
-    </form>
-</div>
+        </form>
+    </div>
+</c:forEach>
