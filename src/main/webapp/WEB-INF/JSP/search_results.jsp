@@ -9,6 +9,8 @@
                     <label for="resVesselName">Vessel</label>
                     <input value=${offer.name} type="text" class="input form-control" id="resVesselName" title="Vessel name" disabled>
                     <input hidden value=${offer.id}>
+                    <input hidden class="resultsStartDate" name="resultsStartDate" type="date" />
+                    <input hidden class="resultsEndDate" name="resultsEndDate" type="date">
                 </div>
                 <div class="form-group">
                     <label for="resShipowner">Shipowner</label>

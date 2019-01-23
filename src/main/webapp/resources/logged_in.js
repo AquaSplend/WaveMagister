@@ -7,8 +7,7 @@ $(document).ready(()=> {
     let otherButtons = $(".mr-auto .navBut");
     let modalPasswordElements = $(".modal-overlay-password, .modal-password");
     let modalOverlayWheel = $(".modal-overlay-wheel");
-
-
+    
     login.hide();
     register.hide();
     reset.hide();

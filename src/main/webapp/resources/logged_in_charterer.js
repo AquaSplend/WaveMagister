@@ -69,6 +69,8 @@ $(document).ready(()=> {
                 chartererAgreementsParent.empty();
                 offersResults.empty();
                 offersResults.append(response);
+                $(".resultsStartDate").val($("#startDate").val());
+                $(".resultsEndDate").val($("#endDate").val());
                 $(".dailyFreight").each(function () {
                     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parent().prev().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 });
@@ -118,6 +120,8 @@ $(document).ready(()=> {
                 offersResults.fadeOut();
                 offersResults.empty();
                 offersResults.append(response);
+                $(".resultsStartDate").val($("#startDate").val());
+                $(".resultsEndDate").val($("#endDate").val());
                 $(".dailyFreight").each(function () {
                     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 });
