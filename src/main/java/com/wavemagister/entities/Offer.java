@@ -4,15 +4,19 @@ public class Offer {
     private int quantity;
     private String start;
     private String end;
+    private double oilPrice;
+    private int days;
 
     public Offer() {
 
     }
 
-    public Offer(int quantity, String start, String end) {
+    public Offer(int quantity, String start, String end, double oilPrice, int days) {
         this.quantity = quantity;
         this.start = start;
         this.end = end;
+        this.oilPrice = oilPrice;
+        this.days = days;
     }
 
     public int getQuantity() {
@@ -38,4 +42,21 @@ public class Offer {
     public void setEnd(String end) {
         this.end = end;
     }
+
+    public double getOilPrice() {
+        return oilPrice;
+    }
+
+    public void setOilPrice(double oilPrice) {
+        this.oilPrice = oilPrice;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+        
 }
