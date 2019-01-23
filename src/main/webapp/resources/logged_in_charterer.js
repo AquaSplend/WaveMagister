@@ -85,7 +85,7 @@ $(document).ready(()=> {
                     .addClass("bottom-right" + " notify")
                     .addClass("do-show")
                     .empty()
-                    .append(`Something went wrong and the system could not fetch the shipowner's agreements. Please try again.`)
+                    .append(`Something went wrong. Please try again.`)
                     .delay(10000).fadeOut();
             }
         });
@@ -107,6 +107,36 @@ $(document).ready(()=> {
         pdf.text("Agreements", 14, 22);
         pdf.autoTable({html: ".tableAgreements", startY: 30});
         pdf.save("Agreements.pdf");
+    });
+
+    $(document).on("change", ".searchOffers input", function() {
+        openWait();
+        $.ajax({
+            type: "GET",
+            url: "/wavemagister/search_results.html",
+            success: function(response) {
+                offersResults.fadeOut();
+                offersResults.empty();
+                offersResults.append(response);
+                $(".dailyFreight").each(function () {
+                    $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
+                });
+                closeWait();
+                offersResults.delay(450).fadeIn();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something went wrong and the system could not fetch the search results. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
     });
 
     function openWait() {
