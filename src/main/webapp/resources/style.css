@@ -43,6 +43,18 @@ video {
     transition: .3s;
 }
 
+.unauthorizedAccessBackground {
+    background: url("http://www.stormgeo.com/assets/ArticleImages/_resampled/ScaleWidthWzEyMDBd/storm-sea-waves.jpg") no-repeat center center fixed;
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+}
+
+.unText{
+    color: rgba(226, 92, 38, 0.8);
+}
+
 .video-blurred {
     transform: scale(1.2);
     filter: blur(24px);
