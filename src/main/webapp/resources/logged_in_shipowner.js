@@ -1,8 +1,6 @@
 $(document).ready(()=> {
     let shipownerAgreementsParent = $(".shipowner-agreements-parent");
     let fleet = $(".fleet");
-    let waitWheelText = $(".waitWheelText");
-    let cancelWheel = $(".cancelWheel");
     let modalOverlayWheel = $(".modal-overlay-wheel");
     let modalNewVesselElements = $(".modal-overlay-newVessel, .modal-newVessel");
 
@@ -138,14 +136,7 @@ $(document).ready(()=> {
 
     function openWait() {
         if (!modalOverlayWheel.hasClass("active")) {
-            waitWheelText.hide();
-            cancelWheel.hide();
             modalOverlayWheel.addClass("active");
-            waitWheelText.show();
-            setTimeout(() => {
-                waitWheelText.hide();
-                cancelWheel.show();
-            }, 6000);
         }
     }
 

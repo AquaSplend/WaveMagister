@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ include file="wheel.jsp" %>
+<%@ include file="extra.jsp" %>
 <html style="display:none;">
 <head>
     <title>Wave Magister</title>

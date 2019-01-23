@@ -68,10 +68,11 @@ public class VesselController {
         return model;
     }
 
-    @RequestMapping(value = "/charterer_offers")
+    
+    @RequestMapping(value = "/search_results")
     public ModelAndView listOffers(@ModelAttribute("offer") Offer offer) {
 
-        ModelAndView model = new ModelAndView("charterer_offers");
+        ModelAndView model = new ModelAndView("search_results");
 
         List<Vessel> offers = vesselDAO.getSpotOffers(offer.getQuantity(), offer.getStart(), offer.getEnd());
 
@@ -79,6 +80,7 @@ public class VesselController {
 
         return model;
     }
+    
 
     @RequestMapping(value = "/vessels")
     public ModelAndView listVessels(@ModelAttribute("vessel") Vessel vessel) {

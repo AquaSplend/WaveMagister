@@ -66,14 +66,4 @@ $(document).ready(()=> {
             reset.show();
         }
     });
-
-    function closeWait() {
-        if (modalOverlayWheel.hasClass("active")) {
-            modalOverlayWheel.removeClass("active");
-        }
-    }
-
-    $(document).on("click", ".specificCancelWheelButton", ()=> {
-        closeWait();
-    });
 });

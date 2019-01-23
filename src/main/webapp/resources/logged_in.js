@@ -6,8 +6,8 @@ $(document).ready(()=> {
     let reset = $("[type='reset']");
     let otherButtons = $(".mr-auto .navBut");
     let modalPasswordElements = $(".modal-overlay-password, .modal-password");
-    let startDate = $("#startDate");
-    let endDate = $("#endDate");
+    let modalOverlayWheel = $(".modal-overlay-wheel");
+
 
     login.hide();
     register.hide();
@@ -27,8 +27,42 @@ $(document).ready(()=> {
         }
     });
 
-    $(".userData input, .offers-search-parent form input").on("change", function() {
+    $(".offers-search-parent form input").on("change", function() {
         $(this).parents("form").submit();
+    });
+
+    $(".userData input").on("change", function() {
+        openWait();
+        $.ajax({
+            type: "POST",
+            url: "/wavemagister/user.html",
+            data: $(this).parents("form").serialize(),
+            success: function() {
+                closeWait();
+                $("[data-notification-status='success']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "success")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Successful update.`)
+                    .delay(6000).fadeOut();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`Something prevented the update. Please try again.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+        return false;
     });
 
     $.fn.textWidth = function(text, font) {
@@ -62,24 +96,15 @@ $(document).ready(()=> {
             $("#selectYearBuilt").append('<option value="' + i + '">' + i + '</option>');
     }
 
-    function startDateF() {
-        let now = new Date();
-        let day = ("0" + now.getDate()).slice(-2);
-        let month = ("0" + (now.getMonth() + 1)).slice(-2);
-        let today = now.getFullYear() + "-" + (month) + "-" + (day);
-        startDate.val(today);
+    function openWait() {
+        if (!modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.addClass("active");
+        }
     }
 
-    function endDateF() {
-        let end = new Date();
-        end.setDate(end.getDate() + 20);
-        let month = "0" + (end.getMonth() + 1);
-        let date = "0" + end.getDate();
-        month = month.slice(-2);
-        date = date.slice(-2);
-        endDate.val(end.getFullYear() + "-" + month + "-" + date);
+    function closeWait() {
+        if (modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.removeClass("active");
+        }
     }
-
-    startDateF();
-    endDateF();
 });

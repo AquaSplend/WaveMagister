@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="wheel.jsp" %>
+<%@ include file="extra.jsp" %>
 <html style="display:none;">
 <head>
     <title>Admin Panel</title>
@@ -27,7 +27,7 @@
                     <button class="nav-item navBut changePasswordButton">Change password</button>
                 </li>
                 <li class="nav-item">
-                    <form action="/wavemagister/logout"><button type="submit" class="nav-item navBut">Logout</button></form>
+                    <form action="index.jsp"><button type="submit" class="nav-item navBut">Logout</button></form>
                 </li>
             </ul>
         </div>
@@ -58,7 +58,6 @@
     </div>
 </header>
 <main>
-    <iframe style="display:none;" name="form"></iframe>
     <div class="container">
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -69,14 +68,13 @@
                         </button>
                     </h2>
                 </div>
-
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <div class="container itemInRow">
                             <c:forEach items="${shipowners}" var="shipowner">
                                 <div class="row userData">
                                     <div class="col-8 col8 nameInput">
-                                        <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
+                                        <form>
                                             <input hidden type="text" name="id" value=${shipowner.id} />
                                             <input hidden type="text" name="username" value=${shipowner.username} />
                                             <input hidden type="text" name="password" value=${shipowner.password} />
@@ -88,7 +86,7 @@
                                     <div class="col-4 col4">
                                         <div class="activated">Activated</div>
                                         <div class="onOff">
-                                            <form target="form" action="/wavemagister/user.html" method="post">
+                                            <form>
                                                 <input hidden type="text" name="id" value=${shipowner.id} />
                                                 <input hidden type="text" name="username" value=${shipowner.username} />
                                                 <input hidden type="text" name="password" value=${shipowner.password} />
@@ -128,7 +126,7 @@
                             <c:forEach items="${charterers}" var="charterer">
                                 <div class="row userData">
                                     <div class="col-8 col8 nameInput">
-                                        <form target="form" method="post" action="/wavemagister/user.html" commandName="user">
+                                        <form>
                                             <input hidden type="text" name="id" value=${charterer.id} />
                                             <input hidden type="text" name="username" value=${charterer.username} />
                                             <input hidden type="text" name="password" value=${charterer.password} />
@@ -140,7 +138,7 @@
                                     <div class="col-4 col4">
                                         <div class="activated">Activated</div>
                                         <div class="onOff">
-                                            <form target="form" action="/wavemagister/user.html" method="post">
+                                            <form>
                                                 <input hidden type="text" name="id" value=${charterer.id} />
                                                 <input hidden type="text" name="username" value=${charterer.username} />
                                                 <input hidden type="text" name="password" value=${charterer.password} />

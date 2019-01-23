@@ -924,11 +924,6 @@ form #vesselDwt, #resVesselDwt {
     color: rgba(255, 255, 255, .85);
 }
 
-.waitPrompt {
-    font-weight: 700;
-    color: rgba(255, 255, 255, .85);
-}
-
 .modal-overlay-wheel {
     flex-direction: column;
     background-color: rgba(0, 0, 0, .8);
@@ -941,6 +936,6 @@ form #vesselDwt, #resVesselDwt {
     align-items: center;
 }
 
-.waitPrompt {
-    text-align: center;
+.voy {
+    width: 240px;
 }

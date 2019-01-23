@@ -1,23 +1,34 @@
 $(document).ready(()=> {
-    let oilPrice = $(".oilpricenettable2 tbody tr").next().find("span").html().substr(1);
     let oilParent = $(".oil-parent");
     let offersBigParent = $(".offers-big-parent");
-    let offersParent = $(".offers-parent");
     let chartererAgreementsParent = $(".charterer-agreements-parent");
-    let waitWheelText = $(".waitWheelText");
-    let cancelWheel = $(".cancelWheel");
     let modalOverlayWheel = $(".modal-overlay-wheel");
+    let startDate = $("#startDate");
+    let endDate = $("#endDate");
+    let offersResults = $(".offersResults");
 
-    $(".oilIndication").html(oilPrice);
+    function startDateF() {
+        let now = new Date();
+        let day = ("0" + now.getDate()).slice(-2);
+        let month = ("0" + (now.getMonth() + 1)).slice(-2);
+        let today = now.getFullYear() + "-" + (month) + "-" + (day);
+        startDate.val(today);
+    }
 
-    let date1 = new Date($("#startDate").val());
-    let date2 = new Date($("#endDate").val());
-    let timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    let totalDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    function endDateF() {
+        let end = new Date();
+        end.setDate(end.getDate() + 20);
+        let month = "0" + (end.getMonth() + 1);
+        let date = "0" + end.getDate();
+        month = month.slice(-2);
+        date = date.slice(-2);
+        endDate.val(end.getFullYear() + "-" + month + "-" + date);
+    }
 
-    $(".dailyFreight").each(function () {
-        $(this).val(Math.round((oilPrice * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / totalDays));
-    });
+    startDateF();
+    endDateF();
+
+    $(".oilIndication").html($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
 
     function showChartererAgreements() {
         offersBigParent.fadeOut();
@@ -47,19 +58,21 @@ $(document).ready(()=> {
         });
     }
 
-    function showChartererOffers() {
+    function showSearchOffers() {
         chartererAgreementsParent.fadeOut();
         openWait();
         $.ajax({
             type: "GET",
-            url: "/wavemagister/charterer_offers.html",
+            url: "/wavemagister/search_results.html",
             success: function(response) {
                 chartererAgreementsParent.empty();
-                offersBigParent.empty();
-                offersBigParent.append(response);
+                offersResults.empty();
+                offersResults.append(response);
+                $(".dailyFreight").each(function () {
+                    $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
+                });
                 closeWait();
-                $(".offers-parent").show();
-                $(".results-parent").show();
+                oilParent.fadeIn();
                 offersBigParent.delay(450).fadeIn();
             },
             fail: function() {
@@ -81,13 +94,12 @@ $(document).ready(()=> {
 
     $(document).on("click", "[name='chartererAgreementsButton']", ()=> {
         oilParent.fadeOut();
-        offersParent.fadeOut();
+        offersBigParent.fadeOut();
         showChartererAgreements();
     });
 
     $(document).on("click", "[name='offersButton']", ()=> {
-        oilParent.delay(450).fadeIn();
-        showChartererOffers();
+        showSearchOffers();
     });
 
     $(document).on("click", "[name='downloadAgreementsAsCharterer']", ()=> {
@@ -99,17 +111,14 @@ $(document).ready(()=> {
     });
 
     function openWait() {
-        modalOverlayWheel.addClass("active");
-        waitWheelText.hide();
-        cancelWheel.hide();
-        waitWheelText.show();
-        setTimeout(()=> {
-            waitWheelText.hide();
-            cancelWheel.show();
-        }, 6000);
+        if (!modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.addClass("active");
+        }
     }
 
     function closeWait() {
-        modalOverlayWheel.removeClass("active");
+        if (modalOverlayWheel.hasClass("active")) {
+            modalOverlayWheel.removeClass("active");
+        }
     }
 });

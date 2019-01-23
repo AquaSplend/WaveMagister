@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="wheel.jsp" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="extra.jsp" %>
 <html style="display: none;">
 <head>
     <title>Dashboard</title>
@@ -14,6 +15,7 @@
     <source src="resources/video.mp4" type="video/mp4">
 </video>
 <body>
+<script type="text/javascript" src="https://www.oil-price.net/widgets/brent_crude_price_large/gen.php?lang=en"></script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light navbarColored">
         <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" class="logoImage" src="resources/logo.svg"/></span></a>
@@ -46,35 +48,34 @@
             </ul>
         </div>
     </nav>
-    <div class="modal-overlay modal-overlay-password">
-        <script type="text/javascript" src="https://www.oil-price.net/widgets/brent_crude_price_large/gen.php?lang=en"></script>
-        <div class="modal modal-password">
-            <a class="close-modal">
-                <svg viewBox="0 0 20 20">
-                    <path fill="#001755" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
-                </svg>
-            </a>
-            <div class="modal-content">
-                <div class="mediumTitle">Add your new password</div>
-                <div class="bg-text1">
-                    <form method="POST" action="">
-                        <div class="form-group">
-                            <label style="display:none;" for="password"></label>
-                            <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" name="password" required>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="button afterForm" name="login">Change password</button>
-                            <input class="button afterForm" type="reset" value="Reset">
+</header>
+<main>
+    <div class="charterer-agreements-parent"></div>
+    <div class="offers-big-parent">
+            <div class="offers-search-parent">
+                <div class="title">Spot offers</div>
+                <div class="bg-text searchOffers">
+                    <div class="smallTitle">Search for freight offers</div>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="quantity">Cargo quantity (MT)</label>
+                                <input value="200000" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="quantity" placeholder="e.g. 200000" title="Cargo quantity (MT)" required="required" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="startDate">Start date</label>
+                                <input id="startDate" type="date" title="Voyage start date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="endDate">End date</label>
+                                <input id="endDate" type="date" title="Voyage end date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        <div class="offersResults"></div>
     </div>
-</header>
-<main>
-    <div class="charterer-agreements-parent" style="display:none;"></div>
-    <div class="offers-big-parent" style="display:none;"></div>
 </main>
 <footer>
 </footer>
