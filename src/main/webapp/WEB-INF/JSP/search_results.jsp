@@ -4,7 +4,7 @@
 <c:forEach items="${offers}" var="offer" varStatus="status">
     <div class="bg-text results">
         <form class="concludeAgreement">
-            <div class="form-row">
+            <div class="form-row rowResults">
                 <div class="form-group">
                     <label for="resVesselName">Vessel</label>
                     <input value=${offer.name} type="text" class="input form-control" id="resVesselName" title="Vessel name" disabled>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="resVesselDwt">DWT</label>
-                    <input value=${offer.dwt} type="number" class="input form-control" id="resVesselDwt" title="Vessel dead weight tonnage" disabled>
+                    <input value=${offer.dwt} type="text" class="input form-control" id="resVesselDwt" title="Vessel dead weight tonnage" disabled>
                 </div>
                 <div class="form-group">
                     <label for="resVesselYearBuilt">Year built</label>
@@ -30,11 +30,11 @@
                 </div>
                 <div class="form-group">
                     <label for="resCosts">Daily costs ($)</label>
-                    <input value=${offer.costs} type="number" class="input form-control dailyCosts" id="resCosts" title="Vessel's daily costs" disabled>
+                    <input value=${offer.costs} type="text" class="input form-control dailyCosts" id="resCosts" title="Vessel's daily costs" disabled>
                 </div>
                 <div class="form-group">
                     <label for="resFreight">Freight ($)</label>
-                    <input name="freight" value=${freight[status.index]} type="number" class="input form-control" id="resFreight" title="Daily freight" readonly>
+                    <input name="freight" value=${freight[status.index]} type="text" class="input form-control" id="resFreight" title="Daily freight" readonly>
                 </div>
                 <div class="addVesselIcon">
                     <button type="submit" title="Conclude agreement" class="plus concludeAgreementButton">><span></span></button>

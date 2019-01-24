@@ -132,6 +132,7 @@ public class UserDAOImpl implements UserDAO
         System.out.println(user);
         String sql = "UPDATE users SET username = ?, password = ?, company = ?, role = ?, activated = ? "
                 + "WHERE id = ?";
+        System.out.println("Inside DAO.");
 
         jdbcTemplate.update(sql, new Object[]
         { user.getUsername(),user.getPassword(),user.getCompany(),user.getRole(),user.isActivated(),user.getId() });

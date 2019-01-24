@@ -56,10 +56,12 @@ public class LoginController
         return new ModelAndView("redirect:/login");
     }
     
-    @RequestMapping( value = "/change_password")
+    @RequestMapping( value = "/change_password", method=RequestMethod.POST)
     public ModelAndView changePassword(@RequestParam("password") String password) {
         Login.loggedUser.setPassword(password);
+        System.out.println(password);
         userDAO.updateUser(Login.loggedUser);
+        System.out.println("OK.");
         return new ModelAndView("redirect:/login");
     }
 

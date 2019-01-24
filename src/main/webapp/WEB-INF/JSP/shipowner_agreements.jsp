@@ -15,11 +15,11 @@
             </div>
             <div class="col-md col8">
                 <div class="activated">Voyage start</div>
-                <div class="underItem">${agreement.start}</div>
+                <div class="agreementsDateView underItem">${agreement.start}</div>
             </div>
             <div class="col-md col8">
                 <div class="activated">Voyage end</div>
-                <div class="underItem">${agreement.end}</div>
+                <div class="agreementsDateView underItem">${agreement.end}</div>
             </div>
             <div class="col-md col8">
                 <div class="activated">Freight ($)</div>

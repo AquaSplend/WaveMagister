@@ -783,16 +783,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     margin-bottom: 0 !important;
 }
 
-#resShipowner {
-    width: 300px;
-}
-
-#vesselCosts, #resCosts {
-    width: 128px;
-}
-
 #resFreight {
-    width: 196px;
     color: rgba(222, 91, 39, .8);
 }
 
@@ -982,4 +973,12 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 
 .lead {
     font-weight: 700;
+}
+
+.rowResults {
+    flex-wrap: nowrap;
+}
+
+.agreementsDateView {
+    width: 130px;
 }

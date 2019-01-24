@@ -10,7 +10,7 @@ $(document).ready(()=> {
         $.ajax({
             type: "GET",
             url: "/wavemagister/shipowner_agreements.html",
-            success: function(response) {
+            success: (response)=> {
                 fleet.empty();
                 shipownerAgreementsParent.empty();
                 shipownerAgreementsParent.append(response);
@@ -39,14 +39,14 @@ $(document).ready(()=> {
         $.ajax({
             type: "GET",
             url: "/wavemagister/fleet.html",
-            success: function(response) {
+            success: (response)=> {
                 shipownerAgreementsParent.empty();
                 fleet.empty();
                 fleet.append(response);
                 closeWait();
                 fleet.delay(450).fadeIn();
             },
-            fail: function() {
+            fail: ()=> {
                 closeWait();
                 shipownerAgreementsParent.fadeIn();
                 $("[data-notification-status='error']")
@@ -69,7 +69,7 @@ $(document).ready(()=> {
             type: "POST",
             url: "/wavemagister/vessel.html",
             data: $(".addVesselForm").serialize(),
-            success: function() {
+            success: ()=> {
                 closeWait();
                 showFleet();
                 $("[data-notification-status='success']")
@@ -82,7 +82,7 @@ $(document).ready(()=> {
                     .append(`This vessel has successfully been added to your fleet.`)
                     .delay(6000).fadeOut();
             },
-            error: function() {
+            error: ()=> {
                 closeWait();
                 showFleet();
                 $("[data-notification-status='error']")

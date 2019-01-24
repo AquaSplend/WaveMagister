@@ -37,7 +37,7 @@ $(document).ready(()=> {
         $.ajax({
             type: "GET",
             url: "/wavemagister/charterer_agreements.html",
-            success: function(response) {
+            success: (response)=> {
                 offersResults.empty();
                 chartererAgreementsParent.empty();
                 chartererAgreementsParent.append(response);
@@ -70,7 +70,7 @@ $(document).ready(()=> {
             type: "POST",
             url: "/wavemagister/search_results.html",
             data: $(".searchForOffersForm").serialize(),
-            success: function(response) {
+            success: (response)=> {
                 chartererAgreementsParent.empty();
                 offersResults.empty();
                 offersResults.append(response);
@@ -125,8 +125,8 @@ $(document).ready(()=> {
             type: "POST",
             url: "/wavemagister/search_results.html",
             data: $(".searchForOffersForm").serialize(),
-            success: function(response) {
-                offersResults.fadeOut();
+            success: (response)=> {
+                offersParent.fadeOut();
                 offersResults.empty();
                 offersResults.append(response);
                 $(".resultsStartDate").val($("#startDate").val());
@@ -134,9 +134,9 @@ $(document).ready(()=> {
                 $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
                 $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
                 closeWait();
-                offersResults.delay(450).fadeIn();
+                offersParent.delay(450).fadeIn();
             },
-            error: function() {
+            error: ()=> {
                 closeWait();
                 showSearchOffers();
                 $("[data-notification-status='error']")
@@ -158,7 +158,7 @@ $(document).ready(()=> {
             type: "POST",
             url: "/wavemagister/agreement.html",
             data: $(this).parents("form").serialize(),
-            success: function() {
+            success: ()=> {
                 closeWait();
                 showSearchOffers();
                 $("[data-notification-status='success']")
@@ -171,7 +171,7 @@ $(document).ready(()=> {
                     .append(`You have concluded this agreement.`)
                     .delay(6000).fadeOut();
             },
-            error: function() {
+            error: ()=> {
                 closeWait();
                 showSearchOffers();
                 $("[data-notification-status='error']")
