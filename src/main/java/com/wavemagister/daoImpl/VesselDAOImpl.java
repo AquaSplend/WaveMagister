@@ -82,7 +82,7 @@ public class VesselDAOImpl implements VesselDAO {
     // Getting Vessel info for offers
     @Override
     public List<Vessel> getSpotOffers(int searchQuantity, String searchStartDate, String searchEndDate) {
-        System.out.println("******************* GET SPOT OFFERS *********" + searchStartDate + "    " +  searchEndDate);
+        //System.out.println("******************* GET SPOT OFFERS *********" + searchStartDate + "    " +  searchEndDate);
         String sql = "SELECT DISTINCT \n"
                 + "`vessels`.`id` AS 'vessel_id', \n"
                 + "`users`.`company` AS 'Shipowner', \n"
@@ -91,11 +91,11 @@ public class VesselDAOImpl implements VesselDAO {
                 + "FROM `bteam`.`vessels`\n"
                 + "LEFT JOIN `bteam`.`agreements`\n"
                 + "ON `vessels`.`id`=`agreements`.`vessel_id`\n"
-                + "INNER JOIN `bteam`.`users`\n"
+                + "LEFT JOIN `bteam`.`users`\n"
                 + "ON `vessels`.`shipowner`=`users`.`id`\n"
                 + "WHERE `vessels`.`active`='1'\n"
                 + "AND (`dwt` >= " + searchQuantity + ")\n"
-                + "AND `agreements`.`vessel_id` \n"
+                + "AND `vessels`.`id` \n"
                 + "NOT IN (SELECT DISTINCT `vessel_id` \n"
                 + "FROM `agreements`\n"
                 + "WHERE ((`start` BETWEEN '" + searchStartDate + "' AND '" + searchEndDate + "' )\n"
