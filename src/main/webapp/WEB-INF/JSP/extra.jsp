@@ -19,12 +19,12 @@
             <div class="bg-text1">
                 <form class="passwordChangeForm">
                     <div class="form-group">
-                        <label for="password1">Enter your new password</label>
-                        <input type="password" class="input form-control" id="password1" minlength="6" maxlength="16" placeholder="Password" required>
+                        <label class="pass1Mes" for="password1">Enter your new password</label>
+                        <input type="password" class="input form-control passwordFormField" id="password1" minlength="6" maxlength="16" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label for="password2">Repeat your new password</label>
-                        <input type="password" class="input form-control" id="password2" minlength="6" maxlength="16" placeholder="Password" name="password" required>
+                        <label class="pass2Mes" for="password2">Repeat your new password</label>
+                        <input type="password" class="input form-control passwordFormField" id="password2" minlength="6" maxlength="16" placeholder="Password" name="password" required>
                     </div>
                     <div class="passwordNotEquals hidden">The passwords you entered do not match. Try again.</div>
                     <div class="text-center">

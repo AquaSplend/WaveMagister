@@ -61,7 +61,7 @@
                 <button type="button" class="smallButton" name="smallLogin">Switch to Login</button>
             </div>
             <div class="bg-text">
-                <form:form  method="POST" action="/wavemagister/register.html" modelAttribute="register">
+                <form:form class="registerFormInitial" modelAttribute="register">
                     <div class="form-group typeRadio">
                         <label for="company-type">Register as</label>
                         <div>
@@ -79,18 +79,23 @@
                         <label for="company-name">Company name</label>
                         <form:input id="company-name" type="text" path="company" class="input form-control" placeholder="e.g. Perseus Shipping S.A." required="required" />
                     </div>
+                    <div class="form-group">
+                        <label for="rUsername">Username</label>
+                        <form:input type="text" class="input form-control" id="rUsername" path="username" maxlength="16" placeholder="e.g. perseus" required="required" />
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="rUsername">Username</label>
-                            <form:input type="text" class="input form-control" id="rUsername" path="username" maxlength="16" placeholder="e.g. perseus" required="required" />
+                            <label for="rPassword1">Password</label>
+                            <input type="password" class="input form-control regFirstTry" id="rPassword1" maxlength="16" placeholder="Up to 16 characters" required="required" />
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="rPassword">Password</label>
-                            <form:input type="password" class="input form-control" id="rPassword" path="password" maxlength="16" placeholder="Up to 16 characters" required="required" />
+                            <label for="rPassword2">Repeat your password</label>
+                            <form:input type="password" class="input form-control regSecondTry" id="rPassword2" path="password" maxlength="16" placeholder="Up to 16 characters" required="required" />
                         </div>
                     </div>
+                    <div class="passwordNotEqualsRegister hidden">The passwords you entered do not match. Try again.</div>
                     <div class="text-center">
-                        <button type="submit" class="button afterForm" name="Register">Register</button>
+                        <button type="submit" class="button afterForm registerButtonInitial" name="Register">Register</button>
                         <input class="button afterForm" type="reset" value="Reset">
                     </div>
                 </form:form>

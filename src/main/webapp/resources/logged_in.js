@@ -29,14 +29,14 @@ $(document).ready(()=> {
     });
 
     $(document).on("click", ".passwordChangeButton", ()=> {
-        passwordNotEquals.remove("hidden");
-        if ((!$("#password1").val() === $("#password2").val())) {
-            passwordNotEquals.addClass("hidden");
+        passwordNotEquals.addClass("hidden");
+        if ($("#password1").val() !== $("#password2").val()) {
+            passwordNotEquals.removeClass("hidden");
         } else {
             openWait();
             $.ajax({
                 type: "POST",
-                url: "/wavemagister/change_password",
+                url: "/wavemagister/change_password.html",
                 data: $(".passwordChangeForm").serialize(),
                 success: ()=> {
                     modalPasswordElements.removeClass("active");

@@ -14,6 +14,8 @@ $(document).ready(()=> {
     let otherButton_parent = $(".otherButtonParent");
     let otherButtons = $(".mr-auto .navBut");
     let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
+    let passwordNotEquals = $(".passwordNotEquals");
+    let passwordNotEqualsRegister = $(".passwordNotEqualsRegister");
 
     navbar_brand.hide();
     login.hide();
@@ -63,6 +65,50 @@ $(document).ready(()=> {
     input.on("input", ()=> {
         if (input.val != null) {
             reset.show();
+        }
+    });
+
+    $(document).on("click", ".registerButtonInitial", (e)=> {
+        if ($("#rPassword1").val() !== $("#rPassword2").val()) {
+            e.preventDefault();
+            passwordNotEqualsRegister.removeClass("hidden");
+        } else {
+            html.fadeOut();
+            $.ajax({
+                type: "POST",
+                url: "/wavemagister/register.html",
+                data: $(".registerFormInitial").serialize(),
+                success: (response)=> {
+                    $("video").addClass("video-blurred");
+                    html.empty().append(response);
+                    html.delay(600).fadeIn();
+                },
+                error: ()=> {
+                    html.fadeIn();
+                    $("[data-notification-status='error']")
+                        .show()
+                        .removeClass()
+                        .attr("data-notification-status", "error")
+                        .addClass("bottom-right" + " notify")
+                        .addClass("do-show")
+                        .empty()
+                        .append(`Something went wrong and registration could not be completed.`)
+                        .delay(10000).fadeOut();
+                }
+            });
+            return false;
+        }
+    });
+
+    $(".regFirstTry").on("input", function() {
+        if (!passwordNotEqualsRegister.hasClass("hidden")) {
+            passwordNotEqualsRegister.addClass("hidden");
+        }
+    });
+
+    $(".regSecondTry").on("input", function() {
+        if (!passwordNotEqualsRegister.hasClass("hidden")) {
+            passwordNotEqualsRegister.addClass("hidden");
         }
     });
 });

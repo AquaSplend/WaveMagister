@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
 <head>
     <title>Wave Magister</title>
     <link rel="stylesheet" type="text/css" href="resources/normalize.css"/>
@@ -28,8 +27,9 @@
         </div>
     </nav>
 </header>
+<section></section>
 <main>
-    <div class="jumbotron-parent">
+    <div class="jumbotron-parent pendingJumbotron">
         <div class="jumbotron">
             <h1 class="display-4">Activation pending</h1>
             <hr class="my-4">
@@ -43,4 +43,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 </body>
-</html>
