@@ -47,25 +47,28 @@ public class Agreement implements Serializable {
     }
 
     public String getStart() {
-        try {
-            return new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(start));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        try {
+//            return new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(start));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+        return start;
     }
+    
 
     public void setStart(String start) {
         this.start = start;
     }
 
     public String getEnd() {
-        try {
-            return new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(end));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        try {
+//            return new SimpleDateFormat("dd-MM-yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(end));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+        return end;
     }
 
     public void setEnd(String end) {

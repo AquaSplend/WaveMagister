@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:forEach items="${offers}" var="offer" varStatus="status">
     <div class="bg-text results">
-        <form class="concludeAgreement">
+        <form action="/wavemagister/agreement" method="POST" class="concludeAgreement">
             <div class="form-row rowResults">
                 <div class="form-group">
                     <label for="resVesselName">Vessel</label>
