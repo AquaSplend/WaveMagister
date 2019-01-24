@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="resources/style.css"/>
     <link rel="shortcut icon" href="resources/favicon.ico" />
 </head>
-<video class="video-blurred" muted loop>
+<video class="video-blurred" autoplay muted loop>
     <source src="resources/video.mp4" type="video/mp4">
 </video>
 <body>

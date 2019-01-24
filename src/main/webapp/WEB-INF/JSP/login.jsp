@@ -10,11 +10,22 @@
     <link rel="stylesheet" type="text/css" href="resources/style.css"/>
     <link rel="shortcut icon" href="resources/favicon.ico" />
 </head>
-<video muted loop>
+<video autoplay muted loop>
     <source src="resources/video.mp4" type="video/mp4">
 </video>
 <body>
 <header>
+    <nav class="navbar navbar-expand-md navbar-light navbarColored hidden">
+        <a class="navbar-brand mx-auto" rel="home" href=""><span><img alt="Logo" class="logoImage" src="resources/logo.svg"/></span></a>
+        <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+            </ul>
+        </div>
+    </nav>
 </header>
 <main>
     <div class="jumbotron-parent">
@@ -60,7 +71,7 @@
             <div class="smallLogin-parent">
                 <button type="button" class="smallButton" name="smallLogin">Switch to Login</button>
             </div>
-            <div class="bg-text">
+            <div class="bg-text registerBox">
                 <form:form class="registerFormInitial" modelAttribute="register">
                     <div class="form-group typeRadio">
                         <label for="company-type">Register as</label>
@@ -108,7 +119,7 @@
             <div class="smallRegister-parent" style="display:none;">
                 <button type="button" class="smallButton" name="smallRegister">Switch to Register</button>
             </div>
-            <div class="bg-text">
+            <div class="bg-text loginBox">
                 <form:form method="POST" action="/wavemagister/main.html" modelAttribute="login">
                     <div class="form-group">
                         <label for="lusername">Username</label>

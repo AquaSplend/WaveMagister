@@ -10,18 +10,18 @@
         <div class="bg-text fleetList">
             
             <form action="/wavemagister/Vedit">
-                <div class="form-row">
+                <div class="form-row rowResults">
                     <div class="form-group vesselUpdateForm">
                         <label style="display:none;" for="vesselId"></label>
                         <input hidden value="${vessel.id}" name="id" type="number" class="input form-control" id="vesselId" title="Vessel ID">
                         <label style="display:none;" for="vesselShipowner"></label>
                         <input hidden value="${vessel.shipowner.id}" name="shipowner" type="number" class="input form-control" id="vesselShipowner" title="Shipowner">
                         <label for="vesselName">Name</label>
-                        <input value="${vessel.name}" name="name" type="text" class="input form-control" id="vesselName" title="Vessel name">
+                        <input value="${vessel.name}" name="name" type="text" maxlength="20" class="input form-control" id="vesselName" title="Vessel name">
                     </div>
                     <div class="form-group">
                         <label for="vesselFlag">Flag</label>
-                        <input value="${vessel.flag}" name="flag" type="text" class="input form-control" id="vesselFlag" title="Flag">
+                        <input value="${vessel.flag}" name="flag" type="text" maxlength="2" class="input form-control" id="vesselFlag" title="Flag">
                     </div>
                     <div class="form-group">
                         <label for="vesselDwt">DWT</label>

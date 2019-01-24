@@ -14,7 +14,6 @@ $(document).ready(()=> {
     let otherButton_parent = $(".otherButtonParent");
     let otherButtons = $(".mr-auto .navBut");
     let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
-    let passwordNotEquals = $(".passwordNotEquals");
     let passwordNotEqualsRegister = $(".passwordNotEqualsRegister");
 
     navbar_brand.hide();
@@ -74,16 +73,20 @@ $(document).ready(()=> {
             passwordNotEqualsRegister.removeClass("hidden");
         } else {
             html.fadeOut();
+            register.hide();
             $.ajax({
                 type: "POST",
                 url: "/wavemagister/register.html",
                 data: $(".registerFormInitial").serialize(),
                 success: (response)=> {
+                    jumbotron.empty().append(response);
                     $("video").addClass("video-blurred");
-                    html.empty().append(response);
-                    html.delay(600).fadeIn();
+                    jumbotron.show();
+                    $(".navbar-expand-md").removeClass("hidden");
+                    html.delay(450).fadeIn();
                 },
                 error: ()=> {
+                    register.show();
                     html.fadeIn();
                     $("[data-notification-status='error']")
                         .show()
