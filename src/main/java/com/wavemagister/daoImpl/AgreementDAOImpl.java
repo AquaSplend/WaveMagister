@@ -33,8 +33,7 @@ public class AgreementDAOImpl implements AgreementDAO {
     // Save a new Agreement
     public void saveAgreement(Agreement agreement) {
         String sql = "INSERT INTO agreements (start, end, vessel_id, user_id, freight) VALUES(?,?,?,?,?);";
-        jdbcTemplate.update(sql, new Object[]{agreement.getStart(), agreement.getEnd(), agreement.getVessel(), agreement.getCharterer(), agreement.getFreight()});
-
+        jdbcTemplate.update(sql, new Object[]{agreement.getStart(), agreement.getEnd(), agreement.getVessel().getId(), agreement.getCharterer().getId(), agreement.getFreight()});
     }
 
     // Getting a particular Agreement

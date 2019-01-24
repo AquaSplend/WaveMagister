@@ -32,7 +32,7 @@ public class AgreementController
      @RequestParam("start") String start,
      @RequestParam("end") String end ){
 
-        System.out.println("Add agreement*****************************************");
+        System.out.println("****************  Add agreement*****************************************");
         System.out.println(start);
         System.out.println(end);
         System.out.println(freight);
@@ -45,8 +45,8 @@ public class AgreementController
         Vessel vessel = vessselDAO.getVesselById(vessel_id);
         User charterer = Login.loggedUser;
         Agreement agreement = new Agreement(start, end, vessel, charterer, freight);
-        
-        // Check if agreement exists ?
+//        
+//        // Check if agreement exists ?
         agreementDAO.saveAgreement(agreement);  
         
         return new ModelAndView("redirect:/charterer_agreements");

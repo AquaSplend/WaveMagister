@@ -66,11 +66,11 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="startDate">Start date</label>
-                                <input id="startDate" type="date" title="Voyage start date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
+                                <input id="startDate" name="start" type="date" title="Voyage start date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="endDate">End date</label>
-                                <input id="endDate" type="date" title="Voyage end date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
+                                <input id="endDate" name="end" type="date" title="Voyage end date" class="input form-control" min="2019-01-01" max="2099-12-31" required="required" />
                             </div>
                         </div>
                     </form>

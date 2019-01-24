@@ -1,8 +1,10 @@
 
 package com.wavemagister.entities;
 
+import java.io.Serializable;
 
-public class Vessel {
+
+public class Vessel implements Serializable{
     private int id;
     private String name;
     private String flag;

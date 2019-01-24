@@ -154,40 +154,40 @@ $(document).ready(()=> {
         });
     });
 
-    $(document).on("click", ".concludeAgreementButton", ()=> {
-        openWait();
-        $.ajax({
-            type: "POST",
-            url: "/wavemagister/agreement.html",
-            data: $(this).parents("form").serialize(),
-            success: function() {
-                closeWait();
-                showChartererAgreements();
-                $("[data-notification-status='success']")
-                    .show()
-                    .removeClass()
-                    .attr("data-notification-status", "success")
-                    .addClass("bottom-right" + " notify")
-                    .addClass("do-show")
-                    .empty()
-                    .append(`You have concluded this agreement.`)
-                    .delay(6000).fadeOut();
-            },
-            fail: function() {
-                closeWait();
-                $("[data-notification-status='error']")
-                    .show()
-                    .removeClass()
-                    .attr("data-notification-status", "error")
-                    .addClass("bottom-right" + " notify")
-                    .addClass("do-show")
-                    .empty()
-                    .append(`This agreement could not be concluded.`)
-                    .delay(10000).fadeOut();
-            }
-        });
-        return false;
-    });
+//    $(document).on("click", ".concludeAgreementButton", ()=> {
+//        openWait();
+//        $.ajax({
+//            type: "POST",
+//            url: "/wavemagister/agreement.html",
+//            data: $(this).parents(".concludeAgreement").serialize(),
+//            success: function() {
+//                closeWait();
+//                showChartererAgreements();
+//                $("[data-notification-status='success']")
+//                    .show()
+//                    .removeClass()
+//                    .attr("data-notification-status", "success")
+//                    .addClass("bottom-right" + " notify")
+//                    .addClass("do-show")
+//                    .empty()
+//                    .append(`You have concluded this agreement.`)
+//                    .delay(6000).fadeOut();
+//            },
+//            fail: function() {
+//                closeWait();
+//                $("[data-notification-status='error']")
+//                    .show()
+//                    .removeClass()
+//                    .attr("data-notification-status", "error")
+//                    .addClass("bottom-right" + " notify")
+//                    .addClass("do-show")
+//                    .empty()
+//                    .append(`This agreement could not be concluded.`)
+//                    .delay(10000).fadeOut();
+//            }
+//        });
+//        return false;
+//    });
 
     function openWait() {
         if (!modalOverlayWheel.hasClass("active")) {

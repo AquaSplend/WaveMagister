@@ -2,9 +2,8 @@ package com.wavemagister.entities;
 
 import java.io.Serializable;
 
-public class Agreement implements Serializable 
-{
-    private static final long serialVersionUID = -1280037900360314186L;
+public class Agreement implements Serializable {
+   
 
     private Integer id;
     private String start;

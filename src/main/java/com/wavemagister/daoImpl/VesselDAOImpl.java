@@ -82,6 +82,7 @@ public class VesselDAOImpl implements VesselDAO {
     // Getting Vessel info for offers
     @Override
     public List<Vessel> getSpotOffers(int searchQuantity, String searchStartDate, String searchEndDate) {
+        System.out.println("******************* GET SPOT OFFERS *********" + searchStartDate + "    " +  searchEndDate);
         String sql = "SELECT DISTINCT \n"
                 + "`vessels`.`id` AS 'vessel_id', \n"
                 + "`users`.`company` AS 'Shipowner', \n"
