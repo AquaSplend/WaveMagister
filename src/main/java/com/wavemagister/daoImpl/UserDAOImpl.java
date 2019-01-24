@@ -129,6 +129,7 @@ public class UserDAOImpl implements UserDAO
     // Updating a particular User
     @Override
     public void updateUser(User user) {
+        System.out.println(user);
         String sql = "UPDATE users SET username = ?, password = ?, company = ?, role = ?, activated = ? "
                 + "WHERE id = ?";
 

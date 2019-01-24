@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div class="modal-overlay modal-overlay-wheel">
     <img alt="Wait wheel" class="wheel" src="resources/wheel.svg"/>
@@ -17,13 +18,13 @@
         <div class="modal-content">
             <div class="mediumTitle">Add your new password</div>
             <div class="bg-text1">
-                <form method="POST" action="">
+                <form method="POST" action="/wavemagister/change_password">
                     <div class="form-group">
                         <label style="display:none;" for="password"></label>
-                        <input type="password" class="input form-control" id="password" maxlength="16" placeholder="Password" name="password" required>
+                        <input type="password" class="input form-control" id="password" minlength="4" maxlength="16" placeholder="Password" name="password" required>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="button afterForm" name="login">Change password</button>
+                        <button type="submit" class="button afterForm">Change password</button>
                         <input class="button afterForm" type="reset" value="Reset">
                     </div>
                 </form>

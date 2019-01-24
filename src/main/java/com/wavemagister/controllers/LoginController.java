@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -52,6 +53,13 @@ public class LoginController
     public ModelAndView logoutUser(@ModelAttribute("login") Login login, @ModelAttribute("register") User user) {
         Login.loggedUser = null;
         Login.loggedIn = false;
+        return new ModelAndView("redirect:/login");
+    }
+    
+    @RequestMapping( value = "/change_password")
+    public ModelAndView changePassword(@RequestParam("password") String password) {
+        Login.loggedUser.setPassword(password);
+        userDAO.updateUser(Login.loggedUser);
         return new ModelAndView("redirect:/login");
     }
 
