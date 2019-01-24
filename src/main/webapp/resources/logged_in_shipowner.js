@@ -82,8 +82,9 @@ $(document).ready(()=> {
                     .append(`This vessel has successfully been added to your fleet.`)
                     .delay(6000).fadeOut();
             },
-            fail: function() {
+            error: function() {
                 closeWait();
+                showFleet();
                 $("[data-notification-status='error']")
                     .show()
                     .removeClass()
@@ -125,8 +126,9 @@ $(document).ready(()=> {
             success: function() {
                 showFleet();
             },
-            fail: function() {
+            error: function() {
                 closeWait();
+                showFleet();
                 $("[data-notification-status='error']")
                     .show()
                     .removeClass()

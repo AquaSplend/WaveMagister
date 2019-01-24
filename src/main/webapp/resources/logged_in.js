@@ -44,7 +44,7 @@ $(document).ready(()=> {
                     .append(`Successful update.`)
                     .delay(6000).fadeOut();
             },
-            fail: function() {
+            error: function() {
                 closeWait();
                 $("[data-notification-status='error']")
                     .show()

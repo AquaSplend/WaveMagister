@@ -827,7 +827,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, .35);
     max-width: 350px;
     margin: 20px;
-    bottom: 0;
+    top: 58px;
     right: 0;
     transform: translateX(420px);
 }
@@ -839,7 +839,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 }
 
 .bottom-right.do-show {
-    animation: slide-in-right .7s ease-in-out forwards, slide-in-right 1s ease-in-out reverse forwards .7s;
+    animation: slide-in-right .7s ease-in-out forwards;
 }
 
 .bottom-right[data-notification-status="error"] {

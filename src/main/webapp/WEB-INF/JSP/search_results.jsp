@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="resFreight">Freight ($)</label>
-                    <input name="freight" value=${freight[status.index]} type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
+                    <input name="freight" value=${freight[status.index]} type="number" class="input form-control" id="resFreight" title="Daily freight" readonly>
                 </div>
                 <div class="addVesselIcon">
                     <button type="submit" title="Conclude agreement" class="plus concludeAgreementButton">><span></span></button>
