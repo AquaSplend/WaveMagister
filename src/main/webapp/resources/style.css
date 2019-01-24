@@ -510,7 +510,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     border: 2px rgba(255, 255, 255, .3) !important;
 }
 
-.concludeOffer {
+.concludeAgreementButton {
     height: 45px  !important;
     width: 45px  !important;
     font-size: 34px !important;
@@ -523,13 +523,13 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     border: 2px solid rgba(0, 23, 85, .8) !important;
 }
 
-.concludeOffer:hover {
+.concludeAgreementButton:hover {
     background-color: rgba(222, 91, 39, .8) !important;
     color: rgba(255, 255, 255, .8);
     border: none !important;
 }
 
-.concludeOffer:active {
+.concludeAgreementButton:active {
     background-color: rgba(182, 76, 33, 0.8) !important;
     color: rgba(224, 224, 224, 0.8);
     border: none !important;

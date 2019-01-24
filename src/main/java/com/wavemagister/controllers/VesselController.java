@@ -95,7 +95,7 @@ public class VesselController {
         List<Vessel> offers = vesselDAO.getSpotOffers(offer.getQuantity(), offer.getStart(), offer.getEnd());
         List<Integer> freight = new ArrayList<>();
         //int count = 0;
-        System.out.println("*******************************************************");
+        System.out.println("Search results*******************************************************");
         for(Vessel availableVessel:offers){     
             System.out.println(offer.getOilPrice());
             System.out.println(offer.getQuantity());

@@ -3,14 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:forEach items="${offers}" var="offer" varStatus="status">
     <div class="bg-text results">
-        <form>
+        <form class="concludeAgreement">
             <div class="form-row">
                 <div class="form-group">
                     <label for="resVesselName">Vessel</label>
                     <input value=${offer.name} type="text" class="input form-control" id="resVesselName" title="Vessel name" disabled>
-                    <input hidden value=${offer.id}>
-                    <input hidden class="resultsStartDate" name="resultsStartDate" type="date" />
-                    <input hidden class="resultsEndDate" name="resultsEndDate" type="date">
+                    <input name="id" hidden value=${offer.id}>
+                    <input hidden class="resultsStartDate" name="start" type="date" />
+                    <input hidden class="resultsEndDate" name="end" type="date">
                 </div>
                 <div class="form-group">
                     <label for="resShipowner">Shipowner</label>
@@ -34,10 +34,10 @@
                 </div>
                 <div class="form-group">
                     <label for="resFreight">Freight ($)</label>
-                    <input value=${freight[status.index]} type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
+                    <input name="freight" value=${freight[status.index]} type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
                 </div>
                 <div class="addVesselIcon">
-                    <button type="submit" title="Conclude agreement" class="plus concludeOffer">><span></span></button>
+                    <button type="submit" title="Conclude agreement" class="plus concludeAgreementButton">><span></span></button>
                 </div>
             </div>
         </form>

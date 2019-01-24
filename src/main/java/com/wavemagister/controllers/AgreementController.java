@@ -31,7 +31,12 @@ public class AgreementController
      @RequestParam("freight") int freight,
      @RequestParam("start") String start,
      @RequestParam("end") String end ){
-        
+
+        System.out.println("Add agreement*****************************************");
+        System.out.println(start);
+        System.out.println(end);
+        System.out.println(freight);
+
         if(!Login.loggedIn)
             return new ModelAndView("redirect:/login");
         if(!Login.loggedUser.getRole().equals("charterer"))
@@ -81,7 +86,4 @@ public class AgreementController
         
         return model;
     }
-    
-    
-
 }

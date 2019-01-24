@@ -74,6 +74,10 @@ $(document).ready(()=> {
                 chartererAgreementsParent.empty();
                 offersResults.empty();
                 offersResults.append(response);
+                $(".resultsStartDate").val($("#startDate").val());
+                $(".resultsEndDate").val($("#endDate").val());
+                $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+                $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
                 // $(".dailyFreight").each(function () {
                 //     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parent().prev().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
                 // });
@@ -128,6 +132,10 @@ $(document).ready(()=> {
                 offersResults.fadeOut();
                 offersResults.empty();
                 offersResults.append(response);
+                $(".resultsStartDate").val($("#startDate").val());
+                $(".resultsEndDate").val($("#endDate").val());
+                $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+                $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
                 closeWait();
                 offersResults.delay(450).fadeIn();
             },
@@ -144,6 +152,41 @@ $(document).ready(()=> {
                     .delay(10000).fadeOut();
             }
         });
+    });
+
+    $(document).on("click", ".concludeAgreementButton", ()=> {
+        openWait();
+        $.ajax({
+            type: "POST",
+            url: "/wavemagister/agreement.html",
+            data: $(this).parents("form").serialize(),
+            success: function() {
+                closeWait();
+                showChartererAgreements();
+                $("[data-notification-status='success']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "success")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`You have concluded this agreement.`)
+                    .delay(6000).fadeOut();
+            },
+            fail: function() {
+                closeWait();
+                $("[data-notification-status='error']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "error")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`This agreement could not be concluded.`)
+                    .delay(10000).fadeOut();
+            }
+        });
+        return false;
     });
 
     function openWait() {
