@@ -49,7 +49,7 @@
             <div class="modal-content">
                 <div class="mediumTitle">Add new vessel to fleet</div>
                 <div class="bg-text1">
-                    <form>
+                    <form action="/wavemagister/vessel" method="POST">
                         <div class="form-group">
                             <label for="aVesselName">Name</label>
                             <input id="aVesselName" type="text" class="input form-control" placeholder="e.g. Grandiose" maxlength="20" required>
