@@ -24,9 +24,6 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 
-        <bean id="regDAOImpl" class="com.wavemagister.daoImpl.RegDAOImpl">
-		<property name="jdbcTemplate" ref="jdbcTemplate" />
-	</bean>
         
 	<!-- Database Configurations -->
 	<bean id="dataSource"
