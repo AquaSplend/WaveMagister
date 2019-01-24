@@ -39,16 +39,10 @@ public class UserController
     
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public boolean showRegister(@ModelAttribute("register") User user) {
-        boolean check = false;
-        try{
-            userDAO.insertUser(user);
-            check = true;
-        }
-        catch(Exception e){
-        }
-        return check;
-        //return new ModelAndView("activation_pending");
+    public ModelAndView showRegister(@ModelAttribute("register") User user) {
+    
+        userDAO.insertUser(user);
+        return new ModelAndView("activation_pending");
     }
     
 
