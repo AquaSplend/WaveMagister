@@ -56,13 +56,13 @@
                 <div class="title">Spot offers</div>
                 <div class="bg-text searchOffers">
                     <div class="smallTitle">Search for freight offers</div>
-                    <form>
+                    <form class="searchForOffersForm">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="quantity">Cargo quantity (MT)</label>
-                                <input value="200000" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="quantity" placeholder="e.g. 200000" title="Cargo quantity (MT)" required="required" />
-                                <input hidden class="resultsPrice" type="number" name="oilPrice">
-                                <input hidden class="resultsDays" type="number" name="days">
+                                <input value="200000" maxlength="6" type="number" name="quantity" class="input form-control" id="quantity" placeholder="e.g. 200000" title="Cargo quantity (MT)" required="required" />
+                                <input hidden class="resultsPrice" type="text" name="oilPrice">
+                                <input hidden class="resultsDays" type="text" name="days">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="startDate">Start date</label>
