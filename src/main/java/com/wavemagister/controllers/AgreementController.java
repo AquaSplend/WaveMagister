@@ -32,18 +32,13 @@ public class AgreementController
      @RequestParam("start") String start,
      @RequestParam("end") String end ){
 
-        System.out.println("****************  Add agreement*****************************************");
-        System.out.println(start);
-        System.out.println(end);
-        System.out.println(freight);
-
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("charterer"))
+        if(!Login.getLoggedInUser().getRole().equals("charterer"))
             return new ModelAndView("access_denied");
         
         Vessel vessel = vessselDAO.getVesselById(vessel_id);
-        User charterer = Login.loggedUser;
+        User charterer = Login.getLoggedInUser();
         Agreement agreement = new Agreement(start, end, vessel, charterer, freight);
 //        
 //        // Check if agreement exists ?
@@ -56,15 +51,15 @@ public class AgreementController
     @RequestMapping(value = "/shipowner_agreements")
     public ModelAndView listShipownerAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("shipowner"))
+        if(!Login.getLoggedInUser().getRole().equals("shipowner"))
             return new ModelAndView("access_denied");
         
         
         ModelAndView model = new ModelAndView("shipowner_agreements");
 
-        List<Agreement> shipownerAgreementList = agreementDAO.getShipownerAgreements(Login.loggedUser);
+        List<Agreement> shipownerAgreementList = agreementDAO.getShipownerAgreements(Login.getLoggedInUser());
         model.addObject("shipownerAgreementList", shipownerAgreementList);
         
         return model;
@@ -73,13 +68,13 @@ public class AgreementController
     @RequestMapping(value = "/charterer_agreements")
     public ModelAndView listChartererAgreements(@ModelAttribute("agreement") Agreement agreement)
     {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("charterer"))
+        if(!Login.getLoggedInUser().getRole().equals("charterer"))
             return new ModelAndView("access_denied");
         
         ModelAndView model = new ModelAndView("charterer_agreements");
-        List<Agreement> chartererAgreementList = agreementDAO.getChartererAgreements(Login.loggedUser);
+        List<Agreement> chartererAgreementList = agreementDAO.getChartererAgreements(Login.getLoggedInUser());
         model.addObject("chartererAgreementList", chartererAgreementList);
         
         return model;

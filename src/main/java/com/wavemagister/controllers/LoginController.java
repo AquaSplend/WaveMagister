@@ -26,7 +26,7 @@ public class LoginController
         login.setUserDAO(userDAO);
 
         if (login.checkLogin()) {
-            User user = Login.loggedUser;
+            User user = Login.getLoggedInUser();
 
             if (user.isActivated()){
                 switch(user.getRole()){
@@ -51,25 +51,23 @@ public class LoginController
     
     @RequestMapping( value = "/logout")
     public ModelAndView logoutUser(@ModelAttribute("login") Login login, @ModelAttribute("register") User user) {
-        Login.loggedUser = null;
-        Login.loggedIn = false;
+        Login.setLoggedInUser(null);
+        Login.setLoggedIn(false);
         return new ModelAndView("redirect:/login");
     }
     
     @RequestMapping( value = "/change_password", method=RequestMethod.POST)
     public ModelAndView changePassword(@RequestParam("password") String password) {
-        Login.loggedUser.setPassword(password);
-        System.out.println(password);
-        userDAO.updateUser(Login.loggedUser);
-        System.out.println("OK.");
+        Login.getLoggedInUser().setPassword(password);
+        userDAO.updateUser(Login.getLoggedInUser());
         return new ModelAndView("redirect:/login");
     }
 
     @RequestMapping( value = "/shipowner")
     public ModelAndView shipowner() {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("shipowner"))
+        if(!Login.getLoggedInUser().getRole().equals("shipowner"))
             return new ModelAndView("access_denied");
             
         return new ModelAndView("shipowner");
@@ -77,9 +75,9 @@ public class LoginController
 
     @RequestMapping(value = "/charterer")
     public ModelAndView charterer() {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("charterer"))
+        if(!Login.getLoggedInUser().getRole().equals("charterer"))
             return new ModelAndView("access_denied");
         
         return new ModelAndView("charterer");

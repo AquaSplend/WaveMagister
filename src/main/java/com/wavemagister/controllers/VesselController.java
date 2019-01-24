@@ -33,7 +33,7 @@ public class VesselController {
      @RequestParam("dwt") int dwt,
      @RequestParam("costs") int costs ) {
         
-        User shipowner = userDAO.getUserById(Login.loggedUser.getId());
+        User shipowner = userDAO.getUserById(Login.getLoggedInUser().getId());
         Vessel vessel = new Vessel(name, flag, year_built, dwt, shipowner, costs, true);
         
         // To implement check if vessel already exists
@@ -53,7 +53,6 @@ public class VesselController {
      @RequestParam("active") boolean active ) {
         
         ModelAndView model = new ModelAndView("shipowner");
-        System.out.println(shipowner_id);
         User user = userDAO.getUserById(shipowner_id);
         Vessel vessel = new Vessel(id, name, flag, year_built, dwt, user, costs, active);
         
@@ -78,7 +77,7 @@ public class VesselController {
 
         ModelAndView model = new ModelAndView("shipowner_fleet");
 
-        List<Vessel> vesselList = vesselDAO.getFleet(Login.loggedUser.getId());
+        List<Vessel> vesselList = vesselDAO.getFleet(Login.getLoggedInUser().getId());
 
         model.addObject("vesselList", vesselList);
 
@@ -90,20 +89,12 @@ public class VesselController {
     public ModelAndView listOffers(@ModelAttribute("offer") Offer offer) {
 
         ModelAndView model = new ModelAndView("search_results");
-        //offer.setDays(15);
-        //offer.setOilPrice(60.5);
+
         List<Vessel> offers = vesselDAO.getSpotOffers(offer.getQuantity(), offer.getStart(), offer.getEnd());
         List<Integer> freight = new ArrayList<>();
-        //int count = 0;
-        System.out.println("Search results*******************************************************");
         for(Vessel availableVessel:offers){     
-            System.out.println(offer.getOilPrice());
-            System.out.println(offer.getQuantity());
-            System.out.println(availableVessel.getCosts());
             int calc = ((int)(offer.getOilPrice()*0.13642565*offer.getQuantity())+availableVessel.getCosts())/offer.getDays();
             freight.add(calc);
-            //System.out.println(freight.get(count));
-            //count++;
         }
 
         model.addObject("offers", offers);
@@ -118,7 +109,6 @@ public class VesselController {
         ModelAndView model = new ModelAndView("shipowner_fleet");
 
         List<Vessel> vesselList = vesselDAO.getAllVessels();
-        System.out.println(vesselList);
         model.addObject("vesselList", vesselList);
 
         return model;

@@ -30,7 +30,7 @@ public class UserDAOImpl implements UserDAO
     public void insertUser(User user)
     {
         String sql = "INSERT INTO users(username, password, company, role, activated) VALUES(?,?,?,?,?)";
-        System.out.println("dao called");
+
         jdbcTemplate.update(sql, new Object[]
         { user.getUsername(),user.getPassword(),user.getCompany(),user.getRole(),user.isActivated() });
     }
@@ -129,10 +129,8 @@ public class UserDAOImpl implements UserDAO
     // Updating a particular User
     @Override
     public void updateUser(User user) {
-        System.out.println(user);
         String sql = "UPDATE users SET username = ?, password = ?, company = ?, role = ?, activated = ? "
                 + "WHERE id = ?";
-        System.out.println("Inside DAO.");
 
         jdbcTemplate.update(sql, new Object[]
         { user.getUsername(),user.getPassword(),user.getCompany(),user.getRole(),user.isActivated(),user.getId() });

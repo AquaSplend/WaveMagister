@@ -29,7 +29,7 @@ public class VesselDAOImpl implements VesselDAO {
     @Override
     public void insertVessel(Vessel vessel) {
         String sql = "INSERT INTO vessels(name, flag, year_built, dwt, costs, shipowner, active) VALUES(?,?,?,?,?,?,?)";
-        //System.out.println("dao called");
+
         jdbcTemplate.update(sql, new Object[]{vessel.getName(), vessel.getFlag(), vessel.getYear_built(), vessel.getDwt(), vessel.getCosts(), vessel.getShipowner().getId(), vessel.getActive()});
     }
 
@@ -82,7 +82,7 @@ public class VesselDAOImpl implements VesselDAO {
     // Getting Vessel info for offers
     @Override
     public List<Vessel> getSpotOffers(int searchQuantity, String searchStartDate, String searchEndDate) {
-        //System.out.println("******************* GET SPOT OFFERS *********" + searchStartDate + "    " +  searchEndDate);
+        
         String sql = "SELECT DISTINCT \n"
                 + "`vessels`.`id` AS 'vessel_id', \n"
                 + "`users`.`company` AS 'Shipowner', \n"

@@ -31,7 +31,6 @@ public class UserController
             }
         }
         catch(EmptyResultDataAccessException e) {
-            System.out.println("inside catch");
             userDAO.insertUser(user);
         }
         return new ModelAndView("redirect:/admin");
@@ -48,9 +47,9 @@ public class UserController
 
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView editUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("admin"))
+        if(!Login.getLoggedInUser().getRole().equals("admin"))
             return new ModelAndView("access_denied");
         
         ModelAndView model = new ModelAndView("admin");
@@ -66,9 +65,9 @@ public class UserController
 
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteUser(@ModelAttribute("admin") User user,@PathVariable("id") int id) {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("admin"))
+        if(!Login.getLoggedInUser().getRole().equals("admin"))
             return new ModelAndView("access_denied");
         
         userDAO.deleteUser(id);
@@ -77,9 +76,9 @@ public class UserController
 
     @RequestMapping(value = "/admin")
     public ModelAndView listUsers(@ModelAttribute("user") User user) {
-        if(!Login.loggedIn)
+        if(!Login.isLoggedIn())
             return new ModelAndView("redirect:/login");
-        if(!Login.loggedUser.getRole().equals("admin"))
+        if(!Login.getLoggedInUser().getRole().equals("admin"))
             return new ModelAndView("access_denied");
         
         List<User> charterers = userDAO.getUsersByRole("charterer");

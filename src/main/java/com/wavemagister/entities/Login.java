@@ -9,9 +9,9 @@ import com.wavemagister.dao.UserDAO;
  */
 public class Login {
  
-    public static boolean loggedIn = false;
-    public static User loggedUser = null;
-    
+    private static boolean loggedIn = false;
+    private static User loggedInUser = null;
+
     private UserDAO userDAO;
     private String username;
     private String password;
@@ -30,13 +30,13 @@ public class Login {
             return false;
         
         loggedIn = true;
-        loggedUser = user;
+        loggedInUser = user;
         return true;
     }
     
     public void logout(){ 
         loggedIn = false; 
-        loggedUser = null;
+        loggedInUser = null;
     }
 
     public String getUsername() {
@@ -58,4 +58,20 @@ public class Login {
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
+    
+        public static boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public static void setLoggedIn(boolean aLoggedIn) {
+        loggedIn = aLoggedIn;
+    }
+
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User aLoggedInUser) {
+        loggedInUser = aLoggedInUser;
+    }    
 }
