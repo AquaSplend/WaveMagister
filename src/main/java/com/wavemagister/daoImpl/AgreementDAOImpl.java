@@ -117,7 +117,7 @@ public class AgreementDAOImpl implements AgreementDAO {
                 + "ON `vessels`.`shipowner`=`shipowner`.`id`\n"
                 + "INNER JOIN `users` `charterer`\n"
                 + "ON `agreements`.`user_id`=`charterer`.`id` \n"
-                + "WHERE `shipowner`.`id`='" + loggedInUser.getId() + "';";
+                + "WHERE `user_id`='" + loggedInUser.getId() + "';";
 
         List<Agreement> agreementList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Agreement>>() {
             @Override
