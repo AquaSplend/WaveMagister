@@ -340,6 +340,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 .navbar {
     transition: .3s;
     padding: 0 1rem;
+    box-shadow: 0 -11px 14px 9px black;
 }
 
 .mb-0 {
@@ -525,13 +526,13 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
 .concludeOffer:hover {
     background-color: rgba(222, 91, 39, .8) !important;
     color: rgba(255, 255, 255, .8);
-    border: 2px solid rgba(222, 91, 39, .8) !important;
+    border: none !important;
 }
 
 .concludeOffer:active {
     background-color: rgba(182, 76, 33, 0.8) !important;
     color: rgba(224, 224, 224, 0.8);
-    border: 2px solid rgba(182, 76, 33, 0.8)!important;
+    border: none !important;
 }
 
 .nameInput {
@@ -712,21 +713,21 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     display: none;
 }
 
-form #vesselName, #resVesselName {
-    width: 370px;
-}
+/*form #vesselName, #resVesselName {*/
+    /*width: 370px;*/
+/*}*/
 
-form #vesselFlag, #resVesselFlag {
-    width: 67px;
-}
+/*form #vesselFlag, #resVesselFlag {*/
+    /*width: 67px;*/
+/*}*/
 
-form #vesselYearBuilt, #resVesselYearBuilt {
-    width: 78px;
-}
+/*form #vesselYearBuilt, #resVesselYearBuilt {*/
+    /*width: 78px;*/
+/*}*/
 
-form #vesselDwt, #resVesselDwt {
-    width: 143px;
-}
+/*form #vesselDwt, #resVesselDwt {*/
+    /*width: 143px;*/
+/*}*/
 
 .fleetList input:hover {
     background-color: rgba(255, 255, 255, .7) !important;

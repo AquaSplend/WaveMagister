@@ -86,7 +86,7 @@ public class VesselController {
     }
 
     
-    @RequestMapping(value = "/search_results")
+    @RequestMapping(value = "/search_results", method=RequestMethod.POST)
     public ModelAndView listOffers(@ModelAttribute("offer") Offer offer) {
 
         ModelAndView model = new ModelAndView("search_results");
@@ -95,12 +95,12 @@ public class VesselController {
         List<Vessel> offers = vesselDAO.getSpotOffers(offer.getQuantity(), offer.getStart(), offer.getEnd());
         List<Integer> freight = new ArrayList<>();
         //int count = 0;
-        //System.out.println("*******************************************************");
+        System.out.println("*******************************************************");
         for(Vessel availableVessel:offers){     
-            //System.out.println(offer.getOilPrice());
-            //System.out.println(offer.getQuantity());
-            //System.out.println(availableVessel.getCosts());
-            int calc = ((int)(offer.getOilPrice()*0.13*offer.getQuantity())+availableVessel.getCosts())/offer.getDays();
+            System.out.println(offer.getOilPrice());
+            System.out.println(offer.getQuantity());
+            System.out.println(availableVessel.getCosts());
+            int calc = ((int)(offer.getOilPrice()*0.13642565*offer.getQuantity())+availableVessel.getCosts())/offer.getDays();
             freight.add(calc);
             //System.out.println(freight.get(count));
             //count++;

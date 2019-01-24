@@ -13,12 +13,21 @@ $(document).ready(()=> {
     let navbar_brand = $(".navbar-brand");
     let otherButton_parent = $(".otherButtonParent");
     let otherButtons = $(".mr-auto .navBut");
+    let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
 
     navbar_brand.hide();
     login.hide();
     register.hide();
     reset.hide();
     html.fadeIn(1000);
+
+    $(document).on("click", ".notesButton", ()=> {
+        modalNotesElements.addClass("active");
+    });
+
+    $(document).on("click", ".close-modal-notes", ()=> {
+        modalNotesElements.removeClass("active");
+    });
 
     otherButtons.on("click", function() {
         otherButtons.not($(this)).css("background-color", "transparent !important");

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:forEach items="${offers}" var="offer">
+<c:forEach items="${offers}" var="offer" varStatus="status">
     <div class="bg-text results">
         <form>
             <div class="form-row">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="resFreight">Freight ($)</label>
-                    <input type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
+                    <input value=${freight[status.index]} type="number" class="input form-control dailyFreight" id="resFreight" title="Daily freight" disabled>
                 </div>
                 <div class="addVesselIcon">
                     <button type="submit" title="Conclude agreement" class="plus concludeOffer">><span></span></button>

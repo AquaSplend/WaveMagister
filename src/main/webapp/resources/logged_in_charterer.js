@@ -62,18 +62,21 @@ $(document).ready(()=> {
     function showSearchOffers() {
         chartererAgreementsParent.fadeOut();
         openWait();
+        $(".resultsStartDate").val($("#startDate").val());
+        $(".resultsEndDate").val($("#endDate").val());
+        $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+        $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/wavemagister/search_results.html",
+            data: $(".searchForOffersForm").serialize(),
             success: function(response) {
                 chartererAgreementsParent.empty();
                 offersResults.empty();
                 offersResults.append(response);
-                $(".resultsStartDate").val($("#startDate").val());
-                $(".resultsEndDate").val($("#endDate").val());
-                $(".dailyFreight").each(function () {
-                    $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parent().prev().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
-                });
+                // $(".dailyFreight").each(function () {
+                //     $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parent().prev().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
+                // });
                 closeWait();
                 oilParent.delay(450).fadeIn();
                 offersParent.delay(450).fadeIn();
@@ -113,18 +116,18 @@ $(document).ready(()=> {
 
     $(document).on("change", ".searchOffers input", function() {
         openWait();
+        $(".resultsStartDate").val($("#startDate").val());
+        $(".resultsEndDate").val($("#endDate").val());
+        $(".resultsPrice").val($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1));
+        $(".resultsDays").val(Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)));
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/wavemagister/search_results.html",
+            data: $(".searchForOffersForm").serialize(),
             success: function(response) {
                 offersResults.fadeOut();
                 offersResults.empty();
                 offersResults.append(response);
-                $(".resultsStartDate").val($("#startDate").val());
-                $(".resultsEndDate").val($("#endDate").val());
-                $(".dailyFreight").each(function () {
-                    $(this).val(Math.round(($(".oilpricenettable2 tbody tr").next().find("span").html().substr(1) * 0.13642565 * $("#quantity").val() + $(this).parents().find(".dailyCosts").val()) / (Math.ceil(Math.abs((new Date($("#startDate").val())).getTime() - (new Date($("#endDate").val())).getTime()) / (1000 * 3600 * 24)))));
-                });
                 closeWait();
                 offersResults.delay(450).fadeIn();
             },
