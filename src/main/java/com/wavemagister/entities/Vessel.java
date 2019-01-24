@@ -15,6 +15,16 @@ public class Vessel {
     public Vessel(){
         
     }
+    
+        public Vessel(String name, String flag, int year_built, int dwt, User shipowner, int costs ,boolean active) {
+        this.name = name;
+        this.flag = flag;
+        this.year_built = year_built;
+        this.dwt = dwt;
+        this.shipowner = shipowner;
+        this.costs = costs;
+        this.active = active;
+    }
 
     public Vessel(int id, String name, String flag, int year_built, int dwt, User shipowner, int costs ,boolean active) {
         this.id = id;

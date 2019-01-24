@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +27,18 @@ public class VesselController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/vessel", method=RequestMethod.POST)
-    public ModelAndView insertVessel(@ModelAttribute("vessel") Vessel vessel) {
-        try {
-            Vessel existingVessel = vesselDAO.getVesselById(vessel.getId());
-            if(existingVessel != null){
-                vessel.setId(existingVessel.getId());
-                vesselDAO.updateVessel(vessel);
-            }
-        }
-        catch(EmptyResultDataAccessException e) {
-            System.out.println("inside catch");
-            vesselDAO.insertVessel(vessel);
-        }
+    public ModelAndView insertVessel( @RequestParam("name") String name,
+     @RequestParam("flag") String flag,
+     @RequestParam("year_built") int year_built,
+     @RequestParam("dwt") int dwt,
+     @RequestParam("costs") int costs ) {
+        
+        User shipowner = userDAO.getUserById(Login.loggedUser.getId());
+        Vessel vessel = new Vessel(name, flag, year_built, dwt, shipowner, costs, true);
+        
+        // To implement check if vessel already exists
+        vesselDAO.insertVessel(vessel);
+    
         return new ModelAndView("redirect:/vessels");
     }
 
