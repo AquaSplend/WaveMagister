@@ -78,10 +78,8 @@ public class AgreementController
         if(!Login.loggedUser.getRole().equals("charterer"))
             return new ModelAndView("access_denied");
         
-        
         ModelAndView model = new ModelAndView("charterer_agreements");
-        
-        List<Agreement> chartererAgreementList = agreementDAO.getShipownerAgreements(Login.loggedUser);
+        List<Agreement> chartererAgreementList = agreementDAO.getChartererAgreements(Login.loggedUser);
         model.addObject("chartererAgreementList", chartererAgreementList);
         
         return model;
