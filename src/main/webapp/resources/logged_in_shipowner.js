@@ -63,13 +63,24 @@ $(document).ready(()=> {
     }
 
     $(document).on("click", ".addNewVesselButton", ()=> {
+        modalNewVesselElements.removeClass("active");
         openWait();
         $.ajax({
             type: "POST",
             url: "/wavemagister/vessel.html",
-            data: $(this).parents("form").serialize(),
+            data: $(".addVesselForm").serialize(),
             success: function() {
+                closeWait();
                 showFleet();
+                $("[data-notification-status='success']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "success")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`This vessel has successfully been added to your fleet.`)
+                    .delay(6000).fadeOut();
             },
             fail: function() {
                 closeWait();
@@ -80,7 +91,7 @@ $(document).ready(()=> {
                     .addClass("bottom-right" + " notify")
                     .addClass("do-show")
                     .empty()
-                    .append(`Something went wrong and the vessel data failed to update. Please try again.`)
+                    .append(`Something went wrong and the vessel did not get added to your fleet. Please try again.`)
                     .delay(10000).fadeOut();
             }
         });

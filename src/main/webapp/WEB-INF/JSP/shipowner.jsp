@@ -49,30 +49,29 @@
             <div class="modal-content">
                 <div class="mediumTitle">Add new vessel to fleet</div>
                 <div class="bg-text1">
-                    <form>
+                    <form class="addVesselForm">
                         <div class="form-group">
                             <label for="aVesselName">Name</label>
-                            <input id="aVesselName" type="text" class="input form-control" placeholder="e.g. Grandiose" maxlength="20" required>
+                            <input name="name" id="aVesselName" type="text" class="input form-control" placeholder="e.g. Grandiose" maxlength="20" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="aVesselFlag">Flag</label>
-                                <input type="text" class="input form-control" id="aVesselFlag" maxlength="2" placeholder="e.g. PA" required>
+                                <input name="flag" type="text" class="input form-control" id="aVesselFlag" maxlength="2" placeholder="e.g. PA" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="selectYearBuilt">Year built</label>
-                                <select id="selectYearBuilt" class="form-control">
-                                </select>
+                                <select name="year_built" id="selectYearBuilt" class="form-control"></select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="aVesselDWT">Dead weight tonnage</label>
-                                <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselDWT" placeholder="e.g. 150000" required>
+                                <input name="dwt" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselDWT" placeholder="e.g. 150000" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="aVesselCosts">Daily costs ($)</label>
-                                <input oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselCosts" placeholder="e.g. 3000" required>
+                                <input name="costs" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="6" class="input form-control" id="aVesselCosts" placeholder="e.g. 3000" required>
                             </div>
                         </div>
                         <div class="text-center">
