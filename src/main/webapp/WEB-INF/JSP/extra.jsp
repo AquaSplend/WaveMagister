@@ -29,7 +29,7 @@
                     <div class="passwordNotEqualsChange hidden">The passwords you entered do not match. Try again.</div>
                     <div class="text-center">
                         <button type="submit" class="button afterForm passwordChangeButton">Change password</button>
-                        <input class="button afterForm" type="reset" value="Reset">
+                        <input class="button afterForm resetPassword" type="reset" value="Reset">
                     </div>
                 </form>
             </div>

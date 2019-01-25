@@ -68,6 +68,12 @@ $(document).ready(()=> {
         }
     });
 
+    $(document).on("click", ".resetPassword", ()=> {
+        if (!passwordNotEqualsRegister.hasClass("hidden")) {
+            passwordNotEqualsRegister.addClass("hidden")
+        }
+    });
+
     $(document).on("click", ".registerButtonInitial", (e)=> {
         if ($("#rPassword1").val() !== $("#rPassword2").val()) {
             e.preventDefault();
@@ -92,7 +98,7 @@ $(document).ready(()=> {
                         .addClass("bottom-right" + " notify")
                         .addClass("do-show")
                         .empty()
-                        .append(`Something went wrong and registration could not be completed.`)
+                        .append(`Something went wrong and the registration could not be completed.`)
                         .delay(10000).fadeOut();
                 }
             });
@@ -109,25 +115,13 @@ $(document).ready(()=> {
         }
     });
 
-    $(".regFirstTry").on("input", function() {
+    $(".regFirstTry, .regSecondTry").on("input", function() {
         if (!passwordNotEqualsRegister.hasClass("hidden")) {
             passwordNotEqualsRegister.addClass("hidden");
         }
     });
 
-    $(".regSecondTry").on("input", function() {
-        if (!passwordNotEqualsRegister.hasClass("hidden")) {
-            passwordNotEqualsRegister.addClass("hidden");
-        }
-    });
-
-    $(".loginInputUsername").on("input", function() {
-        if (!passwordLargerThan.hasClass("hidden")) {
-            passwordLargerThan.addClass("hidden");
-        }
-    });
-
-    $(".loginInputPassword").on("input", function() {
+    $(".loginInputUsername, .loginInputPassword").on("input", function() {
         if (!passwordLargerThan.hasClass("hidden")) {
             passwordLargerThan.addClass("hidden");
         }

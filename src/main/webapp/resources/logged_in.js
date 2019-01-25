@@ -30,9 +30,16 @@ $(document).ready(()=> {
         }
     });
 
-    $(document).on("click", ".passwordChangeButton", ()=> {
+    $(document).on("click", ".resetPassword", ()=> {
+        if (!passwordNotEqualsChange.hasClass("hidden")) {
+            passwordNotEqualsChange.addClass("hidden")
+    }
+    });
+
+    $(document).on("click", ".passwordChangeButton", (e)=> {
         passwordNotEqualsChange.addClass("hidden");
         if (passwordFormField1.val() !== passwordFormField2.val() || passwordFormField1.val().length < 6 || passwordFormField2.val().length < 6) {
+            e.preventDefault();
             passwordNotEqualsChange.removeClass("hidden");
         } else {
             openWait();
