@@ -7,7 +7,9 @@ $(document).ready(()=> {
     let otherButtons = $(".mr-auto .navBut");
     let modalPasswordElements = $(".modal-overlay-password, .modal-password");
     let modalOverlayWheel = $(".modal-overlay-wheel");
-    let passwordNotEquals = $(".passwordNotEquals");
+    let passwordNotEqualsChange = $(".passwordNotEqualsChange");
+    let passwordFormField1 = $(".passwordFormField1");
+    let passwordFormField2 = $(".passwordFormField2");
     
     login.hide();
     register.hide();
@@ -29,9 +31,9 @@ $(document).ready(()=> {
     });
 
     $(document).on("click", ".passwordChangeButton", ()=> {
-        passwordNotEquals.addClass("hidden");
-        if ($("#password1").val() !== $("#password2").val() || $("#password1").val().length < 6 || $("#password2").val().length < 6) {
-            passwordNotEquals.removeClass("hidden");
+        passwordNotEqualsChange.addClass("hidden");
+        if (passwordFormField1.val() !== passwordFormField2.val() || passwordFormField1.val().length < 6 || passwordFormField2.val().length < 6) {
+            passwordNotEqualsChange.removeClass("hidden");
         } else {
             openWait();
             $.ajax({
@@ -115,6 +117,18 @@ $(document).ready(()=> {
             width: inputWidth
         })
     }).trigger("input");
+
+    passwordFormField1.on("input", function() {
+        if (!passwordNotEqualsChange.hasClass("hidden")) {
+            passwordNotEqualsChange.addClass("hidden");
+        }
+    });
+
+    passwordFormField2.on("input", function() {
+        if (!passwordNotEqualsChange.hasClass("hidden")) {
+            passwordNotEqualsChange.addClass("hidden");
+        }
+    });
 
     $(document).on("click", ".changePasswordButton", ()=> {
         modalPasswordElements.addClass("active");

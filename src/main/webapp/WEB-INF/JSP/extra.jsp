@@ -20,13 +20,13 @@
                 <form class="passwordChangeForm">
                     <div class="form-group">
                         <label class="pass1Mes" for="password1">Enter your new password</label>
-                        <input type="password" class="input form-control passwordFormField" id="password1" minlength="6" maxlength="16" placeholder="Password" required>
+                        <input type="password" class="input form-control passwordFormField1" id="password1" minlength="6" maxlength="16" placeholder="Password" required>
                     </div>
                     <div class="form-group">
                         <label class="pass2Mes" for="password2">Repeat your new password</label>
-                        <input type="password" class="input form-control passwordFormField" id="password2" minlength="6" maxlength="16" placeholder="Password" name="password" required>
+                        <input type="password" class="input form-control passwordFormField2" id="password2" minlength="6" maxlength="16" placeholder="Password" name="password" required>
                     </div>
-                    <div class="passwordNotEquals hidden">The passwords you entered do not match. Try again.</div>
+                    <div class="passwordNotEqualsChange hidden">The passwords you entered do not match. Try again.</div>
                     <div class="text-center">
                         <button type="submit" class="button afterForm passwordChangeButton">Change password</button>
                         <input class="button afterForm" type="reset" value="Reset">
