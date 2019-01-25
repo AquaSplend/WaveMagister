@@ -80,11 +80,7 @@ $(document).ready(()=> {
                 url: "/wavemagister/register.html",
                 data: $(".registerFormInitial").serialize(),
                 success: (response)=> {
-                    jumbotron.empty().append(response);
-                    $("video").addClass("video-blurred");
-                    jumbotron.show();
-                    $(".navbar-expand-md").removeClass("hidden");
-                    html.delay(450).fadeIn();
+                    window.location.href = response.redirect;
                 },
                 error: ()=> {
                     register.show();
