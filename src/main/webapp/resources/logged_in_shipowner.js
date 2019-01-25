@@ -92,7 +92,7 @@ $(document).ready(()=> {
                     .addClass("bottom-right" + " notify")
                     .addClass("do-show")
                     .empty()
-                    .append(`Something went wrong and the vessel did not get added to your fleet. Please try again.`)
+                    .append(`Something went wrong and the vessel was not added to your fleet. Please try again.`)
                     .delay(10000).fadeOut();
             }
         });
