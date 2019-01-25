@@ -995,7 +995,7 @@ input:not(:focus), .bg-text1 input:not(:focus), .form-control:not(:focus) {
     align-items: center;
 }
 
-.passwordNotEquals, .passwordNotEqualsRegister {
+.passwordNotEquals, .passwordNotEqualsRegister, .passwordLargerThan {
     width: auto;
     font-weight: 700;
     color: rgba(226, 92, 38, 0.8);

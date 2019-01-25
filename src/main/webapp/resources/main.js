@@ -15,6 +15,7 @@ $(document).ready(()=> {
     let otherButtons = $(".mr-auto .navBut");
     let modalNotesElements = $(".modal-overlay-notes, .modal-notes");
     let passwordNotEqualsRegister = $(".passwordNotEqualsRegister");
+    let passwordLargerThan = $(".passwordLargerThan");
 
     navbar_brand.hide();
     login.hide();
@@ -103,6 +104,15 @@ $(document).ready(()=> {
         }
     });
 
+    $(document).on("click", ".loginButtonInitial", ()=> {
+        passwordLargerThan.addClass("hidden");
+        if ($(".loginInputPassword").val().length < 1 || $(".loginInputUsername").val().length < 1) {
+            passwordLargerThan.removeClass("hidden");
+        } else {
+            $(this).parents("form").submit();
+        }
+    });
+
     $(".regFirstTry").on("input", function() {
         if (!passwordNotEqualsRegister.hasClass("hidden")) {
             passwordNotEqualsRegister.addClass("hidden");
@@ -112,6 +122,18 @@ $(document).ready(()=> {
     $(".regSecondTry").on("input", function() {
         if (!passwordNotEqualsRegister.hasClass("hidden")) {
             passwordNotEqualsRegister.addClass("hidden");
+        }
+    });
+
+    $(".loginInputUsername").on("input", function() {
+        if (!passwordLargerThan.hasClass("hidden")) {
+            passwordLargerThan.addClass("hidden");
+        }
+    });
+
+    $(".loginInputPassword").on("input", function() {
+        if (!passwordLargerThan.hasClass("hidden")) {
+            passwordLargerThan.addClass("hidden");
         }
     });
 });

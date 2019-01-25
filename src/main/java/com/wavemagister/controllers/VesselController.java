@@ -42,7 +42,7 @@ public class VesselController {
         return new ModelAndView("redirect:/vessels");
     }
 
-    @RequestMapping(value = "/Vedit")
+    @RequestMapping(value = "/Vedit", method=RequestMethod.POST)
     public ModelAndView editVessels( @RequestParam("id") int id,
      @RequestParam("shipowner") int shipowner_id,
      @RequestParam("name") String name,

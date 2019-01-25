@@ -30,7 +30,7 @@ $(document).ready(()=> {
 
     $(document).on("click", ".passwordChangeButton", ()=> {
         passwordNotEquals.addClass("hidden");
-        if ($("#password1").val() !== $("#password2").val()) {
+        if ($("#password1").val() !== $("#password2").val() || $("#password1").val().length < 6 || $("#password2").val().length < 6) {
             passwordNotEquals.removeClass("hidden");
         } else {
             openWait();

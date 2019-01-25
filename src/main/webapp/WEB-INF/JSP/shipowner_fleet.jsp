@@ -8,8 +8,7 @@
 <div class="container">
     <c:forEach items="${vesselList}" var="vessel">
         <div class="bg-text fleetList">
-            
-            <form action="/wavemagister/Vedit">
+            <form class="shipownerFleet">
                 <div class="form-row rowResults">
                     <div class="form-group vesselUpdateForm">
                         <label style="display:none;" for="vesselId"></label>
@@ -40,10 +39,10 @@
                         <label class="toggle">
                             <c:choose>
                                 <c:when test="${vessel.active=='false'}">
-                                    <input title="Active" name="active" id="vesselActive" type="checkbox"/>
+                                    <input title="Active" class="activeVessel" name="active" id="vesselActive" type="checkbox" value="false"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <input title="Active" name="active" id="vesselActive" type="checkbox" checked/>
+                                    <input title="Active" class="activeVessel" name="active" id="vesselActive" type="checkbox" value="true" checked/>
                                 </c:otherwise>
                             </c:choose>
                             <div></div>

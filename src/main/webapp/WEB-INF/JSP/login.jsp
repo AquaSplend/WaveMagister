@@ -123,14 +123,15 @@
                 <form:form method="POST" action="/wavemagister/main.html" modelAttribute="login">
                     <div class="form-group">
                         <label for="lusername">Username</label>
-                        <form:input type="text" class="input form-control" id="lusername" path="username" maxlength="16" placeholder="Username" required="required" />
+                        <form:input type="text" class="input form-control loginInputUsername" id="lusername" path="username" maxlength="16" placeholder="Username" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="lpassword">Password</label>
-                        <form:input type="password" class="input form-control" id="lpassword" path="password" maxlength="16" placeholder="Password" required="required" />
+                        <form:input type="password" class="input form-control loginInputPassword" id="lpassword" path="password" maxlength="16" placeholder="Password" required="required" />
                     </div>
+                    <div class="passwordLargerThan hidden">You must enter your credentials to login.</div>
                     <div class="text-center">
-                        <button type="submit" class="button afterForm" name="login">Login</button>
+                        <button type="submit" class="button afterForm loginButtonInitial" name="login">Login</button>
                         <input class="button afterForm" type="reset" value="Reset">
                     </div>
                 </form:form>

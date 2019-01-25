@@ -122,9 +122,18 @@ $(document).ready(()=> {
         $.ajax({
             type: "POST",
             url: "/wavemagister/Vedit.html",
-            data: $(this).parents("form").serialize(),
+            data: $(this).parents(".shipownerFleet").serialize(),
             success: function() {
                 showFleet();
+                $("[data-notification-status='success']")
+                    .show()
+                    .removeClass()
+                    .attr("data-notification-status", "success")
+                    .addClass("bottom-right" + " notify")
+                    .addClass("do-show")
+                    .empty()
+                    .append(`This vessel has been updated.`)
+                    .delay(10000).fadeOut();
             },
             error: function() {
                 closeWait();
