@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <springframework.version>5.2.9.RELEASE</springframework.version>
+                <springframework.version>5.3.19</springframework.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<oracle.connector.version>11.2.0</oracle.connector.version>
 		<mysql.version>8.0.16</mysql.version>
